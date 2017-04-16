@@ -48,10 +48,3 @@ class House: NSObject {
     
 }
 
-class HouseStore {
-    
-    var store : [House] = []
-    
-   
-}
-

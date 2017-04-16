@@ -1,5 +1,5 @@
 //
-//  HouseFormViewController.swift
+//  HouseUpdateFormViewController.swift
 //  Unihelp
 //
 //  Created by Abhijit Srikanth on 4/15/17.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource{
-        
+class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource{
+    
     @IBOutlet weak var address1: UITextField!
     @IBOutlet weak var address2: UITextField!
     @IBOutlet weak var city: UITextField!
@@ -21,28 +21,28 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var imageTable: UITableView!
     
-    var allHouses = [House]()
-    
     var imageArray = [UIImage]()
     var imagePicker = UIImagePickerController()
     
     var strDate : String = ""
     var flag = false
     //let newHouse = House(random: true)
-
+    
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
         
         aboutHouse.delegate = self
         imageTable.delegate = self
         
+        imageTable.reloadData()
+        
         self.navigationItem.backBarButtonItem?.title = "Cancel"
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     // -------------------------------Submit the whole House details (Create an object) TODO: Upload into Firebase -----------------------------//
-    @IBAction func submit(sender: AnyObject) {
+    @IBAction func updateHouse(sender: AnyObject) {
         
         let add1 = address1.text!
         let add2 = address2.text
@@ -61,53 +61,45 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
             alertController.addAction(defaultAction)
             
             presentViewController(alertController, animated: true, completion: nil)
-
+            
         }
         else{
- 
+            
             let item = House(address1 : add1, address2 : add2, city: city_, state: state_, zip: zip_, about: about, price: price_, rooms: rooms_, availableDate: strDate, imageStore: imageArray)
             
-            allHouses.append(item)
-            //print(allHouses.count)
             
             //----------------------------!!!!! Todo: Upload into Firebase here !!!!!!!! --------------------//
-            //print(item.imageStore.count)
-
+            print(item.imageStore.count)
+            
             flag = true
             
-            shouldPerformSegueWithIdentifier("backToTable", sender: self)
+            shouldPerformSegueWithIdentifier("backToTableAfterUpdate", sender: self)
             
         }
-
+        
     }
     
     // ------------------------------- Will call segue only whe flag = true (i.e when all details are filled) -----------------------------//
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "backToTable"{
+        if identifier == "backToTableAfterUpdate"{
             return flag
         }
         return false
     }
     
     /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "backToTable" {
-            if let destViewController = segue.destinationViewController as? HomeOwnerTableViewController {
-                destViewController.add = newHouse.address1
-            }
-        }
-    }*/
+     if segue.identifier == "backToTable" {
+     if let destViewController = segue.destinationViewController as? HomeOwnerTableViewController {
+     destViewController.add = newHouse.address1
+     }
+     }
+     }*/
     
     // ------------------------------- Remove Keyboard when clicked elsewhere -----------------------------//
     @IBAction func removeKB(sender: AnyObject) {
         view.endEditing(true)
     }
-
-    // ------------------------------- TextView delegate for aboutHouse. Making it null before typing -----------------------------//
-    func textViewDidBeginEditing(textView: UITextView) {
-        if textView == aboutHouse{
-            aboutHouse.text = ""
-        }
-    }
+    
     
     // ------------------------------- The Date picker chart -----------------------------//
     @IBAction func datePickerAction(sender: AnyObject) {
@@ -115,12 +107,12 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yyyy"
         strDate = dateFormatter.stringFromDate(datePicker.date)
-
+        
     }
     
     // ------------------------------- Opens up gallery to select image -----------------------------//
     @IBAction func uploadPhotoButton(sender: AnyObject) {
-    
+        
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
             
             //print("Button capture")
@@ -133,7 +125,7 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
             
             //            self.present(imagePicker, animated: true, completion: nil)
         }
-    
+        
     }
     
     // ------------------------------- Once image is selected from gallery, adding into Table (imageTable) -----------------------------//
@@ -151,7 +143,7 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
         
         //imageView.image = image
     }
-
+    
     
     // ------------------------------- 1 Section in imageTable -----------------------------//
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -200,10 +192,10 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
             
             ac.addAction(deleteAction)
             
-            presentViewController(ac, animated: true, completion: nil)          
+            presentViewController(ac, animated: true, completion: nil)
         }
     }
-
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -211,5 +203,3 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
         // Dispose of any resources that can be recreated.
     }
 }
-
-

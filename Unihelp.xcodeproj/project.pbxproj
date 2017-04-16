@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992CE1EA2D4CC006662FF /* imageCell.swift */; };
+		1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */; };
+		1C4992D41EA2F192006662FF /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C4992D21EA2F192006662FF /* cities.json */; };
+		1C4992D51EA2F192006662FF /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C4992D31EA2F192006662FF /* countries.json */; };
+		1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */; };
+		1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */; };
 		1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */; };
 		1C7A87D91EA1CFB600A61BFF /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87D81EA1CFB600A61BFF /* House.swift */; };
 		1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */; };
@@ -24,6 +29,11 @@
 
 /* Begin PBXFileReference section */
 		1C4992CE1EA2D4CC006662FF /* imageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCell.swift; sourceTree = "<group>"; };
+		1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseUpdateFormViewController.swift; sourceTree = "<group>"; };
+		1C4992D21EA2F192006662FF /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
+		1C4992D31EA2F192006662FF /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOwnerAccountViewController.swift; sourceTree = "<group>"; };
+		1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerProfile.swift; sourceTree = "<group>"; };
 		1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerTableViewController.swift; sourceTree = "<group>"; };
 		1C7A87D81EA1CFB600A61BFF /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
 		1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseFormViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +81,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1C4992DA1EA31189006662FF /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		BD99F1681EA1B43E00958B75 = {
 			isa = PBXGroup;
 			children = (
@@ -92,11 +109,15 @@
 		BD99F1731EA1B43E00958B75 /* Unihelp */ = {
 			isa = PBXGroup;
 			children = (
+				1C4992DA1EA31189006662FF /* SWRevealViewController */,
 				1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */,
 				1C7A87D81EA1CFB600A61BFF /* House.swift */,
 				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
 				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
 				BD99F1781EA1B43E00958B75 /* Main.storyboard */,
+				1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */,
+				1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */,
+				1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */,
 				1C4992CE1EA2D4CC006662FF /* imageCell.swift */,
 				1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */,
 				1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */,
@@ -105,6 +126,8 @@
 				BD99F1831EA1B43E00958B75 /* Info.plist */,
 				BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */,
 				BD99F17B1EA1B43E00958B75 /* Unihelp.xcdatamodeld */,
+				1C4992D21EA2F192006662FF /* cities.json */,
+				1C4992D31EA2F192006662FF /* countries.json */,
 			);
 			path = Unihelp;
 			sourceTree = "<group>";
@@ -171,7 +194,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C4992D51EA2F192006662FF /* countries.json in Resources */,
 				BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */,
+				1C4992D41EA2F192006662FF /* cities.json in Resources */,
 				BD99F18A1EA1B59F00958B75 /* GoogleService-Info.plist in Resources */,
 				BD99F17F1EA1B43E00958B75 /* Assets.xcassets in Resources */,
 				BD99F17A1EA1B43E00958B75 /* Main.storyboard in Resources */,
@@ -233,10 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */,
+				1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */,
 				1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */,
 				1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */,
 				1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */,
 				BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */,
+				1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */,
 				BD99F1751EA1B43E00958B75 /* AppDelegate.swift in Sources */,
 				1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */,
 				1C7A87D91EA1CFB600A61BFF /* House.swift in Sources */,
