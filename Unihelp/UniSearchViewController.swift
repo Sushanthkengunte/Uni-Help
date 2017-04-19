@@ -99,18 +99,17 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("UniversityCell", forIndexPath: indexPath) as? UniversityCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("UniversityCell", forIndexPath: indexPath) as? UniversityTableViewCell
         let index = indexPath.row as Int
-        cell!.UniversityLabel.text = autoComplete_Universities[index]
+        cell!.university.text = autoComplete_Universities[index]
         
         return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityCell
-        let temp = selectedCell?.UniversityLabel.text
-        uniSearch.text = temp
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityTableViewCell
+        let temp = selectedCell?.university.text
         universityTable.hidden = true
         
         setUniversityDetails(temp!)

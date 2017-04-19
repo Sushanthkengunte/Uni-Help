@@ -13,9 +13,10 @@
 		1C4992D51EA2F192006662FF /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C4992D31EA2F192006662FF /* countries.json */; };
 		1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */; };
 		1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */; };
+		1C4DF6D11EA7610200D42D8D /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DF6D01EA7610200D42D8D /* DLRadioButton.m */; };
+		1C4DF6D31EA768EC00D42D8D /* MyProfileRoomateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */; };
 		1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA1E1EA49EB500E428B5 /* UniSearchViewController.swift */; };
 		1C5EDA231EA4A1B200E428B5 /* university.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C5EDA221EA4A1B200E428B5 /* university.json */; };
-		1C5EDA261EA4A36C00E428B5 /* UniversityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA251EA4A36C00E428B5 /* UniversityCell.swift */; };
 		1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA291EA4A94200E428B5 /* University+CoreDataProperties.swift */; };
 		1C5EDA2C1EA4A94200E428B5 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA2A1EA4A94200E428B5 /* University.swift */; };
 		1C5EDA361EA4D1B900E428B5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA351EA4D1B900E428B5 /* SWRevealViewController.m */; };
@@ -52,9 +53,11 @@
 		1C4992D31EA2F192006662FF /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOwnerAccountViewController.swift; sourceTree = "<group>"; };
 		1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerProfile.swift; sourceTree = "<group>"; };
+		1C4DF6CF1EA7610200D42D8D /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
+		1C4DF6D01EA7610200D42D8D /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
+		1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileRoomateViewController.swift; sourceTree = "<group>"; };
 		1C5EDA1E1EA49EB500E428B5 /* UniSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniSearchViewController.swift; sourceTree = "<group>"; };
 		1C5EDA221EA4A1B200E428B5 /* university.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = university.json; sourceTree = "<group>"; };
-		1C5EDA251EA4A36C00E428B5 /* UniversityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityCell.swift; sourceTree = "<group>"; };
 		1C5EDA291EA4A94200E428B5 /* University+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "University+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1C5EDA2A1EA4A94200E428B5 /* University.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
 		1C5EDA341EA4D1B900E428B5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -142,20 +145,21 @@
 			name = "NSObjects Subclasses";
 			sourceTree = "<group>";
 		};
-		1C5EDA331EA4D17800E428B5 /* SWRevealViewController */ = {
+		1C5EDA331EA4D17800E428B5 /* ObjectiveC File */ = {
 			isa = PBXGroup;
 			children = (
+				1C4DF6D01EA7610200D42D8D /* DLRadioButton.m */,
+				1C4DF6CF1EA7610200D42D8D /* DLRadioButton.h */,
 				1C5EDA341EA4D1B900E428B5 /* SWRevealViewController.h */,
 				1C5EDA351EA4D1B900E428B5 /* SWRevealViewController.m */,
 			);
-			name = SWRevealViewController;
+			name = "ObjectiveC File";
 			sourceTree = "<group>";
 		};
 		BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				1C4992CE1EA2D4CC006662FF /* imageCell.swift */,
-				1C5EDA251EA4A36C00E428B5 /* UniversityCell.swift */,
 				1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */,
 				BD1F1A9F1EA6E41E00B3B4FD /* UniversityTableViewCell.swift */,
 				BD1F1A9D1EA6E41800B3B4FD /* CountryTableViewCell.swift */,
@@ -167,6 +171,7 @@
 		BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */,
 				BD8F23F41EA3441400E213C9 /* LoginViewController.swift */,
 				1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */,
 				1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */,
@@ -229,7 +234,7 @@
 				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
 				BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */,
 				BD1F1AA31EA6E52B00B3B4FD /* Model */,
-				1C5EDA331EA4D17800E428B5 /* SWRevealViewController */,
+				1C5EDA331EA4D17800E428B5 /* ObjectiveC File */,
 				1C5EDA281EA4A93300E428B5 /* NSObjects Subclasses */,
 				1C5EDA241EA4A1B900E428B5 /* Json files */,
 				BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */,
@@ -369,8 +374,8 @@
 			files = (
 				BD8F23F51EA3441400E213C9 /* LoginViewController.swift in Sources */,
 				1C5EDA361EA4D1B900E428B5 /* SWRevealViewController.m in Sources */,
-				1C5EDA261EA4A36C00E428B5 /* UniversityCell.swift in Sources */,
 				1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */,
+				1C4DF6D11EA7610200D42D8D /* DLRadioButton.m in Sources */,
 				1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */,
 				1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */,
 				1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */,
@@ -378,6 +383,7 @@
 				1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */,
 				BD1F1AA01EA6E41E00B3B4FD /* UniversityTableViewCell.swift in Sources */,
 				BD1F1A9A1EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift in Sources */,
+				1C4DF6D31EA768EC00D42D8D /* MyProfileRoomateViewController.swift in Sources */,
 				BD8F23F31EA3414B00E213C9 /* SignInViewController.swift in Sources */,
 				BD1F1A9C1EA6E3E700B3B4FD /* CityTableViewCell.swift in Sources */,
 				BD1F1A9E1EA6E41800B3B4FD /* CountryTableViewCell.swift in Sources */,
