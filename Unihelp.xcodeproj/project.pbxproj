@@ -41,6 +41,7 @@
 		BD99F17F1EA1B43E00958B75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD99F17E1EA1B43E00958B75 /* Assets.xcassets */; };
 		BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */; };
 		BD99F18A1EA1B59F00958B75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */; };
+		BDE8A44D1EA6FA2A00604FDD /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8A44C1EA6FA2A00604FDD /* StudentProfile.swift */; };
 		CC2CEB82404ADA63F1567865 /* Pods_Unihelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09BC8C9B5DB1EC574AD71CB /* Pods_Unihelp.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		BD99F1811EA1B43E00958B75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD99F1831EA1B43E00958B75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BDE8A44C1EA6FA2A00604FDD /* StudentProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 		BD1F1AA31EA6E52B00B3B4FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BDE8A44C1EA6FA2A00604FDD /* StudentProfile.swift */,
 				BD1F1A971EA6DD9300B3B4FD /* NetworkOperations.swift */,
 				1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */,
 				1C7A87D81EA1CFB600A61BFF /* House.swift */,
@@ -389,6 +392,7 @@
 				1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */,
 				1C7A87D91EA1CFB600A61BFF /* House.swift in Sources */,
 				BD99F17D1EA1B43E00958B75 /* Unihelp.xcdatamodeld in Sources */,
+				BDE8A44D1EA6FA2A00604FDD /* StudentProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

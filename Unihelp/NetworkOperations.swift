@@ -16,11 +16,37 @@ struct NetworkOperations{
     
     let databaseRef = FIRDatabase.database().reference()
     let storageRef = FIRStorage.storage().reference()
+    //-----implement getting url by saving the image into the storage
+    func returnUrl(imageView : UIImage) -> NSURL{
+        
+        return NSURL()
+    }
     
-    private func saveInfo(){
+    func saveInfo(stuObject : StudentProfile){
         //-----creates user dictionary info
+       let studentDatabaseEntry = convertIntoDictionary(stuObject)
+        let keyOf = FIRAuth.auth()?.currentUser?.uid
+        databaseRef.child("Students").child(keyOf!).setValue(studentDatabaseEntry)
         //----create database reference
         //------save user information
+    }
+    private func convertIntoDictionary(stuObject : StudentProfile)->[String : AnyObject]{
+        
+        var temp : [String : AnyObject]?
+        temp!["displayPic"] = stuObject.displayPicUrl
+        temp!["type"] = stuObject.type
+        temp!["userKey"] = stuObject.userKey
+        temp!["name"] = stuObject.name
+        temp!["emailID"] = stuObject.emailID
+        temp!["country"] = stuObject.country
+        temp!["city"] = stuObject.city
+         temp!["university"] = stuObject.university
+         temp!["DOB"] = stuObject.DOB
+        temp!["personnaProfile"] = stuObject.personnaProfile
+        temp!["requiredProfile"] = stuObject.requiredProfile
+        temp!["requiredHouse"] = stuObject.requiredHouse
+        
+        return temp!
     }
      func alertingTheError(title : String, extMessage intMessage : String, extVc intVc : UIViewController){
         let alertController = UIAlertController(title: title, message:intMessage, preferredStyle: .Alert)

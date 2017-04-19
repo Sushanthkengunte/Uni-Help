@@ -15,6 +15,9 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     @IBOutlet weak var displayPic: UIImageView!
     @IBOutlet weak var uploadDp: UIButton!
     
+    @IBOutlet weak var yearText: UITextField!
+    @IBOutlet weak var dateText: UITextField!
+    @IBOutlet weak var monthtext: UITextField!
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var emailID: UITextField!
     @IBOutlet weak var phoneNo: UITextField!
@@ -55,6 +58,9 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         city.delegate = self
         country.delegate = self
         university.delegate = self
+        monthtext.delegate = self
+        dateText.delegate = self
+        yearText.delegate = self
         
         cityTable.delegate = self
         countryTable.delegate = self
