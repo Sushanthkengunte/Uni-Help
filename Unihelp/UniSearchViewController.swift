@@ -62,8 +62,11 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
                 
             }
         })
-
-        
+ 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        universityTable.hidden = true
     }
     
     @IBAction func removeKB(sender: AnyObject) {
@@ -96,20 +99,21 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("UniversityCell", forIndexPath: indexPath) as? UniversityCell
         let index = indexPath.row as Int
-        cell.textLabel!.text = autoComplete_Universities[index]
+        cell!.UniversityLabel.text = autoComplete_Universities[index]
         
-        return cell
+        return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-        uniSearch.text = selectedCell?.textLabel!.text!
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityCell
+        let temp = selectedCell?.UniversityLabel.text
+        uniSearch.text = temp
         universityTable.hidden = true
         
-        setUniversityDetails(uniSearch.text!)
+        setUniversityDetails(temp!)
         
     }
     

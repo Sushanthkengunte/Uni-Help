@@ -48,6 +48,11 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        cityTable.hidden = true
+        countryTable.hidden = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -167,16 +172,16 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         
 
         if tableView == self.countryTable{
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("Country", forIndexPath: indexPath) as! CountryTableViewCell
             let index = indexPath.row as Int
-            cell.textLabel!.text = autoComplete_Countries[index]
+            cell.country.text = autoComplete_Countries[index]
             
             return cell
         }
         else if tableView == self.cityTable{
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("City", forIndexPath: indexPath) as! CityTableViewCell
             let index = indexPath.row as Int
-            cell.textLabel!.text = autoComplete_Cities[index]
+            cell.city.text = autoComplete_Cities[index]
             
             return cell
         }
@@ -208,16 +213,18 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
 
-        if tableView == self.countryTable{
-            let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-            country.text = selectedCell?.textLabel!.text!
+        if tableView == countryTable{
+            let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? CountryTableViewCell
+            let temp = selectedCell?.country.text
+            country.text = temp
             countryTable.hidden = true
-            storeCities((selectedCell?.textLabel!.text!)!)
+            storeCities(temp!)
             city.text = ""
         }
         else if tableView == self.cityTable{
-            let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-            city.text = selectedCell?.textLabel!.text!
+            let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? CityTableViewCell
+            let temp = selectedCell?.city.text
+            city.text = temp
             cityTable.hidden = true
         }
         
@@ -260,6 +267,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
      
     @IBAction func removeKB(sender: AnyObject) {
         view.endEditing(true)
+
     }
     
     func storeCountries(){

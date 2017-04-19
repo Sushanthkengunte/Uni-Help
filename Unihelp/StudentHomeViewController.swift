@@ -10,6 +10,7 @@ import UIKit
 
 class StudentHomeViewController: UIViewController {
 
+
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -21,6 +22,7 @@ class StudentHomeViewController: UIViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+
         // Do any additional setup after loading the view.
     }
 
