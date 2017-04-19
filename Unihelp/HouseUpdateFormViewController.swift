@@ -29,7 +29,7 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
     //let newHouse = House(random: true)
     
     override func viewDidLoad() {
-
+        
         super.viewDidLoad()
         
         aboutHouse.delegate = self

@@ -34,7 +34,8 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        myImage.layer.cornerRadius = myImage.frame.size.width/2
+        myImage.clipsToBounds = true
         storeCountries()
         
         country.delegate = self
@@ -56,28 +57,51 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
             
+            
+            let alertC = UIAlertController(title: "Chose a picture", message: "from", preferredStyle: .ActionSheet)
+            alertC.addAction(UIAlertAction(title: "camera", style: .Default,handler: { (action) in
+                self.showPicker(.Camera)
+            }))
+            alertC.addAction(UIAlertAction(title: "photo Album", style: .Default,handler:  { (action) in
+                self.showPicker(.PhotoLibrary)
+            }))
+            alertC.addAction(UIAlertAction(title: "Saved Album", style: .Default,handler: { (action) in
+                self.showPicker(.SavedPhotosAlbum)
+            }))
+            alertC.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+            self.presentViewController(alertC, animated: true, completion: nil)
+            
+            
             //print("Button capture")
             
-            imagePicker.delegate = self
-            imagePicker.sourceType = .PhotoLibrary
-            imagePicker.allowsEditing = false
-            
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+//            imagePicker.delegate = self
+//            imagePicker.sourceType = .PhotoLibrary
+//            imagePicker.allowsEditing = false
+//            
+//            self.presentViewController(imagePicker, animated: true, completion: nil)
             
             //            self.present(imagePicker, animated: true, completion: nil)
         }
         
     }
+    func showPicker(sT : UIImagePickerControllerSourceType){
+        let pickController = UIImagePickerController()
+        pickController.delegate = self
+        //pickController.allowsEditing = true
+        
+        pickController.sourceType = sT
+        self.presentViewController(pickController, animated: true, completion: nil)
+    }
+      // ------------------------------- Once image is selected from gallery, adding into Imageview) -----------------------------//
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        dismissViewControllerAnimated(true, completion: nil)
+        //var im1 = image
+        // saveToDatabase(image)
+        myImage?.image = image
+        
+    }
     
     // ------------------------------- Once image is selected from gallery, adding into Imageview) -----------------------------//
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-        })
-        
-        myImage?.image = image
-
-    }
 
     @IBAction func updateProfileButton(sender: AnyObject) {
         
@@ -240,7 +264,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     
     func storeCountries(){
         
-        autoComplete_Countries.removeAll()
+        autoCompletePossibilities_Countries.removeAll()
         if let path = NSBundle.mainBundle().pathForResource("countries", ofType: "json"){
             
             do{

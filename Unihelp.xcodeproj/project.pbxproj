@@ -13,10 +13,27 @@
 		1C4992D51EA2F192006662FF /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C4992D31EA2F192006662FF /* countries.json */; };
 		1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */; };
 		1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */; };
+		1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA1E1EA49EB500E428B5 /* UniSearchViewController.swift */; };
+		1C5EDA231EA4A1B200E428B5 /* university.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C5EDA221EA4A1B200E428B5 /* university.json */; };
+		1C5EDA261EA4A36C00E428B5 /* UniversityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA251EA4A36C00E428B5 /* UniversityCell.swift */; };
+		1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA291EA4A94200E428B5 /* University+CoreDataProperties.swift */; };
+		1C5EDA2C1EA4A94200E428B5 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA2A1EA4A94200E428B5 /* University.swift */; };
+		1C5EDA361EA4D1B900E428B5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA351EA4D1B900E428B5 /* SWRevealViewController.m */; };
+		1C5EDA3A1EA4D84300E428B5 /* StudentHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA391EA4D84300E428B5 /* StudentHomeViewController.swift */; };
 		1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */; };
 		1C7A87D91EA1CFB600A61BFF /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87D81EA1CFB600A61BFF /* House.swift */; };
 		1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */; };
 		1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */; };
+		BD1F1A981EA6DD9300B3B4FD /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1F1A971EA6DD9300B3B4FD /* NetworkOperations.swift */; };
+		BD1F1A9A1EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1F1A991EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift */; };
+		BD1F1A9C1EA6E3E700B3B4FD /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1F1A9B1EA6E3E700B3B4FD /* CityTableViewCell.swift */; };
+		BD1F1A9E1EA6E41800B3B4FD /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1F1A9D1EA6E41800B3B4FD /* CountryTableViewCell.swift */; };
+		BD1F1AA01EA6E41E00B3B4FD /* UniversityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1F1A9F1EA6E41E00B3B4FD /* UniversityTableViewCell.swift */; };
+		BD8F23F11EA3412C00E213C9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F23F01EA3412C00E213C9 /* SignUpViewController.swift */; };
+		BD8F23F31EA3414B00E213C9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F23F21EA3414B00E213C9 /* SignInViewController.swift */; };
+		BD8F23F51EA3441400E213C9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F23F41EA3441400E213C9 /* LoginViewController.swift */; };
+		BD8F23FB1EA36FBD00E213C9 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8F23FA1EA36FBD00E213C9 /* FBSDKCoreKit.framework */; };
+		BD8F23FD1EA36FCD00E213C9 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8F23FC1EA36FCD00E213C9 /* FBSDKLoginKit.framework */; };
 		BD99F1751EA1B43E00958B75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD99F1741EA1B43E00958B75 /* AppDelegate.swift */; };
 		BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD99F1761EA1B43E00958B75 /* ViewController.swift */; };
 		BD99F17A1EA1B43E00958B75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1781EA1B43E00958B75 /* Main.storyboard */; };
@@ -34,6 +51,14 @@
 		1C4992D31EA2F192006662FF /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOwnerAccountViewController.swift; sourceTree = "<group>"; };
 		1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerProfile.swift; sourceTree = "<group>"; };
+		1C5EDA1E1EA49EB500E428B5 /* UniSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniSearchViewController.swift; sourceTree = "<group>"; };
+		1C5EDA221EA4A1B200E428B5 /* university.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = university.json; sourceTree = "<group>"; };
+		1C5EDA251EA4A36C00E428B5 /* UniversityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityCell.swift; sourceTree = "<group>"; };
+		1C5EDA291EA4A94200E428B5 /* University+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "University+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1C5EDA2A1EA4A94200E428B5 /* University.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
+		1C5EDA341EA4D1B900E428B5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		1C5EDA351EA4D1B900E428B5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		1C5EDA391EA4D84300E428B5 /* StudentHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomeViewController.swift; sourceTree = "<group>"; };
 		1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerTableViewController.swift; sourceTree = "<group>"; };
 		1C7A87D81EA1CFB600A61BFF /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
 		1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseFormViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +66,17 @@
 		465FED3D8363B55094D04C65 /* Pods-Unihelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unihelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unihelp/Pods-Unihelp.release.xcconfig"; sourceTree = "<group>"; };
 		878AD4795046E04BBCA47C35 /* Pods-Unihelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unihelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unihelp/Pods-Unihelp.debug.xcconfig"; sourceTree = "<group>"; };
 		A09BC8C9B5DB1EC574AD71CB /* Pods_Unihelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unihelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD1F1A971EA6DD9300B3B4FD /* NetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
+		BD1F1A991EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatherStudentInfoViewController.swift; sourceTree = "<group>"; };
+		BD1F1A9B1EA6E3E700B3B4FD /* CityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		BD1F1A9D1EA6E41800B3B4FD /* CountryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
+		BD1F1A9F1EA6E41E00B3B4FD /* UniversityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityTableViewCell.swift; sourceTree = "<group>"; };
+		BD8F23F01EA3412C00E213C9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BD8F23F21EA3414B00E213C9 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		BD8F23F41EA3441400E213C9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BD8F23FA1EA36FBD00E213C9 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		BD8F23FC1EA36FCD00E213C9 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		BD8F23FE1EA3702D00E213C9 /* Unihelp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unihelp-Bridging-Header.h"; sourceTree = "<group>"; };
 		BD99F1711EA1B43E00958B75 /* Unihelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unihelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD99F1741EA1B43E00958B75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD99F1761EA1B43E00958B75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +94,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC2CEB82404ADA63F1567865 /* Pods_Unihelp.framework in Frameworks */,
+				BD8F23FB1EA36FBD00E213C9 /* FBSDKCoreKit.framework in Frameworks */,
+				BD8F23FD1EA36FCD00E213C9 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,16 +114,88 @@
 		134D05EFBF228C1281735292 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD8F23FC1EA36FCD00E213C9 /* FBSDKLoginKit.framework */,
+				BD8F23FA1EA36FBD00E213C9 /* FBSDKCoreKit.framework */,
 				A09BC8C9B5DB1EC574AD71CB /* Pods_Unihelp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1C4992DA1EA31189006662FF /* SWRevealViewController */ = {
+		1C5EDA241EA4A1B900E428B5 /* Json files */ = {
 			isa = PBXGroup;
 			children = (
+				1C4992D21EA2F192006662FF /* cities.json */,
+				1C4992D31EA2F192006662FF /* countries.json */,
+				1C5EDA221EA4A1B200E428B5 /* university.json */,
+			);
+			name = "Json files";
+			sourceTree = "<group>";
+		};
+		1C5EDA281EA4A93300E428B5 /* NSObjects Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				1C5EDA291EA4A94200E428B5 /* University+CoreDataProperties.swift */,
+				1C5EDA2A1EA4A94200E428B5 /* University.swift */,
+			);
+			name = "NSObjects Subclasses";
+			sourceTree = "<group>";
+		};
+		1C5EDA331EA4D17800E428B5 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C5EDA341EA4D1B900E428B5 /* SWRevealViewController.h */,
+				1C5EDA351EA4D1B900E428B5 /* SWRevealViewController.m */,
 			);
 			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				1C4992CE1EA2D4CC006662FF /* imageCell.swift */,
+				1C5EDA251EA4A36C00E428B5 /* UniversityCell.swift */,
+				1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */,
+				BD1F1A9F1EA6E41E00B3B4FD /* UniversityTableViewCell.swift */,
+				BD1F1A9D1EA6E41800B3B4FD /* CountryTableViewCell.swift */,
+				BD1F1A9B1EA6E3E700B3B4FD /* CityTableViewCell.swift */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BD8F23F41EA3441400E213C9 /* LoginViewController.swift */,
+				1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */,
+				1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */,
+				1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */,
+				BD8F23F01EA3412C00E213C9 /* SignUpViewController.swift */,
+				BD8F23F21EA3414B00E213C9 /* SignInViewController.swift */,
+				1C5EDA391EA4D84300E428B5 /* StudentHomeViewController.swift */,
+				BD1F1A991EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift */,
+				1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */,
+				1C5EDA1E1EA49EB500E428B5 /* UniSearchViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BD1F1AA31EA6E52B00B3B4FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD1F1A971EA6DD9300B3B4FD /* NetworkOperations.swift */,
+				1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */,
+				1C7A87D81EA1CFB600A61BFF /* House.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BD1F1AA41EA6E55400B3B4FD /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				BD8F23FE1EA3702D00E213C9 /* Unihelp-Bridging-Header.h */,
+				BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */,
+			);
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		BD99F1681EA1B43E00958B75 = {
@@ -109,25 +219,20 @@
 		BD99F1731EA1B43E00958B75 /* Unihelp */ = {
 			isa = PBXGroup;
 			children = (
-				1C4992DA1EA31189006662FF /* SWRevealViewController */,
-				1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */,
-				1C7A87D81EA1CFB600A61BFF /* House.swift */,
-				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
-				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
-				BD99F1781EA1B43E00958B75 /* Main.storyboard */,
-				1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */,
-				1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */,
-				1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */,
-				1C4992CE1EA2D4CC006662FF /* imageCell.swift */,
-				1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */,
-				1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */,
-				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
 				BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */,
+				BD99F1781EA1B43E00958B75 /* Main.storyboard */,
+				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
+				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
+				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
+				BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */,
+				BD1F1AA31EA6E52B00B3B4FD /* Model */,
+				1C5EDA331EA4D17800E428B5 /* SWRevealViewController */,
+				1C5EDA281EA4A93300E428B5 /* NSObjects Subclasses */,
+				1C5EDA241EA4A1B900E428B5 /* Json files */,
+				BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */,
+				BD1F1AA41EA6E55400B3B4FD /* SupportingFiles */,
 				BD99F1831EA1B43E00958B75 /* Info.plist */,
-				BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */,
 				BD99F17B1EA1B43E00958B75 /* Unihelp.xcdatamodeld */,
-				1C4992D21EA2F192006662FF /* cities.json */,
-				1C4992D31EA2F192006662FF /* countries.json */,
 			);
 			path = Unihelp;
 			sourceTree = "<group>";
@@ -198,6 +303,7 @@
 				BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */,
 				1C4992D41EA2F192006662FF /* cities.json in Resources */,
 				BD99F18A1EA1B59F00958B75 /* GoogleService-Info.plist in Resources */,
+				1C5EDA231EA4A1B200E428B5 /* university.json in Resources */,
 				BD99F17F1EA1B43E00958B75 /* Assets.xcassets in Resources */,
 				BD99F17A1EA1B43E00958B75 /* Main.storyboard in Resources */,
 			);
@@ -258,14 +364,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD8F23F51EA3441400E213C9 /* LoginViewController.swift in Sources */,
+				1C5EDA361EA4D1B900E428B5 /* SWRevealViewController.m in Sources */,
+				1C5EDA261EA4A36C00E428B5 /* UniversityCell.swift in Sources */,
 				1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */,
 				1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */,
+				1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */,
 				1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */,
 				1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */,
 				1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */,
+				BD1F1AA01EA6E41E00B3B4FD /* UniversityTableViewCell.swift in Sources */,
+				BD1F1A9A1EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift in Sources */,
+				BD8F23F31EA3414B00E213C9 /* SignInViewController.swift in Sources */,
+				BD1F1A9C1EA6E3E700B3B4FD /* CityTableViewCell.swift in Sources */,
+				BD1F1A9E1EA6E41800B3B4FD /* CountryTableViewCell.swift in Sources */,
+				1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */,
 				BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */,
+				1C5EDA2C1EA4A94200E428B5 /* University.swift in Sources */,
+				BD1F1A981EA6DD9300B3B4FD /* NetworkOperations.swift in Sources */,
+				BD8F23F11EA3412C00E213C9 /* SignUpViewController.swift in Sources */,
 				1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */,
 				BD99F1751EA1B43E00958B75 /* AppDelegate.swift in Sources */,
+				1C5EDA3A1EA4D84300E428B5 /* StudentHomeViewController.swift in Sources */,
 				1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */,
 				1C7A87D91EA1CFB600A61BFF /* House.swift in Sources */,
 				BD99F17D1EA1B43E00958B75 /* Unihelp.xcdatamodeld in Sources */,
@@ -382,10 +502,17 @@
 			baseConfigurationReference = 878AD4795046E04BBCA47C35 /* Pods-Unihelp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Unihelp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks  /Users/sushanth/Documents/FacebookSDK";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sucherry.Unihelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Unihelp/Unihelp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -394,10 +521,16 @@
 			baseConfigurationReference = 465FED3D8363B55094D04C65 /* Pods-Unihelp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Unihelp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks  /Users/sushanth/Documents/FacebookSDK";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sucherry.Unihelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Unihelp/Unihelp-Bridging-Header.h";
 			};
 			name = Release;
 		};
