@@ -14,6 +14,8 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
+    var storeCore = StoreIntoCore()
+    
     @IBOutlet weak var universityName: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var city: UILabel!
@@ -36,6 +38,8 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        checkCoreDataContents()
         
         storeUniversities()
         
@@ -65,6 +69,30 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
  
     }
     
+    
+    //----------------------Checking for University details in core data. if not present adding it by calling storeUniversititesInCore() -----
+    func checkCoreDataContents(){
+
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("University", inManagedObjectContext: self.managedObjectContext)
+        fetchRequest.entity = entityDescription
+        
+        do{
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            
+            if result.count < 1 {
+                print("Storing into Core because nothing was present")
+                storeCore.storeUniversitiesInCore()
+            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         universityTable.hidden = true
     }
@@ -81,6 +109,10 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
             let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
             
             searchAutocompleteEntriesWithSubstring(substring, textField: textField)
+            
+            if autoComplete_Universities.count == 0{
+                universityTable.hidden = true
+            }
             
         }
         return true
@@ -110,6 +142,7 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
         
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityTableViewCell
         let temp = selectedCell?.university.text
+        uniSearch.text = temp
         universityTable.hidden = true
         
         setUniversityDetails(temp!)
@@ -130,7 +163,7 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
         
         do{
             let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
-            //print(result)
+            print(result.count)
             
             let object = result[0] as! NSManagedObject
             
@@ -197,41 +230,29 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
     func storeUniversities(){
         
         autoCompletePossibilities_Universities.removeAll()
-        if let path = NSBundle.mainBundle().pathForResource("university", ofType: "json"){
+        
+        
+        let fetchRequest = NSFetchRequest()
+        
+        let entityDescription = NSEntityDescription.entityForName("University", inManagedObjectContext: self.managedObjectContext)
+        
+        fetchRequest.entity = entityDescription
+        
+        do{
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
             
-            do{
-                let data = try(NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe))
-                
-                let jsonDictionary = try(NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers))
-                
-                if let jsonResult = jsonDictionary as? NSMutableArray
-                {
-                    for jsonTemp in jsonResult{
-                        
-                        let newObj = NSEntityDescription.insertNewObjectForEntityForName("University", inManagedObjectContext: self.managedObjectContext) as! University
-                        
-                        newObj.name = (jsonTemp["University"] as AnyObject? as? String) ?? ""
-                        newObj.address = (jsonTemp["Address1"] as AnyObject? as? String) ?? ""
-                        newObj.city = (jsonTemp["City"] as AnyObject? as? String) ?? ""
-                        newObj.state = (jsonTemp["State"] as AnyObject? as? String) ?? ""
-                        newObj.telephone = (jsonTemp["Telephone"] as AnyObject? as? String) ?? ""
-                        newObj.website = (jsonTemp["Website"] as AnyObject? as? String) ?? ""
-                        
-                        autoCompletePossibilities_Universities.append(newObj.name!)
-                        
-                        try newObj.managedObjectContext?.save()
-                        
-                    }
-                }
-            }catch let er{
-                print(er)
+            for obj in result{
+                autoCompletePossibilities_Universities.append((obj.valueForKey("name") as? String)!)
             }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
         }
 //        for k in autoCompletePossibilities_Universities{
-//           print(k)
+//            print (k)
 //        }
     }
-
     
     
     override func didReceiveMemoryWarning() {

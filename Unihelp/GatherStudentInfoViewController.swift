@@ -11,6 +11,7 @@ import UIKit
 class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate ,UITableViewDataSource {
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var storeCore = StoreIntoCore()
     var profileType : String!
      var imageData : NSData!
     var displayPicUrl : NSURL! {
@@ -56,6 +57,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        checkCoreDataContents()
 
         // Do any additional setup after loading the view.
         displayPic.layer.cornerRadius = displayPic.frame.size.width/2
@@ -94,6 +96,30 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         
     }
+    
+    //----------------------Checking for University details in core data. if not present adding it by calling storeUniversititesInCore() -----
+    func checkCoreDataContents(){
+        
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("University", inManagedObjectContext: self.managedObjectContext)
+        fetchRequest.entity = entityDescription
+        
+        do{
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            
+            if result.count < 1 {
+                print("Storing into Core because nothing was present")
+                storeCore.storeUniversitiesInCore()
+            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+        
+        
+    }
+
     @IBAction func chooseImage(sender: AnyObject) {
         let alertC = UIAlertController(title: "Chose a picture", message: "from", preferredStyle: .ActionSheet)
         alertC.addAction(UIAlertAction(title: "camera", style: .Default,handler: { (action) in
@@ -179,37 +205,26 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     }
     
     private func storeUniversities(){
+        
         autoCompletePossibilities_Universities.removeAll()
         
-        if let path = NSBundle.mainBundle().pathForResource("university", ofType: "json"){
+        
+        let fetchRequest = NSFetchRequest()
+        
+        let entityDescription = NSEntityDescription.entityForName("University", inManagedObjectContext: self.managedObjectContext)
+        
+        fetchRequest.entity = entityDescription
+        
+        do{
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
             
-            do{
-                let data = try(NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe))
-                
-                let jsonDictionary = try(NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers))
-                
-                if let jsonResult = jsonDictionary as? NSMutableArray
-                {
-                    for jsonTemp in jsonResult{
-                        
-                        let newObj = NSEntityDescription.insertNewObjectForEntityForName("University", inManagedObjectContext: self.managedObjectContext) as! University
-                        
-                        newObj.name = (jsonTemp["University"] as AnyObject? as? String) ?? ""
-                        newObj.address = (jsonTemp["Address1"] as AnyObject? as? String) ?? ""
-                        newObj.city = (jsonTemp["City"] as AnyObject? as? String) ?? ""
-                        newObj.state = (jsonTemp["State"] as AnyObject? as? String) ?? ""
-                        newObj.telephone = (jsonTemp["Telephone"] as AnyObject? as? String) ?? ""
-                        newObj.website = (jsonTemp["Website"] as AnyObject? as? String) ?? ""
-                        
-                        autoCompletePossibilities_Universities.append(newObj.name!)
-                        
-                        try newObj.managedObjectContext?.save()
-                        
-                    }
-                }
-            }catch let er{
-                print(er)
+            for obj in result{
+                autoCompletePossibilities_Universities.append((obj.valueForKey("name") as? String)!)
             }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
         }
         
     }
@@ -219,8 +234,11 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             countryTable.hidden = false
             let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
             
-            
             searchAutocompleteEntriesWithSubstring(substring, textField: textField)
+            
+            if autoComplete_Country.count == 0{
+                countryTable.hidden = true
+            }
             
         }else if textField == city{
             cityTable.hidden = false
@@ -228,11 +246,19 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             
             searchAutocompleteEntriesWithSubstring(substring, textField: textField)
             
+            if autoComplete_City.count == 0{
+                cityTable.hidden = true
+            }
+            
         }else if textField == university{
             universityTable.hidden = false
             let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
             
             searchAutocompleteEntriesWithSubstring(substring, textField: textField)
+            
+            if autoComplete_Universities.count == 0{
+                universityTable.hidden = true
+            }
         }
         return true
     }

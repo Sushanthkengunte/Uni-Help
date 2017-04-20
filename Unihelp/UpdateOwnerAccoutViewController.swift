@@ -1,16 +1,16 @@
 //
-//  CreateOwnerAccountViewController.swift
+//  UpdateOwnerAccoutViewController.swift
 //  Unihelp
 //
-//  Created by Abhijit Srikanth on 4/15/17.
+//  Created by Abhijit Srikanth on 4/20/17.
 //  Copyright © 2017 SuProject. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
-
+class UpdateOwnerAccoutViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate ,UIImagePickerControllerDelegate {
+    
     var autoCompletePossibilities_Countries = [""]
     var autoComplete_Countries = [String]()
     
@@ -26,7 +26,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var country: UITextField!
     @IBOutlet weak var city: UITextField!
-
+    
     @IBOutlet weak var countryTable: UITableView!
     @IBOutlet weak var cityTable: UITableView!
     
@@ -79,11 +79,11 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             
             //print("Button capture")
             
-//            imagePicker.delegate = self
-//            imagePicker.sourceType = .PhotoLibrary
-//            imagePicker.allowsEditing = false
-//            
-//            self.presentViewController(imagePicker, animated: true, completion: nil)
+            //            imagePicker.delegate = self
+            //            imagePicker.sourceType = .PhotoLibrary
+            //            imagePicker.allowsEditing = false
+            //
+            //            self.presentViewController(imagePicker, animated: true, completion: nil)
             
             //            self.present(imagePicker, animated: true, completion: nil)
         }
@@ -97,7 +97,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         pickController.sourceType = sT
         self.presentViewController(pickController, animated: true, completion: nil)
     }
-      // ------------------------------- Once image is selected from gallery, adding into Imageview) -----------------------------//
+    // ------------------------------- Once image is selected from gallery, adding into Imageview) -----------------------------//
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         dismissViewControllerAnimated(true, completion: nil)
         //var im1 = image
@@ -107,8 +107,8 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     }
     
     // ------------------------------- Once image is selected from gallery, adding into Imageview) -----------------------------//
-
-    @IBAction func submitProfileButton(sender: AnyObject) {
+    
+    @IBAction func updateProfileButton(sender: AnyObject) {
         
         let name_ = fullName.text!
         let website_ = website.text!
@@ -126,7 +126,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             alertController.addAction(defaultAction)
             
             presentViewController(alertController, animated: true, completion: nil)
-
+            
         }
         else{
             let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : dp)
@@ -134,6 +134,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             //-------------------Adding newOwner object into Firebase --------------------!!!!!
             
             flag = true
+            print (newOwner)
             
             shouldPerformSegueWithIdentifier("toHousesTable", sender: self)
         }
@@ -144,20 +145,20 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             return flag
         }
         return false
-       
+        
     }
-
-
+    
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-       if textField == self.country{
+        if textField == self.country{
             countryTable.hidden = false
             let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
             
             searchAutocompleteEntriesWithSubstring(substring, textField: textField)
-        
-        if autoComplete_Countries.count == 0 {
-            countryTable.hidden = true
-        }
+            if autoComplete_Countries.count == 0{
+                countryTable.hidden = true
+            }
+            
             
         }
         else if textField == self.city{
@@ -165,12 +166,12 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
             
             searchAutocompleteEntriesWithSubstring(substring, textField: textField)
-        
-        if autoComplete_Cities.count == 0 {
-            cityTable.hidden = true
-        }
+            
+            if autoComplete_Cities.count == 0 {
+                cityTable.hidden = true
+            }
 
-        
+            
         }
         return true
     }
@@ -179,7 +180,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-
+        
         if tableView == self.countryTable{
             let cell = tableView.dequeueReusableCellWithIdentifier("Country", forIndexPath: indexPath) as! CountryTableViewCell
             let index = indexPath.row as Int
@@ -187,7 +188,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             
             return cell
         }
-        else if tableView == self.cityTable{
+        else if tableView == cityTable{
             let cell = tableView.dequeueReusableCellWithIdentifier("City", forIndexPath: indexPath) as! CityTableViewCell
             let index = indexPath.row as Int
             cell.city.text = autoComplete_Cities[index]
@@ -221,7 +222,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-
+        
         if tableView == countryTable{
             let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? CountryTableViewCell
             let temp = selectedCell?.country.text
@@ -253,7 +254,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
                     
                 }
             }
-        
+            
             countryTable.reloadData()
         }
         else if textField == self.city{
@@ -273,10 +274,10 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         
     }
     
-     
+    
     @IBAction func removeKB(sender: AnyObject) {
         view.endEditing(true)
-
+        
     }
     
     func storeCountries(){
@@ -298,9 +299,9 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
                 print(er)
             }
         }
-//        for k in autoCompletePossibilities_Countries{
-//            print(k)
-//        }
+//                for k in autoCompletePossibilities_Countries{
+//                    print(k)
+//                }
     }
     
     
@@ -326,11 +327,11 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
                 print(er)
             }
         }
-//        for k in autoCompletePossibilities_Cities{
-//         print(k)
-//         }
+        for k in autoCompletePossibilities_Cities{
+            print(k)
+        }
         
     }
-
-
+    
+    
 }
