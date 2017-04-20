@@ -5,20 +5,26 @@
 //  Created by Sushanth on 4/16/17.
 //  Copyright © 2017 SuProject. All rights reserved.
 //
-
+//----------------------------------------------------
+// - Required files:
+// NetworkOperations.swift
+//----------------------------------------------------
+// - Pods to be installed
+// Firebase
+// Firebase/Auth
 import UIKit
 import FBSDKLoginKit
 import FirebaseAuth
 import Firebase
 
 class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
-    var networkOp = NetworkOperations()
+    var networkOp = NetworkOperations() //instace of a structure that consists all the required functions
     var loginButton = FBSDKLoginButton()
     
     @IBOutlet weak var emailID: UITextField!
     @IBOutlet weak var password: UITextField!
    var type : String! = "Student"
-    
+    //-------Function that lets the users sign in----//
     @IBAction func signIn(sender: AnyObject) {
         let email = emailID.text!.lowercaseString
         let finalEmail = email.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
@@ -31,17 +37,19 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
     @IBOutlet weak var pov: UIPickerView!
     
     let pointOfView = ["Student","Home Owner"]
-    
+     //Number of Components in the uiPicker mandatory function to be a UIPickerDelegate
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
+       //Number of rows in the component mandatory function to be a UIPickerDelegate
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pointOfView.count
     }
-   
+   //Title of each row in the component mandatory function to be a UIPickerDelegate
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pointOfView[row]
     }
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         type = pointOfView[row]
     }

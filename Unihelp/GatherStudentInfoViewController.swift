@@ -11,6 +11,19 @@ import UIKit
 class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate ,UITableViewDataSource {
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var profileType : String!
+     var imageData : NSData!
+    var displayPicUrl : NSURL! {
+        didSet{
+            
+              imageData = NSData(contentsOfURL: displayPicUrl)
+        
+            
+        }
+    }
+    var email_Stu :String!
+    var nameOf: String!
+    
     
     @IBOutlet weak var displayPic: UIImageView!
     @IBOutlet weak var uploadDp: UIButton!
@@ -42,7 +55,8 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+
         // Do any additional setup after loading the view.
         displayPic.layer.cornerRadius = displayPic.frame.size.width/2
         displayPic.clipsToBounds = true
@@ -73,6 +87,12 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         countryTable.hidden = true
         cityTable.hidden = true
         universityTable.hidden = true
+        emailID.text = email_Stu
+        name.text = nameOf ?? ""
+        if let im2 = imageData {
+            displayPic.image = UIImage(data: im2)
+        }
+        
     }
     @IBAction func chooseImage(sender: AnyObject) {
         let alertC = UIAlertController(title: "Chose a picture", message: "from", preferredStyle: .ActionSheet)
@@ -183,7 +203,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
                         
                         autoCompletePossibilities_Universities.append(newObj.name!)
                         
-                       try newObj.managedObjectContext?.save()
+                        try newObj.managedObjectContext?.save()
                         
                     }
                 }
@@ -193,7 +213,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         
     }
-
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField == country{
             countryTable.hidden = false
@@ -220,7 +240,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
         if textField == university{
             autoComplete_Universities.removeAll(keepCapacity: false)
-           
+            
             for key in autoCompletePossibilities_Universities{
                 let myString:NSString! = key as NSString
                 
@@ -230,7 +250,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
                     
                 }
             }
-           
+            
             universityTable.reloadData()
         }
         else  if textField == country{
@@ -257,10 +277,10 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
                 let substringrange :NSRange! = myString.rangeOfString(substring)
                 if(substringrange.location == 0){
                     autoComplete_City.append(key)
-                
+                    
                 }
             }
-         
+            
             cityTable.reloadData()
         }
         
@@ -286,7 +306,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             country.text = temp
             storeCity(temp!)
             countryTable.hidden = true
-                    
+            
         }else if tableView == cityTable{
             let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? CityTableViewCell
             let temp = selectedCell?.city.text
@@ -323,7 +343,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     @IBAction func removeKB(sender: AnyObject) {
         
         view.endEditing(true)
-
+        
     }
     
     
