@@ -5,7 +5,6 @@
 //  Created by Abhijit Srikanth on 4/20/17.
 //  Copyright © 2017 SuProject. All rights reserved.
 //
-
 import UIKit
 
 class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate  {
@@ -17,14 +16,13 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     var autoComplete_Cities = [String]()
     
     
-    var coed : String = "both"          //guys, girls, any
-    var drink : String = "none"         //yes, no, any
-    var smoke : String = "none"         //yes, no, any
-    var food : String = "both"          //veg, nonveg, any
+    var coed : String = "any"          //guys, girls, any
+    var drink : String = "any"         //yes, no, any
+    var smoke : String = "any"         //yes, no, any
+    var food : String = "any"          //veg, nonveg, any
     var finalCountry : String = "any"      //From country list, or any
     var finalCity : String = "any"         //From city list, or any
-    var room : String = "none"           //own, share, any
-
+    var room : String = "any"           //own, share, any
     
     
     
@@ -53,7 +51,7 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         
         view.endEditing(true)
     }
-
+    
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField == self.country{
@@ -273,7 +271,7 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         room = "share"
     }
     
-
+    
     
     @IBAction func Veg(sender: AnyObject) {
         food = "veg"
@@ -284,7 +282,7 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     @IBAction func NonVeg(sender: AnyObject) {
         food = "nonveg"
     }
-
+    
     
     @IBAction func DrinkYes(sender: AnyObject) {
         drink = "yes"
@@ -309,6 +307,6 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     
     
     
-
-
+    
+    
 }

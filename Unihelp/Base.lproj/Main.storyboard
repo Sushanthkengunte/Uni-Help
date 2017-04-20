@@ -1037,7 +1037,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="HomeOwnerTableViewController" id="DkP-oC-ayG" customClass="HomeOwnerTableViewController" customModule="Unihelp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" id="tjE-F6-BSS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1550"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1502,7 +1502,7 @@
                                                                     <constraint firstAttribute="height" constant="125" id="xja-A9-IeD"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-cv-ADR">
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-cv-ADR">
                                                                 <rect key="frame" x="153" y="125" width="50" height="30"/>
                                                                 <color key="backgroundColor" red="0.88613782050000001" green="0.88613782050000001" blue="0.88613782050000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="Upload"/>
@@ -2691,13 +2691,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="F1L-5G-Pz2">
                                                 <rect key="frame" x="65" y="32" width="390" height="907"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Preferences of a Roommate.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHH-0a-n6c">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My Preferences of a Roommate.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHH-0a-n6c">
                                                         <rect key="frame" x="43" y="0.0" width="305" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Sun-vZ-h85">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Sun-vZ-h85">
                                                         <rect key="frame" x="15" y="46" width="360" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My Roomates should be .." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eO-JW-OV2">
@@ -2778,7 +2778,7 @@
                                                             <constraint firstItem="5eO-JW-OV2" firstAttribute="centerX" secondItem="Sun-vZ-h85" secondAttribute="centerX" id="Ygb-6H-bKm"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="mV8-mb-lLI">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="mV8-mb-lLI">
                                                         <rect key="frame" x="0.0" y="132" width="390" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Room Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkn-Ih-OB8">
@@ -2850,7 +2850,7 @@
                                                             <constraint firstItem="bkn-Ih-OB8" firstAttribute="centerX" secondItem="mV8-mb-lLI" secondAttribute="centerX" id="fRf-oh-Ppm"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pMk-1f-Aeb">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pMk-1f-Aeb">
                                                         <rect key="frame" x="25" y="218" width="340" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I prefer my roommate to be" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYW-m4-Qhv">
@@ -2931,7 +2931,7 @@
                                                             <constraint firstItem="fYW-m4-Qhv" firstAttribute="centerX" secondItem="pMk-1f-Aeb" secondAttribute="centerX" id="IJa-PE-nVh"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Bee-tS-C5S">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Bee-tS-C5S">
                                                         <rect key="frame" x="28" y="304" width="335" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Is she/he allowed to Drink?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Meb-fy-fOg">
@@ -3003,7 +3003,7 @@
                                                             <constraint firstItem="Meb-fy-fOg" firstAttribute="centerX" secondItem="Bee-tS-C5S" secondAttribute="centerX" id="dKJ-dB-IBM"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="J0a-0m-pci">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="J0a-0m-pci">
                                                         <rect key="frame" x="28" y="390" width="335" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="What about Smoking?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dz8-Cz-jg4">
@@ -3075,7 +3075,7 @@
                                                             <constraint firstItem="dz8-Cz-jg4" firstAttribute="centerX" secondItem="J0a-0m-pci" secondAttribute="centerX" id="PvI-7o-C8o"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Location Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmu-Jq-hJl">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmu-Jq-hJl">
                                                         <rect key="frame" x="114" y="476" width="162" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -3209,6 +3209,7 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kvi-wP-fbE" firstAttribute="top" secondItem="u7E-OJ-4Gd" secondAttribute="top" constant="20" symbolic="YES" id="72f-fb-Wqo"/>
                             <constraint firstItem="vIZ-t7-UN7" firstAttribute="width" secondItem="u7E-OJ-4Gd" secondAttribute="width" id="Hyi-Mh-Unu"/>
@@ -3216,6 +3217,9 @@
                             <constraint firstItem="kvi-wP-fbE" firstAttribute="leading" secondItem="u7E-OJ-4Gd" secondAttribute="leading" id="gym-uv-3fj"/>
                             <constraint firstItem="Mc9-VT-qUK" firstAttribute="top" secondItem="kvi-wP-fbE" secondAttribute="bottom" id="iZo-XJ-wHs"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="OCb-CK-3zq" appends="YES" id="xt0-7Y-E45"/>
+                        </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1000"/>
@@ -3227,6 +3231,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqv-Wr-71c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="OCb-CK-3zq">
+                    <connections>
+                        <action selector="removeKB:" destination="faT-K1-rSW" id="I02-ip-m3s"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1727" y="-1000"/>
         </scene>
