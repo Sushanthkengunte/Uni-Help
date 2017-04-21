@@ -19,6 +19,20 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     
     var imagePicker = UIImagePickerController()
     
+    var profileType : String!
+    var imageData : NSData!
+    var displayPicUrl : NSURL! {
+        didSet{
+            
+            imageData = NSData(contentsOfURL: displayPicUrl)
+            
+            
+        }
+    }
+    var email_Own :String!
+    var nameOf: String!
+    
+     var networkOp = NetworkOperations()
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var fullName: UITextField!
     @IBOutlet weak var website: UITextField!
@@ -51,6 +65,11 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     override func viewWillAppear(animated: Bool) {
         cityTable.hidden = true
         countryTable.hidden = true
+        email.text = email_Own
+        fullName.text = nameOf ?? ""
+        if let im2 = imageData {
+            myImage.image = UIImage(data: im2)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,15 +96,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             self.presentViewController(alertC, animated: true, completion: nil)
             
             
-            //print("Button capture")
-            
-//            imagePicker.delegate = self
-//            imagePicker.sourceType = .PhotoLibrary
-//            imagePicker.allowsEditing = false
-//            
-//            self.presentViewController(imagePicker, animated: true, completion: nil)
-            
-            //            self.present(imagePicker, animated: true, completion: nil)
+
         }
         
     }
@@ -132,6 +143,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : dp)
             
             //-------------------Adding newOwner object into Firebase --------------------!!!!!
+            networkOp.saveHomeOwnersBasicInfo(newOwner)
             
             flag = true
             

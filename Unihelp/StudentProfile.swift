@@ -22,29 +22,56 @@ class StudentProfile: NSObject {
     var requiredProfile:DictionaryType?
     var requiredHouse:DictionaryType?
     
-    //-------function to populate student Object
-    func populateObject(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType, extRP intRP : DictionaryType,extRH intRH : DictionaryType ){
-        self.displayPicUrl = displayPic
-        self.type = intType
-        self.userKey = intUserKey
-        self.name = intName
-        self.emailID = intEmail
-        self.country = intCountry
-        self.city = intCity
-        self.university = intUniversity
-        self.DOB = intDOB
+    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType, extRP intRP : DictionaryType,extRH intRH : DictionaryType){
+         super.init()
+        displayPicUrl = displayPic
+        type = intType
+        userKey = intUserKey
+        name = intName
+        emailID = intEmail
+        country = intCountry
+        city = intCity
+        university = intUniversity
+        DOB = intDOB
         
         for each in intpProfile{
-            self.personnaProfile![each.0] = each.1
+            personnaProfile![each.0] = each.1
         }
         
         for each in intRP{
-            self.requiredProfile![each.0] = each.1
+            requiredProfile![each.0] = each.1
         }
         
         for each in intRH{
-            self.requiredHouse![each.0] = each.1
+            requiredHouse![each.0] = each.1
         }
+    }
+    
+    //-------function to populate student Object
+    func populateObject(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType, extRP intRP : DictionaryType,extRH intRH : DictionaryType )-> StudentProfile{
+        var temp : StudentProfile!
+        temp.displayPicUrl = displayPic
+        temp.type = intType
+        temp.userKey = intUserKey
+        temp.name = intName
+        temp.emailID = intEmail
+        temp.country = intCountry
+        temp.city = intCity
+        temp.university = intUniversity
+        temp.DOB = intDOB
+        
+        for each in intpProfile{
+            temp.personnaProfile![each.0] = each.1
+        }
+        
+        for each in intRP{
+            temp.requiredProfile![each.0] = each.1
+        }
+        
+        for each in intRH{
+            temp.requiredHouse![each.0] = each.1
+        }
+        return temp
         
     }
     

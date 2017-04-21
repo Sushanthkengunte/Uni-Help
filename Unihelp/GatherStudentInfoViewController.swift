@@ -13,13 +13,11 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var storeCore = StoreIntoCore()
     var profileType : String!
-     var imageData : NSData!
+    var imageData : NSData!
+    //---obtain pictures data when the URL is set----//
     var displayPicUrl : NSURL! {
         didSet{
-            
-              imageData = NSData(contentsOfURL: displayPicUrl)
-        
-            
+            imageData = NSData(contentsOfURL: displayPicUrl)
         }
     }
     var email_Stu :String!
@@ -40,12 +38,14 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     @IBOutlet weak var cityTable: UITableView!
     
     @IBOutlet weak var country: UITextField!
-    
+    var networkOp = NetworkOperations()
+    //let studentUserInfo = StudentProfile()
     @IBOutlet weak var university: UITextField!
     
     @IBOutlet weak var countryTable: UITableView!
     @IBOutlet weak var universityTable: UITableView!
     
+    @IBOutlet weak var saveButton: UIButton!
     
     var autoCompletePossibilities_Universities = [""]
     var autoComplete_Universities = [String]()
@@ -56,9 +56,9 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         checkCoreDataContents()
-
+        
         // Do any additional setup after loading the view.
         displayPic.layer.cornerRadius = displayPic.frame.size.width/2
         displayPic.clipsToBounds = true
@@ -67,6 +67,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         storeCountry()
         
     }
+    //---sets the text field, table view delegates to self
     private func initializingDelegates(){
         name.delegate = self
         emailID.delegate = self
@@ -85,6 +86,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         countryTable.dataSource = self
         universityTable.dataSource = self
     }
+    //----makes the tables hidden and sets some fields taking information through the segue.
     override func viewWillAppear(animated: Bool) {
         countryTable.hidden = true
         cityTable.hidden = true
@@ -94,6 +96,9 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         if let im2 = imageData {
             displayPic.image = UIImage(data: im2)
         }
+        //        }else{
+        //            displayPic.image = UIImage(named: "blank-profile")
+        //        }
         
     }
     
@@ -119,7 +124,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
         
     }
-
+    //------alert controller to choose from camera, photo and saved album.
     @IBAction func chooseImage(sender: AnyObject) {
         let alertC = UIAlertController(title: "Chose a picture", message: "from", preferredStyle: .ActionSheet)
         alertC.addAction(UIAlertAction(title: "camera", style: .Default,handler: { (action) in
@@ -134,6 +139,8 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         alertC.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
         self.presentViewController(alertC, animated: true, completion: nil)
     }
+    
+    //-----brings up all the options on screen----
     func showPicker(sT : UIImagePickerControllerSourceType){
         let pickController = UIImagePickerController()
         pickController.delegate = self
@@ -145,11 +152,11 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         dismissViewControllerAnimated(true, completion: nil)
-        //var im1 = image
-        // saveToDatabase(image)
+        
         displayPic.image =  image
         
     }
+    //----Stores all the countries from countries json file.
     private func storeCountry(){
         autoCompletePossibilities_Country.removeAll()
         
@@ -176,6 +183,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         
     }
+    //----Stores all the cities for a country using cities json file.
     private func storeCity(Xtemp: String){
         autoCompletePossibilities_City.removeAll()
         if let path = NSBundle.mainBundle().pathForResource("cities", ofType: "json"){
@@ -203,7 +211,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         
     }
-    
+    //stores all the universities using university JSON file
     private func storeUniversities(){
         
         autoCompletePossibilities_Universities.removeAll()
@@ -371,8 +379,37 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         view.endEditing(true)
         
     }
-    
-    
+    private func checkConstrints()->Bool{
+        return true
+    }
+    //Takes the strings entered in the form converts into date format and then aagain back to string
+    private func convertIntoDate(day : String, extMonth intMonth :String,extYear intYear : String) -> String{
+        var temp : String!
+        let tDay = day.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let tMonth = intMonth.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let tYear = intYear.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var dFormat = NSDateComponents()
+        dFormat.day = Int(tDay)!
+        dFormat.month = Int(tMonth)!
+        dFormat.year = Int(tYear)!
+        var actualDate = NSCalendar.currentCalendar().dateFromComponents(dFormat)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        temp = dateFormatter.stringFromDate(actualDate!)
+        return temp
+    }
+    //----when the user hits save button this validates the form and saves all the information into firebase
+    @IBAction func submitForm(sender: AnyObject) {
+        checkConstrints()
+        let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
+        let defaultImage = UIImage(named: "blank-profile")
+        let image = displayPic.image ?? defaultImage
+        let imageUrl = networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
+        let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
+        
+        networkOp.saveStudentInfo(sUser)
+        performSegueWithIdentifier("mainScreen", sender: saveButton)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

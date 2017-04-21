@@ -9,7 +9,7 @@
 // NetworkOperations.swift
 //----------------------------------------------------
 // - Pods to be installed
-// Firebase 
+// Firebase
 // Firebase/Auth
 
 import UIKit
@@ -65,9 +65,7 @@ class SignUpViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
         pov.delegate = self
         pov.dataSource = self
         
-        let db1 = FIRDatabase.database().reference()
-        let storage1 = FIRStorage.storage().reference()
-        networkOp.setReferences(db1, extStorage: storage1)
+      
         
         //adding facebook login button to the view
         loginButton.center = view.center
@@ -102,7 +100,8 @@ class SignUpViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "GatherInfoFB"{
+        
+        if segue.identifier == "GatherStudentInfoFB"{
             let infoVC = segue.destinationViewController as? GatherStudentInfoViewController
             infoVC?.profileType = type
             let  user1 = FIRAuth.auth()?.currentUser
@@ -111,11 +110,11 @@ class SignUpViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
                 infoVC?.email_Stu = user.email
                 infoVC?.displayPicUrl = user.photoURL
                 infoVC?.nameOf = user.displayName
-            
+                
             }
             
         }
-        if segue.identifier == "GatherInfo"{
+        if segue.identifier == "GatherStudentInfo"{
             let infoVC = segue.destinationViewController as? GatherStudentInfoViewController
             infoVC?.profileType = type
             let  user1 = FIRAuth.auth()?.currentUser
@@ -125,7 +124,33 @@ class SignUpViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
             }
             
         }
-
+        
+        if segue.identifier == "GatherHomeOwnerInfo"{
+            print(#function)
+              let infoVC = segue.destinationViewController as? CreateOwnerAccountViewController
+            infoVC?.profileType = type
+            let  user1 = FIRAuth.auth()?.currentUser
+            if let user = user1{
+                infoVC?.email_Own = user.email
+                
+            }
+        }
+        if segue.identifier == "GatherHomeOwnerInfoFB"{
+            print(" again")
+              let infoVC = segue.destinationViewController as? CreateOwnerAccountViewController
+            infoVC?.profileType = type
+            let  user1 = FIRAuth.auth()?.currentUser
+            if let user = user1{
+                
+                
+                infoVC?.email_Own = user.email
+                infoVC?.displayPicUrl = user.photoURL
+                infoVC?.nameOf = user.displayName
+            }
+            
+        }
+        
+        
     }
     /*
      // MARK: - Navigation
