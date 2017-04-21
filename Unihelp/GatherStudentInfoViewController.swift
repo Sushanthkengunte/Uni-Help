@@ -57,14 +57,18 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkCoreDataContents()
+        storeCore.checkCoreDataForUniversities()
+        storeCore.checkCoreDataForLocation()
+        
+        self.autoCompletePossibilities_Universities = storeCore.autoCompletePossibilities_Universities
+        
+        self.autoCompletePossibilities_Country = storeCore.autoCompletePossibilities_Countries
         
         // Do any additional setup after loading the view.
         displayPic.layer.cornerRadius = displayPic.frame.size.width/2
         displayPic.clipsToBounds = true
         initializingDelegates()
-        storeUniversities()
-        storeCountry()
+
         
     }
     //---sets the text field, table view delegates to self
@@ -88,6 +92,14 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     }
     //----makes the tables hidden and sets some fields taking information through the segue.
     override func viewWillAppear(animated: Bool) {
+        
+        storeCore.checkCoreDataForUniversities()
+        storeCore.checkCoreDataForLocation()
+        
+        self.autoCompletePossibilities_Universities = storeCore.autoCompletePossibilities_Universities
+        self.autoCompletePossibilities_Country = storeCore.autoCompletePossibilities_Countries
+        
+        
         countryTable.hidden = true
         cityTable.hidden = true
         universityTable.hidden = true
@@ -102,28 +114,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
     }
     
-    //----------------------Checking for University details in core data. if not present adding it by calling storeUniversititesInCore() -----
-    func checkCoreDataContents(){
-        
-        let fetchRequest = NSFetchRequest()
-        let entityDescription = NSEntityDescription.entityForName("University", inManagedObjectContext: self.managedObjectContext)
-        fetchRequest.entity = entityDescription
-        
-        do{
-            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
-            
-            if result.count < 1 {
-                print("Storing into Core because nothing was present")
-                storeCore.storeUniversitiesInCore()
-            }
-            
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
-        }
-        
-        
-    }
+    
     //------alert controller to choose from camera, photo and saved album.
     @IBAction func chooseImage(sender: AnyObject) {
         let alertC = UIAlertController(title: "Chose a picture", message: "from", preferredStyle: .ActionSheet)
@@ -156,78 +147,25 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         displayPic.image =  image
         
     }
-    //----Stores all the countries from countries json file.
-    private func storeCountry(){
-        autoCompletePossibilities_Country.removeAll()
-        
-        if let path = NSBundle.mainBundle().pathForResource("countries", ofType: "json"){
-            
-            do{
-                let data = try(NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe))
-                
-                let jsonDictionary = try(NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers))
-                
-                if let jsonResult = jsonDictionary as? NSMutableArray
-                {
-                    for jsonTemp in jsonResult{
-                        let countryNames : String!
-                        countryNames = (jsonTemp["country"] as AnyObject? as? String) ?? ""
-                        autoCompletePossibilities_Country.append(countryNames!)
-                        
-                        
-                    }
-                }
-            }catch let er{
-                print(er)
-            }
-        }
-        
-    }
+    
     //----Stores all the cities for a country using cities json file.
     private func storeCity(Xtemp: String){
         autoCompletePossibilities_City.removeAll()
-        if let path = NSBundle.mainBundle().pathForResource("cities", ofType: "json"){
-            
-            do{
-                let data = try(NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe))
-                
-                let jsonDictionary = try(NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers))
-                
-                if let jsonResult = jsonDictionary as? NSMutableArray
-                {
-                    for jsonTemp in jsonResult{
-                        let cityNames : String!
-                        let countryNameInJson = (jsonTemp["country"] as AnyObject? as? String) ?? ""
-                        if Xtemp == countryNameInJson{
-                            cityNames = (jsonTemp["city"] as AnyObject? as? String) ?? ""
-                            autoCompletePossibilities_City.append(cityNames!)
-                        }
-                        
-                    }
-                }
-            }catch let er{
-                print(er)
-            }
-        }
-        
-    }
-    //stores all the universities using university JSON file
-    private func storeUniversities(){
-        
-        autoCompletePossibilities_Universities.removeAll()
-        
-        
         let fetchRequest = NSFetchRequest()
         
-        let entityDescription = NSEntityDescription.entityForName("University", inManagedObjectContext: self.managedObjectContext)
+        let entityDescription = NSEntityDescription.entityForName("Location", inManagedObjectContext: self.managedObjectContext)
         
         fetchRequest.entity = entityDescription
+        
+        let predicate = NSPredicate(format: "country == %@", Xtemp)
+        
+        fetchRequest.predicate = predicate
         
         do{
             let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
             
             for obj in result{
-                autoCompletePossibilities_Universities.append((obj.valueForKey("name") as? String)!)
+                autoCompletePossibilities_City.append((obj.valueForKey("city") as? String)!)
             }
             
         } catch {
@@ -236,6 +174,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         
     }
+
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField == country{

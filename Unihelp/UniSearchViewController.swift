@@ -14,7 +14,7 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
-    var storeCore = StoreIntoCore()
+    let storeCore = StoreIntoCore()
     
     @IBOutlet weak var universityName: UILabel!
     @IBOutlet weak var address: UILabel!
@@ -39,9 +39,10 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
         
         super.viewDidLoad()
         
-        checkCoreDataContents()
+        storeCore.checkCoreDataForUniversities()
         
-        storeUniversities()
+        //storeUniversities()
+        self.autoCompletePossibilities_Universities = storeCore.autoCompletePossibilities_Universities
         
         uniSearch.delegate = self
         universityTable.delegate = self
@@ -70,30 +71,8 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
     }
     
     
-    //----------------------Checking for University details in core data. if not present adding it by calling storeUniversititesInCore() -----
-    func checkCoreDataContents(){
-
-        let fetchRequest = NSFetchRequest()
-        let entityDescription = NSEntityDescription.entityForName("University", inManagedObjectContext: self.managedObjectContext)
-        fetchRequest.entity = entityDescription
-        
-        do{
-            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
-            
-            if result.count < 1 {
-                print("Storing into Core because nothing was present")
-                storeCore.storeUniversitiesInCore()
-            }
-            
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
-        }
-
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
+        storeCore.checkCoreDataForUniversities()
         universityTable.hidden = true
     }
     

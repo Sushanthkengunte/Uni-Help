@@ -6,8 +6,12 @@
 //  Copyright © 2017 SuProject. All rights reserved.
 //
 import UIKit
+import CoreData
 
 class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate  {
+    
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var storeCore = StoreIntoCore()
     
     var autoCompletePossibilities_Countries = [""]
     var autoComplete_Countries = [String]()
@@ -35,7 +39,10 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        storeCountries()
+        
+        storeCore.checkCoreDataForLocation()
+        
+        self.autoCompletePossibilities_Countries = storeCore.autoCompletePossibilities_Countries
         
         country.delegate = self
         countryTable.delegate = self
@@ -45,6 +52,13 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         cityTable.delegate = self
         cityTable.hidden = true
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        storeCore.checkCoreDataForLocation()
+        
+        self.autoCompletePossibilities_Countries = storeCore.autoCompletePossibilities_Countries
+
     }
     
     @IBAction func removeKB(sender: AnyObject) {
@@ -173,57 +187,32 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         }
         
     }
-    
-    func storeCountries(){
         
-        autoCompletePossibilities_Countries.removeAll()
-        if let path = NSBundle.mainBundle().pathForResource("countries", ofType: "json"){
-            
-            do{
-                let data = try(NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe))
-                let jsonDictionary = try(NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers))
-                if let jsonResult = jsonDictionary as? NSMutableArray
-                {
-                    for jsonTemp in jsonResult{
-                        autoCompletePossibilities_Countries.append((jsonTemp["country"] as AnyObject? as? String)!)
-                        
-                    }
-                }
-            }catch let er{
-                print(er)
-            }
-        }
-        //        for k in autoCompletePossibilities_Countries{
-        //            print(k)
-        //        }
-    }
-    
     
     func storeCities(country : String){
         
         autoCompletePossibilities_Cities.removeAll()
-        if let path = NSBundle.mainBundle().pathForResource("cities", ofType: "json"){
+        let fetchRequest = NSFetchRequest()
+        
+        let entityDescription = NSEntityDescription.entityForName("Location", inManagedObjectContext: self.managedObjectContext)
+        
+        fetchRequest.entity = entityDescription
+        
+        let predicate = NSPredicate(format: "country == %@", country)
+        
+        fetchRequest.predicate = predicate
+        
+        do{
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
             
-            do{
-                let data = try(NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe))
-                let jsonDictionary = try(NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers))
-                if let jsonResult = jsonDictionary as? NSMutableArray
-                {
-                    for jsonTemp in jsonResult{
-                        let c : String = (jsonTemp["country"] as AnyObject? as? String)!
-                        if c == country{
-                            autoCompletePossibilities_Cities.append((jsonTemp["city"] as AnyObject? as? String)!)
-                        }
-                        
-                    }
-                }
-            }catch let er{
-                print(er)
+            for obj in result{
+                autoCompletePossibilities_Cities.append((obj.valueForKey("city") as? String)!)
             }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
         }
-        //        for k in autoCompletePossibilities_Cities{
-        //         print(k)
-        //         }
         
     }
     
