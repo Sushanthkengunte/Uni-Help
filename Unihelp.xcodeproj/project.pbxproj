@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C0051421EAAF7390072CAB9 /* StudentsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */; };
 		1C1DF3831EAAB53300A0564B /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1DF3811EAAB53300A0564B /* Location+CoreDataProperties.swift */; };
 		1C1DF3841EAAB53300A0564B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1DF3821EAAB53300A0564B /* Location.swift */; };
 		1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992CE1EA2D4CC006662FF /* imageCell.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsFilterViewController.swift; sourceTree = "<group>"; };
 		1C1DF3811EAAB53300A0564B /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1C1DF3821EAAB53300A0564B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1C4992CE1EA2D4CC006662FF /* imageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCell.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			children = (
 				BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */,
 				BD99F1781EA1B43E00958B75 /* Main.storyboard */,
+				1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */,
 				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
 				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
 				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
@@ -393,6 +396,7 @@
 				1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */,
 				1C4DF6D11EA7610200D42D8D /* DLRadioButton.m in Sources */,
 				1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */,
+				1C0051421EAAF7390072CAB9 /* StudentsFilterViewController.swift in Sources */,
 				1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */,
 				1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */,
 				1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */,
