@@ -20,9 +20,11 @@ struct NetworkOperations{
         databaseRef = FIRDatabase.database().reference()
         storageRef = FIRStorage.storage().reference()
     }
+    
     func getCurrentUserUID() ->String{
        return FIRAuth.auth()!.currentUser!.uid
     }
+    
     //-----implement getting url by saving the image into the storage
     func saveImageToStorage(imageView : UIImage,extViewC intViewC : UIViewController ) -> String{
         //---put it in a local copy
@@ -43,6 +45,7 @@ struct NetworkOperations{
         }
         return imagePath
     }
+    
    //------save user information
     mutating func saveStudentInfo(stuObject : StudentProfile){
        
@@ -54,6 +57,7 @@ struct NetworkOperations{
         //----create database reference
         
     }
+    
      //-----creates user dictionary info without preferences
     private func convertIntoStudentDictionary(stuObject : StudentProfile)->[String : AnyObject]{
         
@@ -119,11 +123,13 @@ struct NetworkOperations{
         
     }
     
+    //Displaying Error alerts
     func alertingTheError(title : String, extMessage intMessage : String, extVc intVc : UIViewController){
         let alertController = UIAlertController(title: title, message:intMessage, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "ok", style: .Default, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         intVc.presentViewController(alertController, animated: true, completion: nil)
     }
+    
     //Signs the existing user in
     func signInWithEmailID(emailID : String, extPass intPass : String,extVC vC : UIViewController) {
         

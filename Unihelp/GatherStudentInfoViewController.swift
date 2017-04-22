@@ -337,18 +337,37 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         temp = dateFormatter.stringFromDate(actualDate!)
         return temp
     }
+    
     //----when the user hits save button this validates the form and saves all the information into firebase
     @IBAction func submitForm(sender: AnyObject) {
         checkConstrints()
-        let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
-        let defaultImage = UIImage(named: "blank-profile")
-        let image = displayPic.image ?? defaultImage
-        let imageUrl = networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
-        let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
         
-        networkOp.saveStudentInfo(sUser)
-        performSegueWithIdentifier("mainScreen", sender: saveButton)
-    }
+        
+        if (name.text!.isEmpty || emailID.text!.isEmpty || dateText.text!.isEmpty || monthtext.text!.isEmpty || yearText.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty){
+            
+            networkOp.alertingTheError("Error", extMessage: "Enter required details", extVc: self)
+        }
+        else if ( (Int(monthtext.text!)>0 && Int(monthtext.text!) < 13) || (Int(dateText.text!)>0 && Int(dateText.text!) < 32) &&  (Int(yearText.text!)>1900 && Int(yearText.text!) < 2020)){
+            
+            networkOp.alertingTheError("Error", extMessage: "Enter valid DOB", extVc: self)
+            
+        }
+        else{
+        
+            let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
+            let defaultImage = UIImage(named: "blank-profile")
+            let image = displayPic.image ?? defaultImage
+            let imageUrl = networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
+            
+            let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
+            
+            networkOp.saveStudentInfo(sUser)
+            performSegueWithIdentifier("mainScreen", sender: saveButton)
+
+            
+        }
+        
+            }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

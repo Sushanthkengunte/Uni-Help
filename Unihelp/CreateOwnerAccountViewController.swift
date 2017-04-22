@@ -13,6 +13,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var storeCore = StoreIntoCore()
+    var networkOp = NetworkOperations()
 
 
     var autoCompletePossibilities_Countries = [""]
@@ -36,7 +37,6 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     var email_Own :String!
     var nameOf: String!
     
-     var networkOp = NetworkOperations()
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var fullName: UITextField!
     @IBOutlet weak var website: UITextField!
@@ -113,6 +113,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         }
         
     }
+    
     func showPicker(sT : UIImagePickerControllerSourceType){
         let pickController = UIImagePickerController()
         pickController.delegate = self
@@ -121,6 +122,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         pickController.sourceType = sT
         self.presentViewController(pickController, animated: true, completion: nil)
     }
+    
       // ------------------------------- Once image is selected from gallery, adding into Imageview) -----------------------------//
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -144,12 +146,8 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         
         if(name_.isEmpty || contact_.isEmpty || email_.isEmpty || country_.isEmpty || city_.isEmpty){
             
-            let alertController = UIAlertController(title: "Error", message: "Please fill all details", preferredStyle: .Alert)
+            networkOp.alertingTheError("Error", extMessage: "Please fill required details", extVc: self)
             
-            let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            presentViewController(alertController, animated: true, completion: nil)
 
         }
         else{

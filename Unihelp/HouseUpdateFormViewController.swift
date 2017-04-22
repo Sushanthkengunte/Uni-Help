@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource{
+class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
     
     @IBOutlet weak var address1: UITextField!
     @IBOutlet weak var address2: UITextField!
@@ -21,6 +22,17 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var imageTable: UITableView!
     
+    
+    @IBOutlet weak var cityTable: UITableView!
+    
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var storeCore = StoreIntoCore()
+    var networkOp = NetworkOperations()
+
+    var autoCompletePossibilities_Cities = [""]
+    var autoComplete_Cities = [String]()
+    
+
     var imageArray = [UIImage]()
     var imagePicker = UIImagePickerController()
     
@@ -32,6 +44,9 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         
         super.viewDidLoad()
         
+        storeCore.checkCoreDataForLocation()
+        storeCitiesInUSA()
+        
         aboutHouse.delegate = self
         imageTable.delegate = self
         
@@ -40,6 +55,21 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         self.navigationItem.backBarButtonItem?.title = "Cancel"
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        storeCore.checkCoreDataForLocation()
+        storeCitiesInUSA()
+        
+        self.navigationItem.backBarButtonItem?.title = "Cancel"
+        aboutHouse.delegate = self
+        imageTable.delegate = self
+        
+        cityTable.delegate = self
+        city.delegate = self
+        cityTable.hidden = true
+    }
+
     
     // -------------------------------Submit the whole House details (Create an object) TODO: Upload into Firebase -----------------------------//
     @IBAction func updateHouse(sender: AnyObject) {
@@ -152,23 +182,52 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
     
     // ------------------------------- Number of rows in table = number of images in imageArray -----------------------------//
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return imageArray.count
+        if tableView == self.imageTable{
+            return imageArray.count
+        }
+        else if tableView == self.cityTable{
+            return autoComplete_Cities.count
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let imageTemp : UIImage = imageArray[indexPath.row]
+        if tableView == self.imageTable{
+            
+            let imageTemp : UIImage = imageArray[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! imageCell
+            cell.imageout.image = imageTemp
+            
+            return cell
+        }
+        else if(tableView == self.cityTable){
+            let cell = tableView.dequeueReusableCellWithIdentifier("City", forIndexPath: indexPath) as! CityTableViewCell
+            let index = indexPath.row as Int
+            cell.city.text = autoComplete_Cities[index]
+            
+            return cell
+        }
+            
+        else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! imageCell
-        
-        cell.imageout.image = imageTemp
-        
-        return cell
+        if tableView == self.cityTable{
+            let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? CityTableViewCell
+            let temp = selectedCell?.city.text
+            city.text = temp
+            cityTable.hidden = true
+        }
     }
     
     // ------------------------------- To delete image in the tableview -----------------------------//
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete{
+        if editingStyle == .Delete && tableView == self.imageTable{
             
             let title = "Delete Photo?"
             let message = "Are you sure ?"
@@ -196,6 +255,71 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         }
     }
     
+    // --------- Table and possible cities when start to type --/
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == self.city{
+            cityTable.hidden = false
+            let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            
+            searchAutocompleteEntriesWithSubstring(substring, textField: textField)
+            
+            if autoComplete_Cities.count == 0 {
+                cityTable.hidden = true
+            }
+        }
+        return true
+    }
+    
+    
+    // ----- Populating autoComplete_cities --/
+    func searchAutocompleteEntriesWithSubstring(substring: String, textField: UITextField) {
+        
+        if textField == self.city{
+            autoComplete_Cities.removeAll(keepCapacity: false)
+            
+            for key in autoCompletePossibilities_Cities{
+                let myString:NSString! = key as NSString
+                
+                let substringrange :NSRange! = myString.rangeOfString(substring)
+                if(substringrange.location == 0){
+                    autoComplete_Cities.append(key)
+                    //print(key)
+                }
+            }
+            cityTable.reloadData()
+        }
+        
+    }
+
+    // ----- Storing all cities in United states
+    func storeCitiesInUSA(){
+        
+        autoCompletePossibilities_Cities.removeAll()
+        let fetchRequest = NSFetchRequest()
+        
+        let entityDescription = NSEntityDescription.entityForName("Location", inManagedObjectContext: self.managedObjectContext)
+        
+        fetchRequest.entity = entityDescription
+        let country = "United States"
+        
+        let predicate = NSPredicate(format: "country == %@", country)
+        
+        fetchRequest.predicate = predicate
+        
+        do{
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            
+            for obj in result{
+                autoCompletePossibilities_Cities.append((obj.valueForKey("city") as? String)!)
+            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+    }
+
     
     
     override func didReceiveMemoryWarning() {

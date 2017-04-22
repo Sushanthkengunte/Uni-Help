@@ -150,9 +150,9 @@ class StoreIntoCore {
             print(fetchError)
         }
         
-        for k in autoCompletePossibilities_Countries{
-            print(k)
-        }
+//        for k in autoCompletePossibilities_Countries{
+//            print(k)
+//        }
         
     }
 
