@@ -21,7 +21,8 @@ class StudentHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        print(dirPath)
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()

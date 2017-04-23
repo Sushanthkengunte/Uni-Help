@@ -59,7 +59,7 @@ struct NetworkOperations{
         return imagePath
     }
 
-    
+
    //------save user information
     mutating func saveStudentInfo(stuObject : StudentProfile){
         
@@ -74,7 +74,6 @@ struct NetworkOperations{
 
     
      //-----creates user dictionary info without preferences
-
     private func convertIntoStudentDictionary(stuObject : StudentProfile)->[String : AnyObject]{
         
         var temp : [String : AnyObject]! = [:]
