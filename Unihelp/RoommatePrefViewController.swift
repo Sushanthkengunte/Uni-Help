@@ -28,6 +28,7 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     var finalCity : String = "any"         //From city list, or any
     var room : String = "any"           //own, share, any
     
+    var requiredPreference = NetworkOperations()
     
     
     @IBOutlet weak var country: UITextField!
@@ -228,6 +229,7 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         if autoCompletePossibilities_Cities.indexOf(finalCity) == nil {
             finalCity = "any"
         }
+        requiredPreference.updateStudentRequiredRoommatePreference(coed, sharing: room, drink: drink, smoke: smoke, finalCountry: finalCountry, finalCity: finalCity)
         print(coed)
         print(room)
         print(food)

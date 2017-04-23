@@ -22,7 +22,14 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     }
     var email_Stu :String!
     var nameOf: String!
+    var gender : String = ""
+    @IBAction func selectMaleGender(sender: AnyObject) {
+        gender = "male"
+    }
     
+    @IBAction func selectFemaleGender(sender: AnyObject) {
+        gender = "female"
+    }
     
     @IBOutlet weak var displayPic: UIImageView!
     @IBOutlet weak var uploadDp: UIButton!
@@ -343,23 +350,24 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         checkConstrints()
         
         
-        if (name.text!.isEmpty || emailID.text!.isEmpty || dateText.text!.isEmpty || monthtext.text!.isEmpty || yearText.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty){
+        if (name.text!.isEmpty || emailID.text!.isEmpty || dateText.text!.isEmpty || monthtext.text!.isEmpty || yearText.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty||gender.isEmpty || gender == "nil"){
             
             networkOp.alertingTheError("Error", extMessage: "Enter required details", extVc: self)
         }
-        else if ( (Int(monthtext.text!)>0 && Int(monthtext.text!) < 13) || (Int(dateText.text!)>0 && Int(dateText.text!) < 32) &&  (Int(yearText.text!)>1900 && Int(yearText.text!) < 2020)){
-            
-            networkOp.alertingTheError("Error", extMessage: "Enter valid DOB", extVc: self)
-            
-        }
+//        else if ( (Int(monthtext.text!)>0 && Int(monthtext.text!) < 13) || (Int(dateText.text!)>0 && Int(dateText.text!) < 32) &&  (Int(yearText.text!)>1900 && Int(yearText.text!) < 2020)){
+//            
+//            networkOp.alertingTheError("Error", extMessage: "Enter valid DOB", extVc: self)
+//            
+//        }
         else{
         
             let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
             let defaultImage = UIImage(named: "blank-profile")
             let image = displayPic.image ?? defaultImage
             let imageUrl = networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
+            let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
             
-            let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
+            //let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
             
             networkOp.saveStudentInfo(sUser)
             performSegueWithIdentifier("mainScreen", sender: saveButton)

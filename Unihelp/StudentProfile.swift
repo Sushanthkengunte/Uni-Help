@@ -18,11 +18,12 @@ class StudentProfile: NSObject {
     var city : String?
     var university : String?
     var DOB : String?
+    var gender : String?
     var personnaProfile:DictionaryType?
     var requiredProfile:DictionaryType?
     var requiredHouse:DictionaryType?
     
-    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType?, extRP intRP : DictionaryType?,extRH intRH : DictionaryType?){
+    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType?, extRP intRP : DictionaryType?,extRH intRH : DictionaryType?,extGender intGender : String){
         
         
          super.init()
@@ -35,48 +36,38 @@ class StudentProfile: NSObject {
         city = intCity
         university = intUniversity
         DOB = intDOB
-        
-//        for each in intpProfile{
-//            personnaProfile![each.0] = each.1
-//        }
-//        
-//        for each in intRP{
-//            requiredProfile![each.0] = each.1
-//        }
-//        
-//        for each in intRH{
-//            requiredHouse![each.0] = each.1
-//        }
+        gender = intGender
+
     }
     
     //-------function to populate student Object
-    func populateObject(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType, extRP intRP : DictionaryType,extRH intRH : DictionaryType )-> StudentProfile{
-        var temp : StudentProfile!
-        temp.displayPicUrl = displayPic
-        temp.type = intType
-        temp.userKey = intUserKey
-        temp.name = intName
-        temp.emailID = intEmail
-        temp.country = intCountry
-        temp.city = intCity
-        temp.university = intUniversity
-        temp.DOB = intDOB
-        
-        for each in intpProfile{
-            temp.personnaProfile![each.0] = each.1
-        }
-        
-        for each in intRP{
-            temp.requiredProfile![each.0] = each.1
-        }
-        
-        for each in intRH{
-            temp.requiredHouse![each.0] = each.1
-        }
-        return temp
-        
-    }
-    
+//    func populateObject(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType, extRP intRP : DictionaryType,extRH intRH : DictionaryType,extGender intGender : String )-> StudentProfile{
+//        var temp : StudentProfile!
+//        temp.displayPicUrl = displayPic
+//        temp.type = intType
+//        temp.userKey = intUserKey
+//        temp.name = intName
+//        temp.emailID = intEmail
+//        temp.country = intCountry
+//        temp.city = intCity
+//        temp.university = intUniversity
+//        temp.DOB = intDOB
+//        temp.gender = intGender
+//        for each in intpProfile{
+//            temp.personnaProfile![each.0] = each.1
+//        }
+//        
+//        for each in intRP{
+//            temp.requiredProfile![each.0] = each.1
+//        }
+//        
+//        for each in intRH{
+//            temp.requiredHouse![each.0] = each.1
+//        }
+//        return temp
+//        
+//    }
+//    
     
 
 }

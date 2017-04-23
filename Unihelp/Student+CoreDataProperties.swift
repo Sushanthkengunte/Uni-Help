@@ -23,17 +23,18 @@ extension Student {
     @NSManaged var city: String?
     @NSManaged var university: String?
     @NSManaged var dob: String?
-    @NSManaged var bothbg: String?
-    @NSManaged var guys: String?
-    @NSManaged var girls: String?
-    @NSManaged var share: String?
-    @NSManaged var dontshare: String?
-    @NSManaged var pureveg: String?
-    @NSManaged var nonveg: String?
-    @NSManaged var anyfood: String?
-    @NSManaged var alcoholyes: String?
-    @NSManaged var alcoholno: String?
-    @NSManaged var smoke: String?
-    @NSManaged var smokeno: String?
-    
+    @NSManaged var gender: String?
+//    @NSManaged var bothbg: String?
+//    @NSManaged var guys: String?
+//    @NSManaged var girls: String?
+//    @NSManaged var share: String?
+//    @NSManaged var dontshare: String?
+//    @NSManaged var pureveg: String?
+//    @NSManaged var nonveg: String?
+//    @NSManaged var anyfood: String?
+//    @NSManaged var alcoholyes: String?
+//    @NSManaged var alcoholno: String?
+//    @NSManaged var smoke: String?
+//    @NSManaged var smokeno: String?
+    //add gender
 }

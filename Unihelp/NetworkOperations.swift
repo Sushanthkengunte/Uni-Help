@@ -22,10 +22,12 @@ struct NetworkOperations{
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     var newObj : Student
+    var newHouseOwner : HouseOwnerEntity
     
     init(){
     
     newObj = NSEntityDescription.insertNewObjectForEntityForName("Student", inManagedObjectContext: managedObjectContext) as! Student
+    newHouseOwner = NSEntityDescription.insertNewObjectForEntityForName("HouseOwnerEntity", inManagedObjectContext: managedObjectContext) as! HouseOwnerEntity
         
     }
     
@@ -40,9 +42,9 @@ struct NetworkOperations{
     
     //-----implement getting url by saving the image into the storage
     func saveImageToStorage(imageView : UIImage,extViewC intViewC : UIViewController ) -> String{
-        //---put it in a local copy
-        var imagePath = "\(getCurrentUserUID())/DisplayPic.jpeg"
-        var dbStrorageRef = FIRStorage.storage().reference().child(imagePath)
+        //---implement puttin it in a local copy
+        let imagePath = "\(getCurrentUserUID())/DisplayPic.jpeg"
+        let dbStrorageRef = FIRStorage.storage().reference().child(imagePath)
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpeg"
         let data : NSData = UIImageJPEGRepresentation(imageView, 1)!
@@ -66,9 +68,10 @@ struct NetworkOperations{
         let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
         let keyOf = FIRAuth.auth()?.currentUser?.uid
         setReferences()
+         //----create database reference
         let dbRef = databaseRef
         dbRef.child("Students").child(keyOf!).setValue(studentDatabaseEntry)
-        //----create database reference
+       
         
     }
 
@@ -86,6 +89,7 @@ struct NetworkOperations{
         temp!["city"] = stuObject.city
         temp!["university"] = stuObject.university
         temp!["DOB"] = stuObject.DOB
+        temp!["flag"] = "false"
         return temp!
     }
     mutating func saveHomeOwnersBasicInfo(homeOwner : HomeOwnerProfile){
@@ -105,19 +109,60 @@ struct NetworkOperations{
         temp!["city"] = homeOwner.city!
         temp!["contact"] = homeOwner.contact!
         temp!["website"] = homeOwner.website!
+        temp!["imageDP"] = homeOwner.imageDP!
         return temp!
     }
     
     //TO-DO write a code to append the users preferences to firebase when its available
-    func updateStudentPreferences(){}
+    //gender: String, sharing : String , drink : String , smoke : String
+    mutating func updateStudentPersonnelDetails(genderRequired : String, sharing : String , drink : String , smoke : String,aboutMe : String,anotherUni : String , food : String){
+        var temp : [String : String] = [:]
+        temp["genderRequired"] = genderRequired
+        temp["sharing"] = sharing
+        temp["drink"] = drink
+        temp["smoke"] = smoke
+        temp["food"] =  food
+        temp["aboutMe"] = aboutMe
+        temp["anotherUni"] = anotherUni
+       // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
+        var temp2 : [String : String] = [:]
+        temp2["flag"] = "true"
+        let keyOf1 = FIRAuth.auth()?.currentUser?.uid
+        setReferences()
+        let dbRef1 = databaseRef
+        dbRef1.child("Students").child(keyOf1!).setValue(temp2)
+        let keyOf = FIRAuth.auth()?.currentUser?.uid
+        setReferences()
+        let dbRef = databaseRef
+        dbRef.child("Students").child(keyOf!).child("PersonnalPreferences").setValue(temp)
+        
     
+    }
+    mutating func updateStudentRequiredRoommatePreference(genderRequired : String, sharing : String , drink : String , smoke : String , finalCountry : String,finalCity:String){
+        var temp : [String : String] = [:]
+        temp["genderRequired"] = genderRequired
+        temp["sharing"] = sharing
+        temp["drink"] = drink
+        temp["finalCountry"] = finalCountry
+         temp["finalCity"] = finalCity
+        // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
+        let keyOf = FIRAuth.auth()?.currentUser?.uid
+        setReferences()
+        let dbRef = databaseRef
+        dbRef.child("Students").child(keyOf!).child("RoommatePreferences").setValue(temp)
+        
+        
+    }
+
+//    func fetchHomeOwnerInfo(vC:UIViewController){
+//        do{
+//            
+//        }
+//    }
     
     //fetches users Basic info
     func fetchInfoOfUser(vC : UIViewController) {
-        //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        //let managedContext = appDelegate.managedObjectContext
-//        let studentEntity = NSEntityDescription.entityForName("Student", inManagedObjectContext: managedContext)
-        //let newObj = NSEntityDescription.insertNewObjectForEntityForName("Student", inManagedObjectContext: managedContext) as! Student
+  
         
         let viewC = vC as! SignInViewController
         do{
@@ -165,6 +210,10 @@ struct NetworkOperations{
                     }
                     if let DOBOfUser = snapshot.value!["DOB"] as? String{
                         print(DOBOfUser)
+                        self.newObj.dob = DOBOfUser
+                    }
+                    if let genderOfUser = snapshot.value!["gender"] as? String{
+                        self.newObj.gender = genderOfUser
                     }
                 self.saveCoreStudent()
                     
@@ -177,9 +226,56 @@ struct NetworkOperations{
             print("error")
         }
         if viewC.type == "Home Owner"{
+            let temp = getCurrentUserUID()
+            let userRef = FIRDatabase.database().reference().child("Home Owner")
+            //var flag = 0
+            let ref = userRef.child(temp)
+            ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                if !snapshot.exists() {return}
+                
+                
+                if let homeOwnerCountry = snapshot.value!["country"] as? String{
+                    self.newHouseOwner.country = homeOwnerCountry
+                   // flag = 1
+                   // print(picUrl)
+                }
+                if let contactNumber = snapshot.value!["contact"] as? String{
+                    self.newHouseOwner.contact = contactNumber
+                    //print(profileType)
+                }
+                if let emailOfHomeOwner = snapshot.value!["email"] as? String{
+                  //  print(emailOfUser)
+                    self.newHouseOwner.email = emailOfHomeOwner
+                }
+//                if let userUID = snapshot.value!["userKey"] as? String{
+//                    print(userUID)
+//                    self.newObj.userKey = userUID
+//                }
+                if let dpHomeOwner = snapshot.value!["imageDP"] as? String{
+                    //print(fullName)
+                    self.newHouseOwner.name = dpHomeOwner
+                }
+                
+                if let websiteOfHomeOwner = snapshot.value!["website"] as? String{
+                    //print(countryOfUser)
+                    self.newHouseOwner.website = websiteOfHomeOwner
+                }
+            self.saveCoreHomeOwner()
+                
+            })
             
         }
         
+    }
+    func saveCoreHomeOwner(){
+        
+        do{
+            try self.newHouseOwner.managedObjectContext?.save()
+            print("...................")
+            print(newHouseOwner)
+        }catch{
+            print("error")
+        }
     }
     
     //Displaying Error alerts
@@ -212,7 +308,12 @@ struct NetworkOperations{
                 }
                 if signingStudentInfo.type == "Home Owner"{
                     
+                    self.fetchInfoOfUser(vC)
                     
+                    //print(self.newObj)
+                    
+                    vC.performSegueWithIdentifier("signInHomeOwner", sender: signingStudentInfo.SignInButton)
+
                 }
                 
             }

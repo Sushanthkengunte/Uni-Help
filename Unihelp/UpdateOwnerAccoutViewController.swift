@@ -21,7 +21,7 @@ class UpdateOwnerAccoutViewController: UIViewController, UITextFieldDelegate, UI
     var autoComplete_Cities = [String]()
     
     var imagePicker = UIImagePickerController()
-    
+    var networkOp = NetworkOperations()
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var fullName: UITextField!
     @IBOutlet weak var website: UITextField!
@@ -34,6 +34,17 @@ class UpdateOwnerAccoutViewController: UIViewController, UITextFieldDelegate, UI
     @IBOutlet weak var cityTable: UITableView!
     
     var flag = false
+    var imageData : NSData!
+    var displayPicUrl : NSURL! {
+        didSet{
+            
+            imageData = NSData(contentsOfURL: displayPicUrl)
+            
+            
+        }
+    }
+    var email_Own :String!
+    var nameOf: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +71,10 @@ class UpdateOwnerAccoutViewController: UIViewController, UITextFieldDelegate, UI
         
         cityTable.hidden = true
         countryTable.hidden = true
+
+        if let im2 = imageData {
+            myImage.image = UIImage(data: im2)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -125,7 +140,7 @@ class UpdateOwnerAccoutViewController: UIViewController, UITextFieldDelegate, UI
         let email_ = email.text!
         let country_ = country.text!
         let city_ = city.text!
-        let dp = myImage.image
+       // let dp = myImage.image
         
         if(name_.isEmpty || contact_.isEmpty || email_.isEmpty || country_.isEmpty || city_.isEmpty){
             
@@ -138,10 +153,14 @@ class UpdateOwnerAccoutViewController: UIViewController, UITextFieldDelegate, UI
             
         }
         else{
-            let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : dp)
+            let defaultImage = UIImage(named: "blank-profile")
+            let image = myImage.image ?? defaultImage
+            let imageUrl = networkOp.saveImageToStorage(myImage.image!, extViewC: self)
+            
+            let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : imageUrl)
             
             //-------------------Adding newOwner object into Firebase --------------------!!!!!
-            
+             networkOp.saveHomeOwnersBasicInfo(newOwner)
             flag = true
             print (newOwner)
             

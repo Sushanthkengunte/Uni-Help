@@ -203,6 +203,7 @@ class StoreIntoCore {
         var city : String?
         var university : String?
         var DOB : String?
+        var gender : String?
 //        var personnaProfile:DictionaryType?
 //        var requiredProfile:DictionaryType?
 //        var requiredHouse:DictionaryType?
@@ -241,11 +242,12 @@ class StoreIntoCore {
              city = object.valueForKey("city") as? String
              university = object.valueForKey("university") as? String
              DOB = object.valueForKey("dob") as? String
+             gender = object.valueForKey("gender")as?String
              //displayPicUrl = object.valueForKey("") as? String
         }catch {
             
         }
-        let stu = StudentProfile(displayPic: displayPicUrl!, extType: type!, extUserKey: userKey!, extName: name!, extEmail: emailID!, extDOB: DOB!, extCountry: country!, extCity: city!, extUniversity: university!, extpProfile: nil, extRP: nil, extRH: nil)
+        let stu = StudentProfile(displayPic: displayPicUrl!, extType: type!, extUserKey: userKey!, extName: name!, extEmail: emailID!, extDOB: DOB!, extCountry: country!, extCity: city!, extUniversity: university!, extpProfile: nil, extRP: nil, extRH: nil,extGender: gender!)
         return stu
         
     }

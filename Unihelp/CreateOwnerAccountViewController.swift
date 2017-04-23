@@ -36,6 +36,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
     }
     var email_Own :String!
     var nameOf: String!
+    @IBOutlet weak var submitButton: UIButton!
     
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var fullName: UITextField!
@@ -142,7 +143,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         let email_ = email.text!
         let country_ = country.text!
         let city_ = city.text!
-        let dp = myImage.image
+        //let dp = myImage.image
         
         if(name_.isEmpty || contact_.isEmpty || email_.isEmpty || country_.isEmpty || city_.isEmpty){
             
@@ -151,14 +152,18 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
 
         }
         else{
-            let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : dp)
-            
+            let defaultImage = UIImage(named: "blank-profile")
+            let image = myImage.image ?? defaultImage
+            let imageUrl = networkOp.saveImageToStorage(myImage.image!, extViewC: self)
+
+            let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : imageUrl)
+            print(imageUrl)
             //-------------------Adding newOwner object into Firebase --------------------!!!!!
             networkOp.saveHomeOwnersBasicInfo(newOwner)
             
             flag = true
-            
-            shouldPerformSegueWithIdentifier("toHousesTable", sender: self)
+            performSegueWithIdentifier("toHousesTable", sender: submitButton)
+           // shouldPerformSegueWithIdentifier("toHousesTable", sender: self)
         }
     }
     

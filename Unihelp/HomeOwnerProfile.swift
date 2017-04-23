@@ -16,9 +16,9 @@ class HomeOwnerProfile: NSObject {
     var city : String?
     var contact : String?
     var website : String?
-    var imageDP : UIImage?
+    var imageDP : String?
     
-    init(name : String, email : String?, contact: String, website: String, country:String, city: String, imageDP : UIImage?){
+    init(name : String, email : String?, contact: String, website: String, country:String, city: String, imageDP : String?){
         
         self.name = name
         self.email = email

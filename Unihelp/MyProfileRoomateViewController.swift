@@ -9,7 +9,7 @@
 import UIKit
 
 class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
-    
+    var updatePreferences = NetworkOperations()
     var coed : String = "both"          //guys, girls, both
     var drink : String = "yes"          //yes, no
     var smoke : String = "no"           //yes, no
@@ -88,6 +88,8 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate, UIT
     
     @IBAction func Submit(sender: AnyObject) {
         
+        
+        updatePreferences.updateStudentPersonnelDetails(coed, sharing: room, drink: drink, smoke: smoke, aboutMe: aboutme, anotherUni: university,food: food)
         print(coed)
         print(room)
         print(food)
@@ -99,6 +101,7 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate, UIT
     }
 
     //--------------Radio Button Functions ----------
+
     
     @IBAction func Guys(sender: AnyObject) {
         coed = "guys"
