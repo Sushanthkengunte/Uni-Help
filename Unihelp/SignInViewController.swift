@@ -20,7 +20,10 @@ import Firebase
 class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     var networkOp = NetworkOperations() //instace of a structure that consists all the required functions
     var loginButton = FBSDKLoginButton()
+    let contents = StoreIntoCore()
     
+    
+    @IBOutlet weak var SignInButton: UIButton!
     @IBOutlet weak var emailID: UITextField!
     @IBOutlet weak var password: UITextField!
    var type : String! = "Student"
@@ -65,6 +68,10 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken()!.tokenString)
             networkOp.signInWithFBCredentials(credential, extVC: self)
         }
+//        let student = contents.fetchStudentInfoFromCoreData()
+//        print(student.name)
+//        print(student.emailID)
+
     }
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         let loginManager : FBSDKLoginManager = FBSDKLoginManager()
@@ -73,6 +80,7 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //print(NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask))
         // Do any additional setup after loading the view.
         pov.delegate = self
         pov.dataSource = self
@@ -84,12 +92,12 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
         
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+  
     /*
      // MARK: - Navigation
      
@@ -99,5 +107,19 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
      // Pass the selected object to the new view controller.
      }
      */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SignInStudent"{
+            
+        }
+        if segue.identifier == "SignInStudentFB"{
+            
+        }
+        if segue.identifier == "SignInHomeOwnerFB"{
+            
+        }
+        if segue.identifier == "signInHomeOwner"{
+            
+        }
+    }
     
 }

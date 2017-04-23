@@ -12,9 +12,16 @@ class StudentHomeViewController: UIViewController {
 
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
+      let contents1 = StoreIntoCore()
+    override func viewWillAppear(animated: Bool) {
+//        let stu = contents1.fetchStudentInfoFromCoreData()
+//        print(stu.emailID)
+//        print(stu.name)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()

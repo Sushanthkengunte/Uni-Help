@@ -22,7 +22,9 @@ class StudentProfile: NSObject {
     var requiredProfile:DictionaryType?
     var requiredHouse:DictionaryType?
     
-    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType, extRP intRP : DictionaryType,extRH intRH : DictionaryType){
+    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType?, extRP intRP : DictionaryType?,extRH intRH : DictionaryType?){
+        
+        
          super.init()
         displayPicUrl = displayPic
         type = intType
@@ -34,17 +36,17 @@ class StudentProfile: NSObject {
         university = intUniversity
         DOB = intDOB
         
-        for each in intpProfile{
-            personnaProfile![each.0] = each.1
-        }
-        
-        for each in intRP{
-            requiredProfile![each.0] = each.1
-        }
-        
-        for each in intRH{
-            requiredHouse![each.0] = each.1
-        }
+//        for each in intpProfile{
+//            personnaProfile![each.0] = each.1
+//        }
+//        
+//        for each in intRP{
+//            requiredProfile![each.0] = each.1
+//        }
+//        
+//        for each in intRH{
+//            requiredHouse![each.0] = each.1
+//        }
     }
     
     //-------function to populate student Object

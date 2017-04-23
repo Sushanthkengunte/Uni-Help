@@ -327,7 +327,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         let tDay = day.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         let tMonth = intMonth.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         let tYear = intYear.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        var dFormat = NSDateComponents()
+        let dFormat = NSDateComponents()
         dFormat.day = Int(tDay)!
         dFormat.month = Int(tMonth)!
         dFormat.year = Int(tYear)!

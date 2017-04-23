@@ -49,6 +49,8 @@
 		BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */; };
 		BD99F18A1EA1B59F00958B75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */; };
 		BDE8A44D1EA6FA2A00604FDD /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8A44C1EA6FA2A00604FDD /* StudentProfile.swift */; };
+		BDEB1CB51EAAD52200076D53 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB31EAAD52200076D53 /* Student+CoreDataProperties.swift */; };
+		BDEB1CB61EAAD52200076D53 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB41EAAD52200076D53 /* Student.swift */; };
 		CC2CEB82404ADA63F1567865 /* Pods_Unihelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09BC8C9B5DB1EC574AD71CB /* Pods_Unihelp.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +105,8 @@
 		BD99F1831EA1B43E00958B75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDE8A44C1EA6FA2A00604FDD /* StudentProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentProfile.swift; sourceTree = "<group>"; };
+		BDEB1CB31EAAD52200076D53 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BDEB1CB41EAAD52200076D53 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,10 @@
 			children = (
 				1C1DF3811EAAB53300A0564B /* Location+CoreDataProperties.swift */,
 				1C1DF3821EAAB53300A0564B /* Location.swift */,
+
+				BDEB1CB31EAAD52200076D53 /* Student+CoreDataProperties.swift */,
+				BDEB1CB41EAAD52200076D53 /* Student.swift */,
+
 				1C5EDA291EA4A94200E428B5 /* University+CoreDataProperties.swift */,
 				1C5EDA2A1EA4A94200E428B5 /* University.swift */,
 			);
@@ -402,10 +410,12 @@
 				1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */,
 				1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */,
 				BD1F1AA01EA6E41E00B3B4FD /* UniversityTableViewCell.swift in Sources */,
+				BDEB1CB51EAAD52200076D53 /* Student+CoreDataProperties.swift in Sources */,
 				BD1F1A9A1EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift in Sources */,
 				1C4DF6D31EA768EC00D42D8D /* MyProfileRoomateViewController.swift in Sources */,
 				1CD9B5D91EA8895100DA789D /* StoreIntoCore.swift in Sources */,
 				BD8F23F31EA3414B00E213C9 /* SignInViewController.swift in Sources */,
+				BDEB1CB61EAAD52200076D53 /* Student.swift in Sources */,
 				BD1F1A9C1EA6E3E700B3B4FD /* CityTableViewCell.swift in Sources */,
 				BD1F1A9E1EA6E41800B3B4FD /* CountryTableViewCell.swift in Sources */,
 				1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */,

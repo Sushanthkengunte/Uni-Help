@@ -3,6 +3,29 @@
     <entity name="Location" representedClassName=".Location" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="16A323" minimumToolsVersion="Automatic">
+    <entity name="Student" representedClassName=".Student" syncable="YES">
+        <attribute name="alcoholno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="alcoholyes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="anyfood" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bothbg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayPic" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dob" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dontshare" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emailID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="girls" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="guys" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nonveg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pureveg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="share" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="smoke" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="smokeno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="university" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userKey" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="University" representedClassName=".University" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,5 +38,6 @@
     <elements>
         <element name="University" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="Location" positionX="-63" positionY="27" width="128" height="75"/>
+        <element name="Student" positionX="-63" positionY="27" width="128" height="360"/>
     </elements>
 </model>

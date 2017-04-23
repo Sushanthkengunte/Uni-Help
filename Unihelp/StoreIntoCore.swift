@@ -12,6 +12,7 @@ import CoreData
 class StoreIntoCore {
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let net = NetworkOperations()
     
     var autoCompletePossibilities_Universities = [""]
     var autoCompletePossibilities_Countries = [""]
@@ -184,6 +185,68 @@ class StoreIntoCore {
                 print(er)
             }
         }
+        
+    }
+    func fetchStudentInfoFromCoreData()->StudentProfile{
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("Student", inManagedObjectContext: managedObjectContext)
+        fetchRequest.entity = entityDescription
+        let predicateOf = NSPredicate(format: "userKey == %@", net.getCurrentUserUID())
+        fetchRequest.predicate = predicateOf
+        
+        var displayPicUrl : String?
+        var type : String?
+        var userKey : String?
+        var name : String?
+        var emailID : String?
+        var country : String?
+        var city : String?
+        var university : String?
+        var DOB : String?
+//        var personnaProfile:DictionaryType?
+//        var requiredProfile:DictionaryType?
+//        var requiredHouse:DictionaryType?
+        
+//        
+//        @NSManaged var displayPic: String?
+//        @NSManaged var type: String?
+//        @NSManaged var userKey: String?
+//        @NSManaged var name: String?
+//        @NSManaged var emailID: String?
+//        @NSManaged var country: String?
+//        @NSManaged var city: String?
+//        @NSManaged var university: String?
+//        @NSManaged var dob: String?
+//        @NSManaged var bothbg: String?
+//        @NSManaged var guys: String?
+//        @NSManaged var girls: String?
+//        @NSManaged var share: String?
+//        @NSManaged var dontshare: String?
+//        @NSManaged var pureveg: String?
+//        @NSManaged var nonveg: String?
+//        @NSManaged var anyfood: String?
+//        @NSManaged var alcoholyes: String?
+//        @NSManaged var alcoholno: String?
+//        @NSManaged var smoke: String?
+//        @NSManaged var smokeno: String?
+        do{
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            let object = result[0] as! NSManagedObject
+            displayPicUrl = object.valueForKey("displayPic") as? String
+             type = object.valueForKey("type") as? String
+             userKey = object.valueForKey("userKey") as? String
+             name = object.valueForKey("name") as? String
+             emailID = object.valueForKey("emailID") as? String
+             country = object.valueForKey("country") as? String
+             city = object.valueForKey("city") as? String
+             university = object.valueForKey("university") as? String
+             DOB = object.valueForKey("dob") as? String
+             //displayPicUrl = object.valueForKey("") as? String
+        }catch {
+            
+        }
+        let stu = StudentProfile(displayPic: displayPicUrl!, extType: type!, extUserKey: userKey!, extName: name!, extEmail: emailID!, extDOB: DOB!, extCountry: country!, extCity: city!, extUniversity: university!, extpProfile: nil, extRP: nil, extRH: nil)
+        return stu
         
     }
 
