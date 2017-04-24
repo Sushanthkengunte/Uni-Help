@@ -223,6 +223,7 @@ struct NetworkOperations{
                         print(cityOfUser)
                         self.newObj.city = cityOfUser
                     }
+                    //test
                     if let universityOfUser = snapshot.value!["university"] as? String{
                         print(universityOfUser)
                         self.newObj.university = universityOfUser
