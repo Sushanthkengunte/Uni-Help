@@ -36,6 +36,7 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
     
     var imageArray = [UIImage]()
     var imagePicker = UIImagePickerController()
+    var imageUrls = [String]()
     
     var strDate : String = ""
     var flag = false
@@ -57,6 +58,9 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
         
         self.navigationItem.backBarButtonItem?.title = "Cancel"
         // Do any additional setup after loading the view, typically from a nib.
+        if (imageArray.count < 1){
+            imageTable.hidden = true
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,7 +79,7 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
 
     // -------------------------------Submit the whole House details (Create an object) TODO: Upload into Firebase -----------------------------//
     @IBAction func submit(sender: AnyObject) {
-        
+        imageTable.hidden = true
         let add1 = address1.text!
         let add2 = address2.text
         let city_ = city.text!
@@ -96,11 +100,14 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
 
         }
         else{
- 
-            let item = House(address1 : add1, address2 : add2, city: city_, state: state_, zip: zip_, about: about, price: price_, rooms: rooms_, availableDate: strDate, imageStore: imageArray)
+            //check for other images
+            imageUrls = networkOp.saveHouseImages(imageArray, extViewC: self)
+            
+            let item = House(address1 : add1, address2 : add2, city: city_, state: state_, zip: zip_, about: about, price: price_, rooms: rooms_, availableDate: strDate, imageStore: imageUrls)
             
             allHouses.append(item)
             //print(allHouses.count)
+            networkOp.saveHouseInfo(allHouses)
             
             //----------------------------!!!!! Todo: Upload into Firebase here !!!!!!!! --------------------//
             //print(item.imageStore.count)
@@ -217,7 +224,7 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
     
     // ------------------------------- Opens up gallery to select image -----------------------------//
     @IBAction func uploadPhotoButton(sender: AnyObject) {
-    
+        imageTable.hidden = true
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
             
             //print("Button capture")
@@ -237,7 +244,7 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
         })
-        
+        imageTable.hidden = false
         imageArray.append(image)
         //print(imageArray.count)
         if let index = imageArray.indexOf(image){

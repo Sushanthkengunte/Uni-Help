@@ -25,9 +25,9 @@ struct NetworkOperations{
     var newHouseOwner : HouseOwnerEntity
     
     init(){
-    
-    newObj = NSEntityDescription.insertNewObjectForEntityForName("Student", inManagedObjectContext: managedObjectContext) as! Student
-    newHouseOwner = NSEntityDescription.insertNewObjectForEntityForName("HouseOwnerEntity", inManagedObjectContext: managedObjectContext) as! HouseOwnerEntity
+        
+        newObj = NSEntityDescription.insertNewObjectForEntityForName("Student", inManagedObjectContext: managedObjectContext) as! Student
+        newHouseOwner = NSEntityDescription.insertNewObjectForEntityForName("HouseOwnerEntity", inManagedObjectContext: managedObjectContext) as! HouseOwnerEntity
         
     }
     
@@ -60,23 +60,80 @@ struct NetworkOperations{
         }
         return imagePath
     }
-
-
-   //------save user information
+    //-----save all the house images into firebase and return all its urls ---
+    func saveHouseImages(images : [UIImage], extViewC intViewC : UIViewController)->[String]{
+        var temp = [String]()
+        var count = 1
+        for eachImage in images{
+            count += 1
+            let imagePath = "\(getCurrentUserUID())/house\(String(count))"
+            temp.append(imagePath)
+            let dbHousePicRef = FIRStorage.storage().reference().child(imagePath)
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            let data : NSData = UIImageJPEGRepresentation(eachImage, 1)!
+            dbHousePicRef.putData(data, metadata: metaData, completion: { (metaData, error) in
+                if(error == nil){
+                    let changeREquest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+                    changeREquest?.photoURL = metaData?.downloadURL()
+                    
+                }else{
+                    self.alertingTheError("Error", extMessage: (error?.localizedDescription)!, extVc: intViewC)
+                }
+            })
+        }
+        
+        
+        return temp
+    }
+    mutating func saveHouseInfo(housesForUSer : [House]){
+        var temp = [String : AnyObject]()
+          var oneHouse = [String : AnyObject]()
+        var count = 1
+        for eachHouse in housesForUSer{
+            oneHouse = convertHouseIntoDictionary(eachHouse)
+            temp[String(count)] = oneHouse
+        }
+        let keyOf = FIRAuth.auth()?.currentUser?.uid
+        setReferences()
+        let dbRef = databaseRef
+        dbRef.child("Houses").child(keyOf!).setValue(temp)
+        
+    }
+    private func convertHouseIntoDictionary(eachHouse : House)->[String : AnyObject]{
+        var temp = [String : AnyObject]()
+        temp["address1"] = eachHouse.address1
+        temp["address2"] = eachHouse.address2
+        temp["city"] = eachHouse.city
+        temp["state"] = eachHouse.state
+        temp["zip"] = eachHouse.zip
+        temp["price"] = eachHouse.price
+        temp["about"] = eachHouse.about
+        temp["rooms"] = eachHouse.rooms
+        temp["availableDate"] = eachHouse.availableDate
+        var allUrl = [String : AnyObject]()
+        for each in eachHouse.imageStore{
+            var index = eachHouse.imageStore.indexOf(each)
+            allUrl["\(index!)"] = each
+        }
+        temp["imageStore"] = allUrl
+        return temp
+    }
+    //------save user information
     mutating func saveStudentInfo(stuObject : StudentProfile){
         
         let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
         let keyOf = FIRAuth.auth()?.currentUser?.uid
         setReferences()
-         //----create database reference
+        //----create database reference
         let dbRef = databaseRef
         dbRef.child("Students").child(keyOf!).setValue(studentDatabaseEntry)
-       
+        
         
     }
-
     
-     //-----creates user dictionary info without preferences
+    
+    //-----creates user dictionary info without preferences
     private func convertIntoStudentDictionary(stuObject : StudentProfile)->[String : AnyObject]{
         
         var temp : [String : AnyObject]! = [:]
@@ -126,7 +183,7 @@ struct NetworkOperations{
         temp["food"] =  food
         temp["aboutMe"] = aboutMe
         temp["anotherUni"] = anotherUni
-       // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
+        // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
         var temp2 : [String : String] = [:]
         temp2["flag"] = "true"
         let keyOf1 = FIRAuth.auth()?.currentUser?.uid
@@ -138,7 +195,7 @@ struct NetworkOperations{
         let dbRef = databaseRef
         dbRef.child("Students").child(keyOf!).child("PersonnalPreferences").setValue(temp)
         
-    
+        
     }
     mutating func updateStudentRequiredRoommatePreference(genderRequired : String, sharing : String , drink : String , smoke : String , finalCountry : String,finalCity:String, food:String){
         var temp : [String : String] = [:]
@@ -158,6 +215,7 @@ struct NetworkOperations{
         
     }
     
+
     mutating func updateStudentFilterPreference(genderRequired : String, finalCountry : String,finalCity:String, finalUni: String){
         var temp : [String : String] = [:]
         temp["genderRequired"] = genderRequired
@@ -178,14 +236,37 @@ struct NetworkOperations{
 //            
 //        }
 //    }
-    
+
+    func deleteAllData(entity: String)
+    {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do
+        {
+            
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                managedContext.deleteObject(managedObjectData)
+            }
+        } catch{
+            print("Detele all data in \(entity) error")
+          //  print("Detele all data in \(entity) error : \(error)")
+        }
+    }
+
     //fetches users Basic info
     func fetchInfoOfUser(vC : UIViewController) {
-  
+        
         
         let viewC = vC as! SignInViewController
         do{
             if viewC.type == "Student"{
+                deleteAllData("Student")//----->>>>>>>>>Should try this
                 let temp = getCurrentUserUID()
                 let userRef = FIRDatabase.database().reference().child("Students")
                 var flag = 0
@@ -235,17 +316,19 @@ struct NetworkOperations{
                     if let genderOfUser = snapshot.value!["gender"] as? String{
                         self.newObj.gender = genderOfUser
                     }
-                self.saveCoreStudent()
+                    self.saveCoreStudent()
                     
                 })
                 
                 //try newObj.managedObjectContext?.save()
-                    
+                
             }
         }catch {
             print("error")
         }
         if viewC.type == "Home Owner"{
+            
+            deleteAllData("HouseOwnerEntity")  // ----->>>>>>>>>Should try this
             let temp = getCurrentUserUID()
             let userRef = FIRDatabase.database().reference().child("Home Owner")
             //var flag = 0
@@ -256,21 +339,21 @@ struct NetworkOperations{
                 
                 if let homeOwnerCountry = snapshot.value!["country"] as? String{
                     self.newHouseOwner.country = homeOwnerCountry
-                   // flag = 1
-                   // print(picUrl)
+                    // flag = 1
+                    // print(picUrl)
                 }
                 if let contactNumber = snapshot.value!["contact"] as? String{
                     self.newHouseOwner.contact = contactNumber
                     //print(profileType)
                 }
                 if let emailOfHomeOwner = snapshot.value!["email"] as? String{
-                  //  print(emailOfUser)
+                    //  print(emailOfUser)
                     self.newHouseOwner.email = emailOfHomeOwner
                 }
-//                if let userUID = snapshot.value!["userKey"] as? String{
-//                    print(userUID)
-//                    self.newObj.userKey = userUID
-//                }
+                //                if let userUID = snapshot.value!["userKey"] as? String{
+                //                    print(userUID)
+                //                    self.newObj.userKey = userUID
+                //                }
                 if let dpHomeOwner = snapshot.value!["imageDP"] as? String{
                     //print(fullName)
                     self.newHouseOwner.name = dpHomeOwner
@@ -280,7 +363,7 @@ struct NetworkOperations{
                     //print(countryOfUser)
                     self.newHouseOwner.website = websiteOfHomeOwner
                 }
-            self.saveCoreHomeOwner()
+                self.saveCoreHomeOwner()
                 
             })
             
@@ -320,10 +403,10 @@ struct NetworkOperations{
                 if signingStudentInfo.type == "Student"{
                     
                     self.fetchInfoOfUser(vC)
-                
+                    
                     //print(self.newObj)
                     
-                     vC.performSegueWithIdentifier("SignInStudent", sender: signingStudentInfo.SignInButton)
+                    vC.performSegueWithIdentifier("SignInStudent", sender: signingStudentInfo.SignInButton)
                     
                 }
                 if signingStudentInfo.type == "Home Owner"{
@@ -333,7 +416,7 @@ struct NetworkOperations{
                     //print(self.newObj)
                     
                     vC.performSegueWithIdentifier("signInHomeOwner", sender: signingStudentInfo.SignInButton)
-
+                    
                 }
                 
             }
@@ -355,8 +438,8 @@ struct NetworkOperations{
     //Signs the existing user in through facebook
     func signInWithFBCredentials(credential:FIRAuthCredential,extVC vC : UIViewController){
         
-
-
+        
+        
         FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
             if error != nil{
                 //-----alert controller
@@ -367,11 +450,11 @@ struct NetworkOperations{
                 if signingInto.type == "Student"{
                     self.fetchInfoOfUser(vC)
                     vC.performSegueWithIdentifier("SignInStudentFB", sender: signingInto.loginButton)
-
+                    
                 }
                 if signingInto.type == "Home Owner"{
                     
-                    //self.fetchInfoOfUser(vC)
+                    self.fetchInfoOfUser(vC)
                     vC.performSegueWithIdentifier("SignInHomeOwnerFB", sender: signingInto.loginButton)
                 }
                 

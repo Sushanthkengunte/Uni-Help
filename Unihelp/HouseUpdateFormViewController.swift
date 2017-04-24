@@ -35,6 +35,7 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
 
     var imageArray = [UIImage]()
     var imagePicker = UIImagePickerController()
+     var imageUrls = [String]()
     
     var strDate : String = ""
     var flag = false
@@ -94,13 +95,13 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
             
         }
         else{
-            
-            let item = House(address1 : add1, address2 : add2, city: city_, state: state_, zip: zip_, about: about, price: price_, rooms: rooms_, availableDate: strDate, imageStore: imageArray)
+              imageUrls = networkOp.saveHouseImages(imageArray, extViewC: self)
+            let item = House(address1 : add1, address2 : add2, city: city_, state: state_, zip: zip_, about: about, price: price_, rooms: rooms_, availableDate: strDate, imageStore: imageUrls)
             
             
             //----------------------------!!!!! Todo: Upload into Firebase here !!!!!!!! --------------------//
             print(item.imageStore.count)
-            
+           //  networkOp.saveHouseInfo(allHouses)
             flag = true
             
             shouldPerformSegueWithIdentifier("backToTableAfterUpdate", sender: self)
