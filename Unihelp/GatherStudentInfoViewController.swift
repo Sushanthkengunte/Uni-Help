@@ -350,7 +350,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         checkConstrints()
         
         
-        if (name.text!.isEmpty || emailID.text!.isEmpty || dateText.text!.isEmpty || monthtext.text!.isEmpty || yearText.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty||gender.isEmpty || gender == "nil"){
+        if (name.text!.isEmpty || emailID.text!.isEmpty || dateText.text!.isEmpty || monthtext.text!.isEmpty || yearText.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty||gender.isEmpty || gender == "nil" || phoneNo.text!.isEmpty){
             
             networkOp.alertingTheError("Error", extMessage: "Enter required details", extVc: self)
         }
@@ -365,14 +365,13 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             let defaultImage = UIImage(named: "blank-profile")
             let image = displayPic.image ?? defaultImage
             let imageUrl = networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
-            let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
+            let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extPhone: phoneNo.text! ,extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
             
             //let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
             
             networkOp.saveStudentInfo(sUser)
             performSegueWithIdentifier("mainScreen", sender: saveButton)
 
-            
         }
         
             }

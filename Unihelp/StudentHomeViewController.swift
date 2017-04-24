@@ -15,7 +15,9 @@ class StudentHomeViewController: UIViewController {
     
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    //Add an outlet to the button to be clicked on for segue for finding roomates
+    @IBOutlet weak var findRoommate: UIButton!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -28,11 +30,15 @@ class StudentHomeViewController: UIViewController {
         }
         
         //calling correct segue
-        correctSegue()
-        //prepareForSegue(<#T##segue: UIStoryboardSegue##UIStoryboardSegue#>, sender: <#T##AnyObject?#>)
         
-        // Do any additional setup after loading the view.
     }
+    
+    @IBAction func findRoommate(sender: AnyObject) {
+        
+        correctSegue()
+        
+    }
+    
     
     func correctSegue(){
         
@@ -43,15 +49,18 @@ class StudentHomeViewController: UIViewController {
         let ref = userRef.child(temp)
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if !snapshot.exists() {return}
+            
             if let flaggedVariable = snapshot.value!["flag"] as? String{
                 if(flaggedVariable == "true"){
-                    //Call the segue which goes to select the roommate preferences
+                    self.performSegueWithIdentifier("RoommateSecondTime", sender: self.findRoommate)
                 }else{
-                 //call the  segue which goes to the personnal details form
+                    
+                 self.performSegueWithIdentifier("RoommateFirstTime", sender: self.findRoommate)
                 }
                 
             }
         })
     }
+    
     
 }

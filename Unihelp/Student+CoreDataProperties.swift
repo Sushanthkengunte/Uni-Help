@@ -24,6 +24,7 @@ extension Student {
     @NSManaged var university: String?
     @NSManaged var dob: String?
     @NSManaged var gender: String?
+    @NSManaged var phone: String?
 //    @NSManaged var bothbg: String?
 //    @NSManaged var guys: String?
 //    @NSManaged var girls: String?

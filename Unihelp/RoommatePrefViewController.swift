@@ -229,14 +229,14 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         if autoCompletePossibilities_Cities.indexOf(finalCity) == nil {
             finalCity = "any"
         }
-        requiredPreference.updateStudentRequiredRoommatePreference(coed, sharing: room, drink: drink, smoke: smoke, finalCountry: finalCountry, finalCity: finalCity)
-        print(coed)
-        print(room)
-        print(food)
-        print(drink)
-        print(smoke)
-        print(finalCountry)
-        print(finalCity)
+        requiredPreference.updateStudentRequiredRoommatePreference(coed, sharing: room, drink: drink, smoke: smoke, finalCountry: finalCountry, finalCity: finalCity, food: food)
+//        print(coed)
+//        print(room)
+//        print(food)
+//        print(drink)
+//        print(smoke)
+//        print(finalCountry)
+//        print(finalCity)
     }
     
     

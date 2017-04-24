@@ -27,8 +27,9 @@ class StudentsFilterViewController: UIViewController, UITextFieldDelegate, UITab
     var countryFinal = ""
     var cityFinal = ""
     var universityFinal = ""
-    var sex = "none"            //guys, girls, none
+    var sex = "any"            //guys, girls, any
     
+    @IBOutlet weak var Filter: UIButton!
     @IBOutlet weak var university: UITextField!
     @IBOutlet weak var universityTable: UITableView!
     @IBOutlet weak var city: UITextField!
@@ -256,14 +257,28 @@ class StudentsFilterViewController: UIViewController, UITextFieldDelegate, UITab
         sex = "guys"
     }
     @IBAction func everyone(sender: AnyObject) {
-        sex = "none"
+        sex = "any"
     }
 
     @IBAction func FinalFilter(sender: AnyObject) {
         
         countryFinal = country.text!
         cityFinal = city.text!
-        //and sex
+        universityFinal = university.text!
+        
+        if autoCompletePossibilities_Countries.indexOf(countryFinal) == nil {
+            countryFinal = "any"
+        }
+        if autoCompletePossibilities_Cities.indexOf(cityFinal) == nil {
+            cityFinal = "any"
+        }
+        
+        if autoComplete_Universities.indexOf(universityFinal) == nil {
+            networkOp.alertingTheError("Error", extMessage: "Need to select a University from the Dropdown", extVc: self)
+        }else{
+            performSegueWithIdentifier("studentGroupSegue", sender: self.Filter)
+            networkOp.updateStudentFilterPreference(sex, finalCountry: countryFinal, finalCity: cityFinal, finalUni: universityFinal)
+        }
         
         
         

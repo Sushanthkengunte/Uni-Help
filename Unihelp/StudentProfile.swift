@@ -17,13 +17,14 @@ class StudentProfile: NSObject {
     var country : String?
     var city : String?
     var university : String?
+    var phone : String?
     var DOB : String?
     var gender : String?
     var personnaProfile:DictionaryType?
     var requiredProfile:DictionaryType?
     var requiredHouse:DictionaryType?
     
-    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType?, extRP intRP : DictionaryType?,extRH intRH : DictionaryType?,extGender intGender : String){
+    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String,extPhone intphone:String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType?, extRP intRP : DictionaryType?,extRH intRH : DictionaryType?,extGender intGender : String){
         
         
          super.init()
@@ -37,6 +38,7 @@ class StudentProfile: NSObject {
         university = intUniversity
         DOB = intDOB
         gender = intGender
+        phone = intphone
 
     }
     

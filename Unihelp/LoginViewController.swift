@@ -14,7 +14,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        //print(dirPath)
+        
         // Do any additional setup after loading the view.
     }
 

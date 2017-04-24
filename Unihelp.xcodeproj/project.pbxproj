@@ -10,6 +10,7 @@
 		1C0051421EAAF7390072CAB9 /* StudentsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */; };
 		1C1DF3831EAAB53300A0564B /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1DF3811EAAB53300A0564B /* Location+CoreDataProperties.swift */; };
 		1C1DF3841EAAB53300A0564B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1DF3821EAAB53300A0564B /* Location.swift */; };
+		1C45B8681EADC6D900654640 /* RoommatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */; };
 		1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992CE1EA2D4CC006662FF /* imageCell.swift */; };
 		1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */; };
 		1C4992D41EA2F192006662FF /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C4992D21EA2F192006662FF /* locations.json */; };
@@ -18,6 +19,11 @@
 		1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */; };
 		1C4DF6D11EA7610200D42D8D /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DF6D01EA7610200D42D8D /* DLRadioButton.m */; };
 		1C4DF6D31EA768EC00D42D8D /* MyProfileRoomateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */; };
+		1C5434E71EAE0044002D5438 /* RoommateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */; };
+		1C5434E91EAE11E9002D5438 /* StudentGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */; };
+		1C5434EB1EAE18E1002D5438 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5434EA1EAE18E1002D5438 /* Main.storyboard */; };
+		1C5434EF1EAE1E7F002D5438 /* StudentInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5434EE1EAE1E7F002D5438 /* StudentInfoViewController.swift */; };
+		1C5434F11EAE26EC002D5438 /* RoommateInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5434F01EAE26EC002D5438 /* RoommateInfoViewController.swift */; };
 		1C5E18861EA8B969002AAE81 /* RoommatePrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5E18851EA8B969002AAE81 /* RoommatePrefViewController.swift */; };
 		1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5EDA1E1EA49EB500E428B5 /* UniSearchViewController.swift */; };
 		1C5EDA231EA4A1B200E428B5 /* university.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C5EDA221EA4A1B200E428B5 /* university.json */; };
@@ -43,7 +49,6 @@
 		BD8F23FD1EA36FCD00E213C9 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8F23FC1EA36FCD00E213C9 /* FBSDKLoginKit.framework */; };
 		BD99F1751EA1B43E00958B75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD99F1741EA1B43E00958B75 /* AppDelegate.swift */; };
 		BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD99F1761EA1B43E00958B75 /* ViewController.swift */; };
-		BD99F17A1EA1B43E00958B75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1781EA1B43E00958B75 /* Main.storyboard */; };
 		BD99F17D1EA1B43E00958B75 /* Unihelp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD99F17B1EA1B43E00958B75 /* Unihelp.xcdatamodeld */; };
 		BD99F17F1EA1B43E00958B75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD99F17E1EA1B43E00958B75 /* Assets.xcassets */; };
 		BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */; };
@@ -60,6 +65,7 @@
 		1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsFilterViewController.swift; sourceTree = "<group>"; };
 		1C1DF3811EAAB53300A0564B /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1C1DF3821EAAB53300A0564B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoommatesTableViewController.swift; sourceTree = "<group>"; };
 		1C4992CE1EA2D4CC006662FF /* imageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCell.swift; sourceTree = "<group>"; };
 		1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseUpdateFormViewController.swift; sourceTree = "<group>"; };
 		1C4992D21EA2F192006662FF /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
@@ -69,6 +75,11 @@
 		1C4DF6CF1EA7610200D42D8D /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		1C4DF6D01EA7610200D42D8D /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileRoomateViewController.swift; sourceTree = "<group>"; };
+		1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoommateTableViewCell.swift; sourceTree = "<group>"; };
+		1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentGroupTableViewController.swift; sourceTree = "<group>"; };
+		1C5434EA1EAE18E1002D5438 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1C5434EE1EAE1E7F002D5438 /* StudentInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInfoViewController.swift; sourceTree = "<group>"; };
+		1C5434F01EAE26EC002D5438 /* RoommateInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoommateInfoViewController.swift; sourceTree = "<group>"; };
 		1C5E18851EA8B969002AAE81 /* RoommatePrefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoommatePrefViewController.swift; sourceTree = "<group>"; };
 		1C5EDA1E1EA49EB500E428B5 /* UniSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniSearchViewController.swift; sourceTree = "<group>"; };
 		1C5EDA221EA4A1B200E428B5 /* university.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = university.json; sourceTree = "<group>"; };
@@ -100,7 +111,6 @@
 		BD99F1711EA1B43E00958B75 /* Unihelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unihelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD99F1741EA1B43E00958B75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD99F1761EA1B43E00958B75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BD99F1791EA1B43E00958B75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BD99F17C1EA1B43E00958B75 /* Unihelp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unihelp.xcdatamodel; sourceTree = "<group>"; };
 		BD99F17E1EA1B43E00958B75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD99F1811EA1B43E00958B75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -197,6 +207,7 @@
 		BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */,
 				1C5E18851EA8B969002AAE81 /* RoommatePrefViewController.swift */,
 				1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */,
 				BD8F23F41EA3441400E213C9 /* LoginViewController.swift */,
@@ -256,9 +267,13 @@
 		BD99F1731EA1B43E00958B75 /* Unihelp */ = {
 			isa = PBXGroup;
 			children = (
+				1C5434F01EAE26EC002D5438 /* RoommateInfoViewController.swift */,
+				1C5434EE1EAE1E7F002D5438 /* StudentInfoViewController.swift */,
+				1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */,
 				BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */,
-				BD99F1781EA1B43E00958B75 /* Main.storyboard */,
-				1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */,
+				1C5434EA1EAE18E1002D5438 /* Main.storyboard */,
+				1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */,
+				1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */,
 				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
 				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
 				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
@@ -340,10 +355,10 @@
 				1C4992D51EA2F192006662FF /* countries.json in Resources */,
 				BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */,
 				1C4992D41EA2F192006662FF /* locations.json in Resources */,
+				1C5434EB1EAE18E1002D5438 /* Main.storyboard in Resources */,
 				BD99F18A1EA1B59F00958B75 /* GoogleService-Info.plist in Resources */,
 				1C5EDA231EA4A1B200E428B5 /* university.json in Resources */,
 				BD99F17F1EA1B43E00958B75 /* Assets.xcassets in Resources */,
-				BD99F17A1EA1B43E00958B75 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD8F23F51EA3441400E213C9 /* LoginViewController.swift in Sources */,
+				1C45B8681EADC6D900654640 /* RoommatesTableViewController.swift in Sources */,
 				1C5EDA361EA4D1B900E428B5 /* SWRevealViewController.m in Sources */,
 				1C1DF3841EAAB53300A0564B /* Location.swift in Sources */,
 				1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */,
@@ -413,6 +429,7 @@
 				1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */,
 				1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */,
 				1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */,
+				1C5434EF1EAE1E7F002D5438 /* StudentInfoViewController.swift in Sources */,
 				1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */,
 				BD1F1AA01EA6E41E00B3B4FD /* UniversityTableViewCell.swift in Sources */,
 				BDEB1CB51EAAD52200076D53 /* Student+CoreDataProperties.swift in Sources */,
@@ -436,8 +453,11 @@
 				1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */,
 				1CD9B5D71EA8771C00DA789D /* UpdateOwnerAccoutViewController.swift in Sources */,
 				1C7A87D91EA1CFB600A61BFF /* House.swift in Sources */,
+				1C5434E91EAE11E9002D5438 /* StudentGroupTableViewController.swift in Sources */,
 				BD99F17D1EA1B43E00958B75 /* Unihelp.xcdatamodeld in Sources */,
+				1C5434E71EAE0044002D5438 /* RoommateTableViewCell.swift in Sources */,
 				BDE8A44D1EA6FA2A00604FDD /* StudentProfile.swift in Sources */,
+				1C5434F11EAE26EC002D5438 /* RoommateInfoViewController.swift in Sources */,
 				1C1DF3831EAAB53300A0564B /* Location+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,14 +465,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BD99F1781EA1B43E00958B75 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BD99F1791EA1B43E00958B75 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

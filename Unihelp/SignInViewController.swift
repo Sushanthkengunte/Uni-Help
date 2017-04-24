@@ -80,6 +80,10 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        //print(dirPath)
+        
+        
        // print(NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask))
         // Do any additional setup after loading the view.
         pov.delegate = self

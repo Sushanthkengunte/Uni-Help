@@ -88,15 +88,19 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate, UIT
     
     @IBAction func Submit(sender: AnyObject) {
         
+        aboutme = aboutMeTextView.text
+        if (aboutme == "How am I? What do I like? What pisses me off? Do I have any more preferences? List them all."){
+            aboutme = ""
+        }
         
         updatePreferences.updateStudentPersonnelDetails(coed, sharing: room, drink: drink, smoke: smoke, aboutMe: aboutme, anotherUni: university,food: food)
-        print(coed)
-        print(room)
-        print(food)
-        print(drink)
-        print(smoke)
-        print(aboutme)
-        print(university)
+//        print(coed)
+//        print(room)
+//        print(food)
+//        print(drink)
+//        print(smoke)
+//        print(aboutme)
+//        print(university)
         
     }
 

@@ -89,7 +89,9 @@ struct NetworkOperations{
         temp!["city"] = stuObject.city
         temp!["university"] = stuObject.university
         temp!["DOB"] = stuObject.DOB
+        temp!["gender"] = stuObject.gender
         temp!["flag"] = "false"
+        temp!["phone"] = stuObject.phone
         return temp!
     }
     mutating func saveHomeOwnersBasicInfo(homeOwner : HomeOwnerProfile){
@@ -118,7 +120,7 @@ struct NetworkOperations{
     mutating func updateStudentPersonnelDetails(genderRequired : String, sharing : String , drink : String , smoke : String,aboutMe : String,anotherUni : String , food : String){
         var temp : [String : String] = [:]
         temp["genderRequired"] = genderRequired
-        temp["sharing"] = sharing
+        temp["room"] = sharing
         temp["drink"] = drink
         temp["smoke"] = smoke
         temp["food"] =  food
@@ -130,7 +132,7 @@ struct NetworkOperations{
         let keyOf1 = FIRAuth.auth()?.currentUser?.uid
         setReferences()
         let dbRef1 = databaseRef
-        dbRef1.child("Students").child(keyOf1!).setValue(temp2)
+        dbRef1.child("Students").child(keyOf1!).child("flag").setValue("true")
         let keyOf = FIRAuth.auth()?.currentUser?.uid
         setReferences()
         let dbRef = databaseRef
@@ -138,18 +140,35 @@ struct NetworkOperations{
         
     
     }
-    mutating func updateStudentRequiredRoommatePreference(genderRequired : String, sharing : String , drink : String , smoke : String , finalCountry : String,finalCity:String){
+    mutating func updateStudentRequiredRoommatePreference(genderRequired : String, sharing : String , drink : String , smoke : String , finalCountry : String,finalCity:String, food:String){
         var temp : [String : String] = [:]
         temp["genderRequired"] = genderRequired
-        temp["sharing"] = sharing
+        temp["room"] = sharing
         temp["drink"] = drink
+        temp["smoke"] = smoke
         temp["finalCountry"] = finalCountry
          temp["finalCity"] = finalCity
+        temp["food"] = food
         // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
         let keyOf = FIRAuth.auth()?.currentUser?.uid
         setReferences()
         let dbRef = databaseRef
         dbRef.child("Students").child(keyOf!).child("RoommatePreferences").setValue(temp)
+        
+        
+    }
+    
+    mutating func updateStudentFilterPreference(genderRequired : String, finalCountry : String,finalCity:String, finalUni: String){
+        var temp : [String : String] = [:]
+        temp["genderRequired"] = genderRequired
+        temp["finalCountry"] = finalCountry
+        temp["finalCity"] = finalCity
+        temp["finalUniversity"] = finalUni
+
+        let keyOf = FIRAuth.auth()?.currentUser?.uid
+        setReferences()
+        let dbRef = databaseRef
+        dbRef.child("Students").child(keyOf!).child("StudentGroupFilter").setValue(temp)
         
         
     }
