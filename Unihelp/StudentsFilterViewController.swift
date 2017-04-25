@@ -273,7 +273,8 @@ class StudentsFilterViewController: UIViewController, UITextFieldDelegate, UITab
             cityFinal = "any"
         }
         
-        if autoComplete_Universities.indexOf(universityFinal) == nil {
+        print(autoCompletePossibilities_Universities.indexOf(universityFinal))
+        if autoCompletePossibilities_Universities.indexOf(universityFinal) == nil || autoCompletePossibilities_Universities.indexOf(universityFinal) == 0 {
             networkOp.alertingTheError("Error", extMessage: "Need to select a University from the Dropdown", extVc: self)
         }else{
             performSegueWithIdentifier("studentGroupSegue", sender: self.Filter)

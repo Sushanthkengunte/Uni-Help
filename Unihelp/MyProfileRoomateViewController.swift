@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate{
     var updatePreferences = NetworkOperations()
     var coed : String = "both"          //guys, girls, both
     var drink : String = "yes"          //yes, no
@@ -19,72 +19,62 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate, UIT
     var room : String = "own"           //own, share
     
     @IBOutlet weak var aboutMeTextView: UITextView!
-    @IBOutlet weak var universityTextView: UITextField!
-    @IBOutlet weak var universityTable: UITableView!
+
     
-    //---------------Need to change University List !!!!
-    
-    var autoComplete : [String] = ["Syracuse University", "Northeasten University", "Utah University"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        universityTextView.delegate = self
-        universityTable.delegate = self
-        universityTable.hidden = true
         
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        universityTable.hidden = false
-        universityTable.reloadData()
-    }
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        universityTable.hidden = false
+//        universityTable.reloadData()
+//    }
     
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == self.aboutMeTextView{
             aboutMeTextView.text = " "
-        }else if textView == self.universityTextView{
-            universityTable.hidden = false
-            universityTable.reloadData()
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        if textField == self.universityTextView{
-            universityTable.hidden = false
-        }
-        return true
-    }
-
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return autoComplete.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-        let cell = tableView.dequeueReusableCellWithIdentifier("UniversityCell", forIndexPath: indexPath) as? UniversityTableViewCell
-        let index = indexPath.row as Int
-        cell!.university.text = autoComplete[index]
-
-        
-        return cell!
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityTableViewCell
-        let temp = selectedCell?.university.text
-        universityTextView.text = temp
-        universityTable.hidden = true
-        university = temp!
-
-    }
+//    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+//        
+//        if textField == self.universityTextView{
+//            universityTable.hidden = false
+//        }
+//        return true
+//    }
+//
+//    
+//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return autoComplete.count
+//    }
+//    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//    
+//        let cell = tableView.dequeueReusableCellWithIdentifier("UniversityCell", forIndexPath: indexPath) as? UniversityTableViewCell
+//        let index = indexPath.row as Int
+//        cell!.university.text = autoComplete[index]
+//
+//        
+//        return cell!
+//    }
+//    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityTableViewCell
+//        let temp = selectedCell?.university.text
+//        universityTextView.text = temp
+//        universityTable.hidden = true
+//        university = temp!
+//
+//    }
     
     @IBAction func Submit(sender: AnyObject) {
         
@@ -93,7 +83,7 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate, UIT
             aboutme = ""
         }
         
-        updatePreferences.updateStudentPersonnelDetails(coed, sharing: room, drink: drink, smoke: smoke, aboutMe: aboutme, anotherUni: university,food: food)
+        updatePreferences.updateStudentPersonnelDetails(coed, sharing: room, drink: drink, smoke: smoke, aboutMe: aboutme,food: food)
 //        print(coed)
 //        print(room)
 //        print(food)

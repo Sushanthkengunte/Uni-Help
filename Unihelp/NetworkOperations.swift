@@ -177,7 +177,7 @@ struct NetworkOperations{
     
     //TO-DO write a code to append the users preferences to firebase when its available
     //gender: String, sharing : String , drink : String , smoke : String
-    mutating func updateStudentPersonnelDetails(genderRequired : String, sharing : String , drink : String , smoke : String,aboutMe : String,anotherUni : String , food : String){
+    mutating func updateStudentPersonnelDetails(genderRequired : String, sharing : String , drink : String , smoke : String,aboutMe : String, food : String){
         var temp : [String : String] = [:]
         temp["genderRequired"] = genderRequired
         temp["room"] = sharing
@@ -185,7 +185,7 @@ struct NetworkOperations{
         temp["smoke"] = smoke
         temp["food"] =  food
         temp["aboutMe"] = aboutMe
-        temp["anotherUni"] = anotherUni
+        //temp["anotherUni"] = anotherUni
         // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
         var temp2 : [String : String] = [:]
         temp2["flag"] = "true"
@@ -200,7 +200,7 @@ struct NetworkOperations{
         
         
     }
-    mutating func updateStudentRequiredRoommatePreference(genderRequired : String, sharing : String , drink : String , smoke : String , finalCountry : String,finalCity:String, food:String){
+    mutating func updateStudentRequiredRoommatePreference(genderRequired : String, sharing : String , drink : String , smoke : String , finalCountry : String,finalCity:String, food:String, finalUni:String){
         var temp : [String : String] = [:]
         temp["genderRequired"] = genderRequired
         temp["room"] = sharing
@@ -209,6 +209,7 @@ struct NetworkOperations{
         temp["finalCountry"] = finalCountry
          temp["finalCity"] = finalCity
         temp["food"] = food
+        temp["university"] = finalUni
         // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
         let keyOf = FIRAuth.auth()?.currentUser?.uid
         setReferences()

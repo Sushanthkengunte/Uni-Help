@@ -19,6 +19,10 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     var autoCompletePossibilities_Cities = [""]
     var autoComplete_Cities = [String]()
     
+    var autoCompletePossibilities_Universities = [""]
+    var autoComplete_Universities = [String]()
+
+    
     
     var coed : String = "any"          //guys, girls, any
     var drink : String = "any"         //yes, no, any
@@ -27,6 +31,7 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     var finalCountry : String = "any"      //From country list, or any
     var finalCity : String = "any"         //From city list, or any
     var room : String = "any"           //own, share, any
+    var universityFinal : String = "any"
     
     var requiredPreference = NetworkOperations()
     
@@ -37,13 +42,17 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
     @IBOutlet weak var countryTable: UITableView!
     @IBOutlet weak var cityTable: UITableView!
     
+    @IBOutlet weak var university: UITextField!
+    @IBOutlet weak var universityTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         storeCore.checkCoreDataForLocation()
+        storeCore.checkCoreDataForUniversities()
         
         self.autoCompletePossibilities_Countries = storeCore.autoCompletePossibilities_Countries
+        self.autoCompletePossibilities_Universities = storeCore.autoCompletePossibilities_Universities
         
         country.delegate = self
         countryTable.delegate = self
@@ -52,6 +61,10 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         city.delegate = self
         cityTable.delegate = self
         cityTable.hidden = true
+        
+        universityTable.delegate = self
+        universityTable.hidden = true
+        university.delegate = self
         
     }
     
@@ -90,6 +103,15 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
             }
             
         }
+        else if textField == self.university{
+            universityTable.hidden = false
+            let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            
+            searchAutocompleteEntriesWithSubstring(substring, textField: textField)
+            if autoComplete_Universities.count == 0{
+                universityTable.hidden = true
+            }
+        }
         return true
     }
     
@@ -110,7 +132,15 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
             
             return cell
         }
+        else if tableView == self.universityTable{
+            let cell = tableView.dequeueReusableCellWithIdentifier("UniversityCell", forIndexPath: indexPath) as? UniversityTableViewCell
+                    let index = indexPath.row as Int
+                    cell!.university.text = autoComplete_Universities[index]
             
+                    
+                    return cell!
+        }
+
         else{
             let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
             return cell
@@ -129,6 +159,9 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         }
         else if tableView == self.cityTable{
             return autoComplete_Cities.count
+        }
+        else if tableView == self.universityTable{
+            return autoComplete_Universities.count
         }
         else{
             return 0
@@ -151,6 +184,12 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
             let temp = selectedCell?.city.text
             city.text = temp
             cityTable.hidden = true
+        }
+        else if tableView == self.universityTable{
+            let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityTableViewCell
+            let temp = selectedCell?.university.text
+            university.text = temp
+            universityTable.hidden = true
         }
         
     }
@@ -186,6 +225,21 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
             }
             cityTable.reloadData()
         }
+        else if textField == self.university{
+            autoComplete_Universities.removeAll(keepCapacity: false)
+            
+            for key in autoCompletePossibilities_Universities{
+                let myString:NSString! = key as NSString
+                
+                let substringrange :NSRange! = myString.rangeOfString(substring)
+                if(substringrange.location == 0){
+                    autoComplete_Universities.append(key)
+                    
+                }
+            }
+            
+            universityTable.reloadData()
+        }
         
     }
         
@@ -217,11 +271,13 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         
     }
     
+    @IBOutlet weak var findroommate: UIButton!
     
     @IBAction func FindMyRoommate(sender: AnyObject) {
         
         finalCountry = country.text!
         finalCity = city.text!
+        universityFinal = university.text!
         
         if autoCompletePossibilities_Countries.indexOf(finalCountry) == nil {
             finalCountry = "any"
@@ -229,7 +285,20 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         if autoCompletePossibilities_Cities.indexOf(finalCity) == nil {
             finalCity = "any"
         }
-        requiredPreference.updateStudentRequiredRoommatePreference(coed, sharing: room, drink: drink, smoke: smoke, finalCountry: finalCountry, finalCity: finalCity, food: food)
+        
+        if autoCompletePossibilities_Universities.indexOf(universityFinal) == nil || autoCompletePossibilities_Universities.indexOf(universityFinal) == 0 {
+            universityFinal = "any"
+        }
+        
+        if universityFinal == "any"{
+            requiredPreference.alertingTheError("Error", extMessage: "Enter University from dropdown", extVc: self)
+        }else{
+            
+            performSegueWithIdentifier("RoommateSegue", sender: findroommate)
+            
+            requiredPreference.updateStudentRequiredRoommatePreference(coed, sharing: room, drink: drink, smoke: smoke, finalCountry: finalCountry, finalCity: finalCity, food: food, finalUni: universityFinal)
+        }
+        
 //        print(coed)
 //        print(room)
 //        print(food)

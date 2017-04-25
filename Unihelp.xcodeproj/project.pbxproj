@@ -13,7 +13,6 @@
 		1C45B8681EADC6D900654640 /* RoommatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */; };
 		1C4992CF1EA2D4CC006662FF /* imageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992CE1EA2D4CC006662FF /* imageCell.swift */; };
 		1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */; };
-		1C4992D41EA2F192006662FF /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C4992D21EA2F192006662FF /* locations.json */; };
 		1C4992D51EA2F192006662FF /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C4992D31EA2F192006662FF /* countries.json */; };
 		1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */; };
 		1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */; };
@@ -34,7 +33,11 @@
 		1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */; };
 		1C7A87D91EA1CFB600A61BFF /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87D81EA1CFB600A61BFF /* House.swift */; };
 		1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */; };
-		1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */; };
+		1C9908C41EAF042C0008B2B0 /* AccommodationFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9908C31EAF042C0008B2B0 /* AccommodationFilterViewController.swift */; };
+		1C9908C81EAF149C0008B2B0 /* HousesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9908C71EAF149C0008B2B0 /* HousesListTableViewController.swift */; };
+		1C9908CA1EAF2C290008B2B0 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9908C91EAF2C290008B2B0 /* HouseTableViewCell.swift */; };
+		1C9908CC1EAF3F1D0008B2B0 /* HouseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9908CB1EAF3F1D0008B2B0 /* HouseInfoViewController.swift */; };
+		1C9908CE1EAF6AA50008B2B0 /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C9908CD1EAF6AA50008B2B0 /* locations.json */; };
 		1CD9B5D71EA8771C00DA789D /* UpdateOwnerAccoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B5D61EA8771C00DA789D /* UpdateOwnerAccoutViewController.swift */; };
 		1CD9B5D91EA8895100DA789D /* StoreIntoCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD9B5D81EA8895100DA789D /* StoreIntoCore.swift */; };
 		BD1F1A981EA6DD9300B3B4FD /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1F1A971EA6DD9300B3B4FD /* NetworkOperations.swift */; };
@@ -69,7 +72,6 @@
 		1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoommatesTableViewController.swift; sourceTree = "<group>"; };
 		1C4992CE1EA2D4CC006662FF /* imageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCell.swift; sourceTree = "<group>"; };
 		1C4992D01EA2E7FD006662FF /* HouseUpdateFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseUpdateFormViewController.swift; sourceTree = "<group>"; };
-		1C4992D21EA2F192006662FF /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
 		1C4992D31EA2F192006662FF /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOwnerAccountViewController.swift; sourceTree = "<group>"; };
 		1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerProfile.swift; sourceTree = "<group>"; };
@@ -92,7 +94,11 @@
 		1C7A87D61EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerTableViewController.swift; sourceTree = "<group>"; };
 		1C7A87D81EA1CFB600A61BFF /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
 		1C7A87FC1EA1F9A100A61BFF /* HouseFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseFormViewController.swift; sourceTree = "<group>"; };
-		1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseCell.swift; sourceTree = "<group>"; };
+		1C9908C31EAF042C0008B2B0 /* AccommodationFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationFilterViewController.swift; sourceTree = "<group>"; };
+		1C9908C71EAF149C0008B2B0 /* HousesListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousesListTableViewController.swift; sourceTree = "<group>"; };
+		1C9908C91EAF2C290008B2B0 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
+		1C9908CB1EAF3F1D0008B2B0 /* HouseInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseInfoViewController.swift; sourceTree = "<group>"; };
+		1C9908CD1EAF6AA50008B2B0 /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
 		1CD9B5D61EA8771C00DA789D /* UpdateOwnerAccoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateOwnerAccoutViewController.swift; sourceTree = "<group>"; };
 		1CD9B5D81EA8895100DA789D /* StoreIntoCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIntoCore.swift; sourceTree = "<group>"; };
 		465FED3D8363B55094D04C65 /* Pods-Unihelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unihelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unihelp/Pods-Unihelp.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,7 +167,7 @@
 		1C5EDA241EA4A1B900E428B5 /* Json files */ = {
 			isa = PBXGroup;
 			children = (
-				1C4992D21EA2F192006662FF /* locations.json */,
+				1C9908CD1EAF6AA50008B2B0 /* locations.json */,
 				1C4992D31EA2F192006662FF /* countries.json */,
 				1C5EDA221EA4A1B200E428B5 /* university.json */,
 			);
@@ -197,10 +203,10 @@
 		BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				1C9908C91EAF2C290008B2B0 /* HouseTableViewCell.swift */,
 				BDEB1CBB1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift */,
 				1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */,
 				1C4992CE1EA2D4CC006662FF /* imageCell.swift */,
-				1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */,
 				BD1F1A9F1EA6E41E00B3B4FD /* UniversityTableViewCell.swift */,
 				BD1F1A9D1EA6E41800B3B4FD /* CountryTableViewCell.swift */,
 				BD1F1A9B1EA6E3E700B3B4FD /* CityTableViewCell.swift */,
@@ -211,12 +217,15 @@
 		BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1C9908CB1EAF3F1D0008B2B0 /* HouseInfoViewController.swift */,
 				1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */,
+				1C9908C71EAF149C0008B2B0 /* HousesListTableViewController.swift */,
 				1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */,
 				1C5434EE1EAE1E7F002D5438 /* StudentInfoViewController.swift */,
 				1C5434F01EAE26EC002D5438 /* RoommateInfoViewController.swift */,
 				1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */,
 				1C5E18851EA8B969002AAE81 /* RoommatePrefViewController.swift */,
+				1C9908C31EAF042C0008B2B0 /* AccommodationFilterViewController.swift */,
 				1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */,
 				BD8F23F41EA3441400E213C9 /* LoginViewController.swift */,
 				1C4992D61EA2F243006662FF /* CreateOwnerAccountViewController.swift */,
@@ -356,8 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C4992D51EA2F192006662FF /* countries.json in Resources */,
+				1C9908CE1EAF6AA50008B2B0 /* locations.json in Resources */,
 				BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */,
-				1C4992D41EA2F192006662FF /* locations.json in Resources */,
 				1C5434EB1EAE18E1002D5438 /* Main.storyboard in Resources */,
 				BD99F18A1EA1B59F00958B75 /* GoogleService-Info.plist in Resources */,
 				1C5EDA231EA4A1B200E428B5 /* university.json in Resources */,
@@ -424,6 +433,7 @@
 				1C45B8681EADC6D900654640 /* RoommatesTableViewController.swift in Sources */,
 				1C5EDA361EA4D1B900E428B5 /* SWRevealViewController.m in Sources */,
 				1C1DF3841EAAB53300A0564B /* Location.swift in Sources */,
+				1C9908CA1EAF2C290008B2B0 /* HouseTableViewCell.swift in Sources */,
 				1C4992D71EA2F243006662FF /* CreateOwnerAccountViewController.swift in Sources */,
 				1C4DF6D11EA7610200D42D8D /* DLRadioButton.m in Sources */,
 				1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */,
@@ -434,17 +444,19 @@
 				1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */,
 				1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */,
 				1C5434EF1EAE1E7F002D5438 /* StudentInfoViewController.swift in Sources */,
-				1C7A87FF1EA21FA800A61BFF /* HouseCell.swift in Sources */,
 				BD1F1AA01EA6E41E00B3B4FD /* UniversityTableViewCell.swift in Sources */,
+				1C9908C81EAF149C0008B2B0 /* HousesListTableViewController.swift in Sources */,
 				BDEB1CB51EAAD52200076D53 /* Student+CoreDataProperties.swift in Sources */,
 				BD1F1A9A1EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift in Sources */,
 				1C4DF6D31EA768EC00D42D8D /* MyProfileRoomateViewController.swift in Sources */,
 				1CD9B5D91EA8895100DA789D /* StoreIntoCore.swift in Sources */,
+				1C9908CC1EAF3F1D0008B2B0 /* HouseInfoViewController.swift in Sources */,
 				BD8F23F31EA3414B00E213C9 /* SignInViewController.swift in Sources */,
 				BDEB1CB61EAAD52200076D53 /* Student.swift in Sources */,
 				BD1F1A9C1EA6E3E700B3B4FD /* CityTableViewCell.swift in Sources */,
 				BDEB1CB91EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift in Sources */,
 				BD1F1A9E1EA6E41800B3B4FD /* CountryTableViewCell.swift in Sources */,
+				1C9908C41EAF042C0008B2B0 /* AccommodationFilterViewController.swift in Sources */,
 				1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */,
 				BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */,
 				1C5EDA2C1EA4A94200E428B5 /* University.swift in Sources */,

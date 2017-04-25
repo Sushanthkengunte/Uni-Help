@@ -29,6 +29,7 @@ class RoommateInfoViewController: UIViewController {
     @IBOutlet weak var aboutme: UILabel!
     @IBOutlet weak var university: UILabel!
     
+    @IBOutlet weak var imageDP: UIImageView!
     
     
     override func viewDidLoad() {
@@ -66,12 +67,28 @@ class RoommateInfoViewController: UIViewController {
                     self.room.text = value2["room"] as? String
                 }
                 
-                break
+                self.setPhoto()
+                
+                //break
             }
-            
         })
         
+    }
+    
+    func setPhoto(){
         
+        let fetchUser = ref.child("Images").child(student_uid)
+        fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+           
+            let imageUrl = snapshot.value!["displayPic"] as! String
+            print(imageUrl)
+            
+            let x = NSURL(string: imageUrl)
+            let dataOfPic = NSData(contentsOfURL: x!)
+            self.imageDP.image = UIImage(data: dataOfPic!)
+           
+        })
+
         
     }
     

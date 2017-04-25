@@ -148,6 +148,8 @@ class RoommatesTableViewController: UITableViewController {
                 self.filters_bool["smoke"] = true
             }
             
+            self.filters["university"] = snapshot.value!["university"] as? String ?? ""
+            
             self.fetchRoommates()
 
         })
@@ -177,6 +179,7 @@ class RoommatesTableViewController: UITableViewController {
             
             //print(self.arrayUID)
             
+            self.universityCondition(self.filters["university"]!)
             if(self.filters_bool["genderRequired"] == true){
                 self.genderCondition(self.filters["genderRequired"]!)
             }
@@ -201,6 +204,28 @@ class RoommatesTableViewController: UITableViewController {
             
 
         })
+    }
+    
+    //---------Removes Users not mathcing the filters from the arrayUID  ----- //University based
+    func universityCondition(condition: String){
+        
+        let x = ref.child("Students")
+        x.observeEventType(.Value, withBlock: { (snapshot) in
+            
+            for rest in  snapshot.children.allObjects as! [FIRDataSnapshot]{
+                
+                if let value = rest.value! as? NSDictionary{
+                    
+                    if (value["university"] as! String != condition){
+                        let index = self.arrayUID.indexOf(rest.key)
+                        if index != nil{self.arrayUID.removeAtIndex(index!)}
+                    }
+                }
+            }
+            //print("end of gender",self.arrayUID)
+            self.tableView.reloadData()
+        })
+        
     }
     
     //---------Removes Users not mathcing the filters from the arrayUID  ----- //Sex based filter
