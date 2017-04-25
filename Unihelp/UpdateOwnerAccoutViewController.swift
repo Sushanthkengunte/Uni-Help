@@ -157,12 +157,12 @@ class UpdateOwnerAccoutViewController: UIViewController, UITextFieldDelegate, UI
             let image = myImage.image ?? defaultImage
             let imageUrl = networkOp.saveImageToStorage(myImage.image!, extViewC: self)
             
-            let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : imageUrl)
+           let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_)
             
             //-------------------Adding newOwner object into Firebase --------------------!!!!!
-             networkOp.saveHomeOwnersBasicInfo(newOwner)
+            networkOp.saveHomeOwnersBasicInfo(newOwner)
             flag = true
-            print (newOwner)
+          //  print (newOwner)
             
             shouldPerformSegueWithIdentifier("toHousesTable", sender: self)
         }

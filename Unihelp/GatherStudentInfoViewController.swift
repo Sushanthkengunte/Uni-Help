@@ -364,8 +364,9 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
             let defaultImage = UIImage(named: "blank-profile")
             let image = displayPic.image ?? defaultImage
-            let imageUrl = networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
-            let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extPhone: phoneNo.text! ,extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
+            networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
+            //var imURl = networkOp.imagesDictionary["displayPic"]
+            let sUser = StudentProfile(extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extPhone: phoneNo.text! ,extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
             
             //let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
             

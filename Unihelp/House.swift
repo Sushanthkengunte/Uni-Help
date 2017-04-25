@@ -21,7 +21,7 @@ class House: NSObject {
     var rooms : String?
     var availableDate : String?
     var imageStore : [String]
-    
+   
     init(address1 : String, address2 : String?, city: String, state:String, zip: String, about: String, price: String, rooms: String, availableDate: String, imageStore : [String]){
         
         self.address1 = address1

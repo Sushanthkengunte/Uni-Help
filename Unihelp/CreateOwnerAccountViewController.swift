@@ -154,12 +154,12 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         else{
             let defaultImage = UIImage(named: "blank-profile")
             let image = myImage.image ?? defaultImage
-            let imageUrl = networkOp.saveImageToStorage(myImage.image!, extViewC: self)
+            networkOp.saveImageToStorage(myImage.image!, extViewC: self)
 
-            let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_, imageDP : imageUrl)
-            print(imageUrl)
+            let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_)
+           // print(imageUrl)
             //-------------------Adding newOwner object into Firebase --------------------!!!!!
-            networkOp.saveHomeOwnersBasicInfo(newOwner)
+           networkOp.saveHomeOwnersBasicInfo(newOwner)
             
             flag = true
             performSegueWithIdentifier("toHousesTable", sender: submitButton)

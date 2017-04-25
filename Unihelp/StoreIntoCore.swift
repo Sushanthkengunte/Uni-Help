@@ -187,14 +187,14 @@ class StoreIntoCore {
         }
         
     }
-    func fetchStudentInfoFromCoreData()->StudentProfile{
+    private func fetchStudentInfoFromCoreData()->StudentProfile{
         let fetchRequest = NSFetchRequest()
         let entityDescription = NSEntityDescription.entityForName("Student", inManagedObjectContext: managedObjectContext)
         fetchRequest.entity = entityDescription
         let predicateOf = NSPredicate(format: "userKey == %@", net.getCurrentUserUID())
         fetchRequest.predicate = predicateOf
         
-        var displayPicUrl : String?
+       // var displayPicUrl : String?
         var type : String?
         var userKey : String?
         var name : String?
@@ -234,7 +234,7 @@ class StoreIntoCore {
         do{
             let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
             let object = result[0] as! NSManagedObject
-            displayPicUrl = object.valueForKey("displayPic") as? String
+           // displayPicUrl = object.valueForKey("displayPic") as? String
              type = object.valueForKey("type") as? String
              userKey = object.valueForKey("userKey") as? String
              name = object.valueForKey("name") as? String
@@ -249,7 +249,7 @@ class StoreIntoCore {
         }catch {
             
         }
-        let stu = StudentProfile(displayPic: displayPicUrl!, extType: type!, extUserKey: userKey!, extName: name!, extEmail: emailID!, extDOB: DOB!, extCountry: country!, extCity: city!,extPhone: phone! ,extUniversity: university!, extpProfile: nil, extRP: nil, extRH: nil,extGender: gender!)
+        let stu = StudentProfile( extType: type!, extUserKey: userKey!, extName: name!, extEmail: emailID!, extDOB: DOB!, extCountry: country!, extCity: city!,extPhone: phone! ,extUniversity: university!, extpProfile: nil, extRP: nil, extRH: nil,extGender: gender!)
         return stu
         
     }

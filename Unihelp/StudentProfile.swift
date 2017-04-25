@@ -9,7 +9,7 @@
 class StudentProfile: NSObject {
     
     typealias DictionaryType = [String:String]
-    var displayPicUrl : String?
+    //var displayPicUrl : String?
     var type : String?
     var userKey : String?
     var name : String?
@@ -24,11 +24,11 @@ class StudentProfile: NSObject {
     var requiredProfile:DictionaryType?
     var requiredHouse:DictionaryType?
     
-    init(displayPic : String,extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String,extPhone intphone:String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType?, extRP intRP : DictionaryType?,extRH intRH : DictionaryType?,extGender intGender : String){
+    init(extType intType : String, extUserKey intUserKey : String, extName intName : String, extEmail intEmail : String, extDOB intDOB : String ,extCountry intCountry : String,extCity intCity : String,extPhone intphone:String, extUniversity intUniversity : String,extpProfile intpProfile : DictionaryType?, extRP intRP : DictionaryType?,extRH intRH : DictionaryType?,extGender intGender : String){
         
         
          super.init()
-        displayPicUrl = displayPic
+       // displayPicUrl = displayPic
         type = intType
         userKey = intUserKey
         name = intName

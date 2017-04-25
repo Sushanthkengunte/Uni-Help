@@ -17,7 +17,7 @@ struct NetworkOperations{
     
     var databaseRef : FIRDatabaseReference!
     var storageRef : FIRStorageReference!
-    
+    var imagesDictionary : [String : String]!
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
@@ -41,31 +41,43 @@ struct NetworkOperations{
     }
     
     //-----implement getting url by saving the image into the storage
-    func saveImageToStorage(imageView : UIImage,extViewC intViewC : UIViewController ) -> String{
+    mutating func saveImageToStorage(imageView : UIImage,extViewC intViewC : UIViewController ) {
         //---implement puttin it in a local copy
+        
         let imagePath = "\(getCurrentUserUID())/DisplayPic.jpeg"
+       
         let dbStrorageRef = FIRStorage.storage().reference().child(imagePath)
+        
+        var fullPath : NSURL!
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpeg"
+        
         let data : NSData = UIImageJPEGRepresentation(imageView, 1)!
         dbStrorageRef.putData(data, metadata: metaData){(metaData,error) in
             if error == nil{
                 let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
                 changeRequest?.photoURL = metaData!.downloadURL()
+               fullPath = metaData?.downloadURL()
+               // self.imagesDictionary["displayPic"] = fullPath.absoluteString
+                var URLString = fullPath.absoluteString
+                var imageRef = FIRDatabase.database().reference()
+                imageRef.child("Images").child(self.getCurrentUserUID()).child("displayPic").setValue(URLString)
+               //self.saveImageUrlIntoDatabase(fullPath, userKey: self.getCurrentUserUID())
             }else{
                 self.alertingTheError("Error!!", extMessage: (error?.localizedDescription)!, extVc: intViewC)
                 // print(error?.localizedDescription)
             }
             
         }
-        return imagePath
+        //return fullPath.absoluteString
     }
+   
     //-----save all the house images into firebase and return all its urls ---
-    func saveHouseImages(images : [UIImage], extViewC intViewC : UIViewController)->[String]{
+    func saveHouseImages(images : [UIImage], extViewC intViewC : UIViewController,uuidForHouse : String){
         var temp = [String]()
         var count = 1
         for eachImage in images{
-            count += 1
+           
             let imagePath = "\(getCurrentUserUID())/house\(String(count))"
             temp.append(imagePath)
             let dbHousePicRef = FIRStorage.storage().reference().child(imagePath)
@@ -76,7 +88,11 @@ struct NetworkOperations{
                 if(error == nil){
                     let changeREquest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
                     changeREquest?.photoURL = metaData?.downloadURL()
-                    
+                    var housePath = metaData?.downloadURL()
+                    var URLString = housePath!.absoluteString
+                    var imageRef = FIRDatabase.database().reference()
+                    imageRef.child("Images").child(self.getCurrentUserUID()).child(uuidForHouse).child(String(count)).setValue(URLString)
+                     count += 1
                 }else{
                     self.alertingTheError("Error", extMessage: (error?.localizedDescription)!, extVc: intViewC)
                 }
@@ -84,23 +100,43 @@ struct NetworkOperations{
         }
         
         
-        return temp
+        
     }
-    mutating func saveHouseInfo(housesForUSer : [House]){
+//    mutating func saveHouseInfo(housesForUSer : [House]){
+//        var temp = [String : AnyObject]()
+//          var oneHouse = [String : AnyObject]()
+//        var count = 1
+//        let uuidForHouse = NSUUID().UUIDString
+//        for eachHouse in housesForUSer{
+//            oneHouse = convertHouseIntoDictionary(eachHouse)
+//            oneHouse["houseKey"] = uuidForHouse
+//            temp[uuidForHouse] = oneHouse
+//            
+//        }
+//        let keyOf = FIRAuth.auth()?.currentUser?.uid
+//        setReferences()
+//        let dbRef = databaseRef
+//        dbRef.child("Houses").child(keyOf!).child(uuidForHouse).setValue(temp)
+//        
+//    }
+    
+    mutating func saveHouseInfo(housesForUSer : House,uuidForHouse : String){
         var temp = [String : AnyObject]()
-          var oneHouse = [String : AnyObject]()
-        var count = 1
-        let uuidForHouse = NSUUID().UUIDString
-        for eachHouse in housesForUSer{
-            oneHouse = convertHouseIntoDictionary(eachHouse)
-            oneHouse["houseKey"] = uuidForHouse
-            temp[uuidForHouse] = oneHouse
+    
+    
+        //let uuidForHouse = NSUUID().UUIDString
+       
+            temp = convertHouseIntoDictionary(housesForUSer)
+            temp["houseKey"] = uuidForHouse
+      
+            //temp[uuidForHouse] = oneHouse
             
-        }
+     
         let keyOf = FIRAuth.auth()?.currentUser?.uid
+         temp["ownerKey"] = keyOf!
         setReferences()
         let dbRef = databaseRef
-        dbRef.child("Houses").child(keyOf!).setValue(temp)
+        dbRef.child("Houses").child(keyOf!).child(uuidForHouse).setValue(temp)
         
     }
     private func convertHouseIntoDictionary(eachHouse : House)->[String : AnyObject]{
@@ -114,12 +150,12 @@ struct NetworkOperations{
         temp["about"] = eachHouse.about
         temp["rooms"] = eachHouse.rooms
         temp["availableDate"] = eachHouse.availableDate
-        var allUrl = [String : AnyObject]()
-        for each in eachHouse.imageStore{
-            var index = eachHouse.imageStore.indexOf(each)
-            allUrl["\(index!)"] = each
-        }
-        temp["imageStore"] = allUrl
+    //    var allUrl = [String : AnyObject]()
+//        for each in eachHouse.imageStore{
+//            var index = eachHouse.imageStore.indexOf(each)
+//            allUrl["\(index!)"] = each
+//        }
+  //      temp["imageStore"] = allUrl
         return temp
     }
     //------save user information
@@ -140,7 +176,7 @@ struct NetworkOperations{
     private func convertIntoStudentDictionary(stuObject : StudentProfile)->[String : AnyObject]{
         
         var temp : [String : AnyObject]! = [:]
-        temp!["displayPic"] = stuObject.displayPicUrl
+        //temp!["displayPic"] = stuObject.displayPicUrl
         temp!["type"] = stuObject.type
         temp!["userKey"] = stuObject.userKey
         temp!["name"] = stuObject.name
@@ -171,7 +207,7 @@ struct NetworkOperations{
         temp!["city"] = homeOwner.city!
         temp!["contact"] = homeOwner.contact!
         temp!["website"] = homeOwner.website!
-        temp!["imageDP"] = homeOwner.imageDP!
+       // temp!["imageDP"] = homeOwner.imageDP!
         return temp!
     }
     
@@ -264,7 +300,8 @@ struct NetworkOperations{
     }
 
     //fetches users Basic info
-    func fetchInfoOfUser(vC : UIViewController) {
+   private func fetchInfoOfUser(vC : UIViewController)
+    {
         
         
         let viewC = vC as! SignInViewController
@@ -411,7 +448,7 @@ struct NetworkOperations{
                 let signingStudentInfo = vC as! SignInViewController
                 if signingStudentInfo.type == "Student"{
                     
-                    self.fetchInfoOfUser(vC)
+                  //  self.fetchInfoOfUser(vC)
                     
                     //print(self.newObj)
                     
@@ -420,7 +457,7 @@ struct NetworkOperations{
                 }
                 if signingStudentInfo.type == "Home Owner"{
                     
-                    self.fetchInfoOfUser(vC)
+                  //  self.fetchInfoOfUser(vC)
                     
                     //print(self.newObj)
                     
@@ -457,13 +494,13 @@ struct NetworkOperations{
                 //----perform segue getting the user information needed for the model
                 let signingInto = vC as! SignInViewController
                 if signingInto.type == "Student"{
-                    self.fetchInfoOfUser(vC)
+                   // self.fetchInfoOfUser(vC)
                     vC.performSegueWithIdentifier("SignInStudentFB", sender: signingInto.loginButton)
                     
                 }
                 if signingInto.type == "Home Owner"{
                     
-                    self.fetchInfoOfUser(vC)
+                  //  self.fetchInfoOfUser(vC)
                     vC.performSegueWithIdentifier("SignInHomeOwnerFB", sender: signingInto.loginButton)
                 }
                 

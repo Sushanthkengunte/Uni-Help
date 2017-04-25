@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
     
@@ -21,21 +24,105 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
     @IBOutlet weak var aboutHouse: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var imageTable: UITableView!
-    
-    
+    var imageURL = [NSURL]()
+    @IBOutlet weak var submitButton: UIButton!
+    var networkOp = NetworkOperations()
+    @IBOutlet weak var uploadImageButton: UIButton!
     @IBOutlet weak var cityTable: UITableView!
-    
+    var imageArray = [UIImage]()
+    var uidOfHouse : String!{
+        didSet{
+            setValues(uidOfHouse)
+        }
+    }
+    private func setValues(houseKey : String){
+        let databaseReference = FIRDatabase.database().reference().child("Houses").child(networkOp.getCurrentUserUID()).child(houseKey)
+        let storageReference = FIRStorage.storage().reference()
+        databaseReference.observeEventType(.Value, withBlock: {(snapshot) in
+            self.address1.text = snapshot.value!["address1"] as! String
+            self.address2.text = snapshot.value!["address2"] as! String
+            self.city.text = snapshot.value!["city"] as! String
+            self.zip.text = snapshot.value!["zip"] as! String
+            self.aboutHouse.text = snapshot.value!["about"] as! String
+            //self.availableDate.text = snapshot.value!["availableDate"] as! String
+            self.state.text = snapshot.value!["state"] as! String
+            self.price.text = snapshot.value!["price"] as! String
+            self.rooms.text = snapshot.value!["rooms"] as! String
+            self.setImagesForTables(houseKey)
+            //   let something = snapshot.childSnapshotForPath("imageStore").children
+            
+            //            while let item = something.nextObject() as? FIRDataSnapshot{
+            //                self.imageURL?.append((item.value as? String)!)
+            //                let imageRef = storageReference.child((item.value as? String)!)
+            //                print(imageRef)
+            //                imageRef.dataWithMaxSize(1*1024*1024, completion: { (data, error) in
+            //                    let image = UIImage(data: data!)
+            //                    self.imageArray.append(image!)
+            //                })
+            //
+            //            }
+            
+            
+            
+        })
+        
+        
+    }
+    private func setImagesForTables( houseKey : String){
+        let dbImRef = FIRDatabase.database().reference().child("Images").child(networkOp.getCurrentUserUID()).child(houseKey)
+        dbImRef.observeEventType(.Value , withBlock: {(snapshot) in
+            let enumerator1 = snapshot.children
+            while let each = enumerator1.nextObject() as? FIRDataSnapshot{
+                // print(each.value!)
+                var temp = each.value! as! String
+                self.imageURL.append(NSURL(string: temp)!)
+            }
+            for each in self.imageURL{
+            self.createUIImageArray(each)
+          //  self.imageArray.append(self.imageToSave!)
+            }
+            self.imageTable.reloadData()
+            
+        })
+        
+    }
+    var imageToSave : UIImage!
+    private func createUIImageArray(item : NSURL){
+        
+        let data = NSData(contentsOfURL: item)
+        let im1 = UIImage(data: data!)
+        imageArray.append(im1!)
+//        let session = NSURLSession.sharedSession()
+//        let task = session.dataTaskWithURL(item){
+//            (item : NSURL?, res : NSURLResponse?, e:NSError?) in
+//            let d = NSData(contentsOfURL: item!)
+//        }
+//            NSURLSession.sharedSession().dataTaskWithURL(item, completionHandler: { (data, response, error) in
+//                if error != nil{
+//                    self.networkOp.alertingTheError("Error!!", extMessage: (error?.localizedDescription)!, extVc: self)
+//                }
+//                dispatch_async(dispatch_get_main_queue(),{
+//                   self.imageToSave = UIImage(data: data!)
+//                    
+//                })
+//                
+//            }).resume()
+        
+      
+     //imageTable.reloadData()
+        
+    }
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var storeCore = StoreIntoCore()
-    var networkOp = NetworkOperations()
-
+    
+    
     var autoCompletePossibilities_Cities = [""]
     var autoComplete_Cities = [String]()
     
-
-    var imageArray = [UIImage]()
+    
+    
     var imagePicker = UIImagePickerController()
-     var imageUrls = [String]()
+    var imageUrls = [String]()
     
     var strDate : String = ""
     var flag = false
@@ -61,6 +148,9 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         
         storeCore.checkCoreDataForLocation()
         storeCitiesInUSA()
+        datePicker.hidden = true
+        submitButton.hidden = true
+        uploadImageButton.hidden = true
         
         self.navigationItem.backBarButtonItem?.title = "Cancel"
         aboutHouse.delegate = self
@@ -70,7 +160,7 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         city.delegate = self
         cityTable.hidden = true
     }
-
+    
     
     // -------------------------------Submit the whole House details (Create an object) TODO: Upload into Firebase -----------------------------//
     @IBAction func updateHouse(sender: AnyObject) {
@@ -95,13 +185,17 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
             
         }
         else{
-              imageUrls = networkOp.saveHouseImages(imageArray, extViewC: self)
+            let uuidForHouse = NSUUID().UUIDString
+            networkOp.saveHouseImages(imageArray, extViewC: self,uuidForHouse: uuidForHouse)
+            
             let item = House(address1 : add1, address2 : add2, city: city_, state: state_, zip: zip_, about: about, price: price_, rooms: rooms_, availableDate: strDate, imageStore: imageUrls)
             
             
+            
             //----------------------------!!!!! Todo: Upload into Firebase here !!!!!!!! --------------------//
-            print(item.imageStore.count)
-           //  networkOp.saveHouseInfo(allHouses)
+            //print(item.imageStore.count)
+            networkOp.saveHouseInfo(item,uuidForHouse: uuidForHouse)
+            //  networkOp.saveHouseInfo(allHouses)
             flag = true
             
             shouldPerformSegueWithIdentifier("backToTableAfterUpdate", sender: self)
@@ -292,7 +386,7 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         }
         
     }
-
+    
     // ----- Storing all cities in United states
     func storeCitiesInUSA(){
         
@@ -320,7 +414,7 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
             print(fetchError)
         }
     }
-
+    
     
     
     override func didReceiveMemoryWarning() {

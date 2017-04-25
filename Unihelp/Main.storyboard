@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gd1-Me-cX8">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gd1-Me-cX8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1674,7 +1674,7 @@
                                 <connections>
                                     <outlet property="addressOfHome" destination="t4H-hg-pl8" id="ZcS-Bl-Xdu"/>
                                     <outlet property="imageOfHouse" destination="J7J-dV-hby" id="xmw-Kc-XYn"/>
-                                    <segue destination="1qO-94-W4d" kind="show" identifier="showDetails" id="bae-dT-L93"/>
+                                    <segue destination="1qO-94-W4d" kind="show" identifier="getDetails" id="UD1-nX-aFZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2029,7 +2029,7 @@
                                                         <state key="normal" title="Submit"/>
                                                         <connections>
                                                             <action selector="submit:" destination="z0h-ZX-BJp" eventType="touchUpInside" id="gtK-Ew-12t"/>
-                                                            <segue destination="DkP-oC-ayG" kind="show" identifier="backToTable" id="ik5-1K-5dK"/>
+                                                            <segue destination="DkP-oC-ayG" kind="show" identifier="backToTable" id="skU-1L-uFw"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -2083,6 +2083,7 @@
                         <outlet property="price" destination="aMA-wA-VNc" id="f10-LU-DyB"/>
                         <outlet property="rooms" destination="i2q-Hd-uKj" id="J1U-Yn-Joq"/>
                         <outlet property="state" destination="RFh-q0-qDq" id="bOp-cf-mzF"/>
+                        <outlet property="submitButton" destination="RzR-bc-lRI" id="Gmv-HX-pUA"/>
                         <outlet property="zip" destination="Aq1-W8-ZCW" id="9eM-sJ-AlM"/>
                     </connections>
                 </viewController>
@@ -2829,6 +2830,8 @@
                         <outlet property="price" destination="QEy-MD-8lR" id="J5v-It-iNU"/>
                         <outlet property="rooms" destination="Jaq-S2-rfB" id="dhB-aj-b1W"/>
                         <outlet property="state" destination="tie-fL-Wd5" id="kmO-xW-DeP"/>
+                        <outlet property="submitButton" destination="qig-hU-CCW" id="dHU-Wd-v1X"/>
+                        <outlet property="uploadImageButton" destination="haz-Vi-npe" id="yWg-Tu-Msq"/>
                         <outlet property="zip" destination="Gy6-yz-g3g" id="8cT-EO-GmT"/>
                     </connections>
                 </viewController>
@@ -5184,12 +5187,12 @@
         <image name="menu-bar" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="WLa-2J-YM2"/>
+        <segue reference="ZTD-dg-LSI"/>
         <segue reference="oQi-ph-4Pf"/>
         <segue reference="ENc-OU-lSP"/>
         <segue reference="CiX-yq-uPH"/>
         <segue reference="cyo-IK-WUJ"/>
-        <segue reference="ZTD-dg-LSI"/>
-        <segue reference="WLa-2J-YM2"/>
-        <segue reference="ik5-1K-5dK"/>
+        <segue reference="skU-1L-uFw"/>
     </inferredMetricsTieBreakers>
 </document>
