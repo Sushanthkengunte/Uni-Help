@@ -127,7 +127,12 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
         }
         return false
     }
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "backToTable"{
+            let vC = segue.destinationViewController as! HomeOwnerTableViewController
+        }
+        
+    }
     /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "backToTable" {
             if let destViewController = segue.destinationViewController as? HomeOwnerTableViewController {

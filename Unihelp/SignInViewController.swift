@@ -9,7 +9,7 @@
 // - Required files:
 // NetworkOperations.swift
 //----------------------------------------------------
-// - Pods to be installed
+// - Podvaro be installed
 // Firebase
 // Firebase/Auth
 import UIKit
@@ -111,18 +111,44 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
      // Pass the selected object to the new view controller.
      }
      */
+//    var keysOfHouses = [String]()
+//    private func appendToHouses(allRecords : [AnyObject]){
+//        for children in allRecords{
+//            let oneChild = children as! FIRDataSnapshot
+//            keysOfHouses.append(oneChild.key)
+//        }
+//        print(keysOfHouses)
+//    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SignInStudent"{
-            
-        }
-        if segue.identifier == "SignInStudentFB"{
-            
-        }
+//        if segue.identifier == "SignInStudent"{
+//            
+//        }
+//        if segue.identifier == "SignInStudentFB"{
+//            
+//        }
         if segue.identifier == "SignInHomeOwnerFB"{
-            
+//
         }
         if segue.identifier == "signInHomeOwner"{
-            
+//            keysOfHouses.removeAll()
+//            let navigCon = segue.destinationViewController as! UINavigationController
+//            let destVC =  navigCon.visibleViewController as! HomeOwnerTableViewController
+//            let userID = networkOp.getCurrentUserUID()
+//            var databaseRefOfHouse = FIRDatabase.database().reference().child("Houses").child(userID)
+//            databaseRefOfHouse.observeEventType(.Value, withBlock: { (snapshot) in
+//                self.appendToHouses(snapshot.children.allObjects)
+//                destVC.listOfHouseKeys = self.keysOfHouses
+//                
+//                //                let x = snapshot.children.allObjects
+//                //                for childSnap in snapshot.children.allObjects{
+//                //
+//                //                    let snap = childSnap as! FIRDataSnapshot
+//                //                    self.keysOfHouses.append(snap.key)
+//                //
+//                //                }
+//            })
+//          segue.destinationViewController as! HomeOwnerTableViewController
+          
         }
     }
     

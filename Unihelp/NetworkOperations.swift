@@ -90,9 +90,12 @@ struct NetworkOperations{
         var temp = [String : AnyObject]()
           var oneHouse = [String : AnyObject]()
         var count = 1
+        let uuidForHouse = NSUUID().UUIDString
         for eachHouse in housesForUSer{
             oneHouse = convertHouseIntoDictionary(eachHouse)
-            temp[String(count)] = oneHouse
+            oneHouse["houseKey"] = uuidForHouse
+            temp[uuidForHouse] = oneHouse
+            
         }
         let keyOf = FIRAuth.auth()?.currentUser?.uid
         setReferences()
@@ -356,8 +359,13 @@ struct NetworkOperations{
                 //                }
                 if let dpHomeOwner = snapshot.value!["imageDP"] as? String{
                     //print(fullName)
-                    self.newHouseOwner.name = dpHomeOwner
+                    self.newHouseOwner.imageDP = dpHomeOwner
                 }
+                if let nameHomeOwner = snapshot.value!["name"] as? String{
+                    //print(fullName)
+                    self.newHouseOwner.name = nameHomeOwner
+                }
+
                 
                 if let websiteOfHomeOwner = snapshot.value!["website"] as? String{
                     //print(countryOfUser)

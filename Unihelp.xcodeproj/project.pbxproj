@@ -58,6 +58,7 @@
 		BDEB1CB61EAAD52200076D53 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB41EAAD52200076D53 /* Student.swift */; };
 		BDEB1CB91EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB71EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift */; };
 		BDEB1CBA1EACAB5D00076D53 /* HouseOwnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB81EACAB5D00076D53 /* HouseOwnerEntity.swift */; };
+		BDEB1CBC1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CBB1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift */; };
 		CC2CEB82404ADA63F1567865 /* Pods_Unihelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09BC8C9B5DB1EC574AD71CB /* Pods_Unihelp.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		BDEB1CB41EAAD52200076D53 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		BDEB1CB71EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HouseOwnerEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BDEB1CB81EACAB5D00076D53 /* HouseOwnerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOwnerEntity.swift; sourceTree = "<group>"; };
+		BDEB1CBB1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,8 @@
 		BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				BDEB1CBB1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift */,
+				1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */,
 				1C4992CE1EA2D4CC006662FF /* imageCell.swift */,
 				1C7A87FE1EA21FA800A61BFF /* HouseCell.swift */,
 				BD1F1A9F1EA6E41E00B3B4FD /* UniversityTableViewCell.swift */,
@@ -207,6 +211,10 @@
 		BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */,
+				1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */,
+				1C5434EE1EAE1E7F002D5438 /* StudentInfoViewController.swift */,
+				1C5434F01EAE26EC002D5438 /* RoommateInfoViewController.swift */,
 				1C0051411EAAF7390072CAB9 /* StudentsFilterViewController.swift */,
 				1C5E18851EA8B969002AAE81 /* RoommatePrefViewController.swift */,
 				1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */,
@@ -267,13 +275,8 @@
 		BD99F1731EA1B43E00958B75 /* Unihelp */ = {
 			isa = PBXGroup;
 			children = (
-				1C5434F01EAE26EC002D5438 /* RoommateInfoViewController.swift */,
-				1C5434EE1EAE1E7F002D5438 /* StudentInfoViewController.swift */,
-				1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */,
 				BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */,
 				1C5434EA1EAE18E1002D5438 /* Main.storyboard */,
-				1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */,
-				1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */,
 				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
 				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
 				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
@@ -427,6 +430,7 @@
 				BDEB1CBA1EACAB5D00076D53 /* HouseOwnerEntity.swift in Sources */,
 				1C0051421EAAF7390072CAB9 /* StudentsFilterViewController.swift in Sources */,
 				1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */,
+				BDEB1CBC1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift in Sources */,
 				1C7A87D71EA1CF0F00A61BFF /* HomeOwnerTableViewController.swift in Sources */,
 				1C7A87FD1EA1F9A100A61BFF /* HouseFormViewController.swift in Sources */,
 				1C5434EF1EAE1E7F002D5438 /* StudentInfoViewController.swift in Sources */,
