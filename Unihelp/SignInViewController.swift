@@ -27,6 +27,8 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
     @IBOutlet weak var emailID: UITextField!
     @IBOutlet weak var password: UITextField!
    var type : String! = "Student"
+    
+    
     //-------Function that lets the users sign in----//
     @IBAction func signIn(sender: AnyObject) {
         let email = emailID.text!.lowercaseString
@@ -56,21 +58,20 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         type = pointOfView[row]
     }
+    
+    
+    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
         if error != nil {
             networkOp.alertingTheError("Error!!", extMessage: error.localizedDescription ?? "Coud not find error ", extVc: self)
-            // print(error.localizedDescription)
+
         }else if result.isCancelled{
-            //    print(#function)
             
         }else{
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken()!.tokenString)
             networkOp.signInWithFBCredentials(credential, extVC: self)
         }
-//        let student = contents.fetchStudentInfoFromCoreData()
-//        print(student.name)
-//        print(student.emailID)
 
     }
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
@@ -79,77 +80,17 @@ class SignInViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        //print(dirPath)
-        
-        
-       // print(NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask))
-        // Do any additional setup after loading the view.
         pov.delegate = self
         pov.dataSource = self
         loginButton.center = view.center
         loginButton.readPermissions = ["public_profile","email","user_friends"]
         loginButton.delegate = self
-        // self.view.addConstraint(xCenterConstraint)
         self.view.addSubview(loginButton)
         
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
   
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-//    var keysOfHouses = [String]()
-//    private func appendToHouses(allRecords : [AnyObject]){
-//        for children in allRecords{
-//            let oneChild = children as! FIRDataSnapshot
-//            keysOfHouses.append(oneChild.key)
-//        }
-//        print(keysOfHouses)
-//    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "SignInStudent"{
-//            
-//        }
-//        if segue.identifier == "SignInStudentFB"{
-//            
-//        }
-        if segue.identifier == "SignInHomeOwnerFB"{
-//
-        }
-        if segue.identifier == "signInHomeOwner"{
-//            keysOfHouses.removeAll()
-//            let navigCon = segue.destinationViewController as! UINavigationController
-//            let destVC =  navigCon.visibleViewController as! HomeOwnerTableViewController
-//            let userID = networkOp.getCurrentUserUID()
-//            var databaseRefOfHouse = FIRDatabase.database().reference().child("Houses").child(userID)
-//            databaseRefOfHouse.observeEventType(.Value, withBlock: { (snapshot) in
-//                self.appendToHouses(snapshot.children.allObjects)
-//                destVC.listOfHouseKeys = self.keysOfHouses
-//                
-//                //                let x = snapshot.children.allObjects
-//                //                for childSnap in snapshot.children.allObjects{
-//                //
-//                //                    let snap = childSnap as! FIRDataSnapshot
-//                //                    self.keysOfHouses.append(snap.key)
-//                //
-//                //                }
-//            })
-//          segue.destinationViewController as! HomeOwnerTableViewController
-          
-        }
-    }
+ 
     
 }

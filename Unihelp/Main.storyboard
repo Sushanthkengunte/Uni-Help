@@ -1639,7 +1639,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="HomeOwnerTableViewController" id="DkP-oC-ayG" customClass="HomeOwnerTableViewController" customModule="Unihelp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" id="tjE-F6-BSS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1550"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -5292,5 +5292,6 @@
         <segue reference="1Gd-S4-JzD"/>
         <segue reference="Ars-ok-iUO"/>
         <segue reference="CjP-Th-coN"/>
+
     </inferredMetricsTieBreakers>
 </document>

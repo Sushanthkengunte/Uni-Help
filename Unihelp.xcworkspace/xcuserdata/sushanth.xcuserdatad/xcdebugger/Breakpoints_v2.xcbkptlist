@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unihelp/SignInViewController.swift"
-            timestampString = "514527515.108544"
+            timestampString = "514872532.989505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "loginButton(_:didCompleteWithResult:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unihelp/NetworkOperations.swift"
-            timestampString = "514810294.86677"
+            timestampString = "514879992.776359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
-            landmarkName = "signInWithFBCredentialsFirst(_:extVC:)"
-            landmarkType = "5">
+            startingLineNumber = "574"
+            endingLineNumber = "574"
+            landmarkName = "NetworkOperations"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unihelp/NetworkOperations.swift"
-            timestampString = "514810294.86677"
+            timestampString = "514879992.776359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "497"
-            endingLineNumber = "497"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "signInWithFBCredentials(_:extVC:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unihelp/NetworkOperations.swift"
-            timestampString = "514810294.86677"
+            timestampString = "514872532.989505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "fetchInfoOfUser(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unihelp/NetworkOperations.swift"
-            timestampString = "514810294.86677"
+            timestampString = "514872532.989505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "fetchInfoOfUser(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,28 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unihelp/NetworkOperations.swift"
-            timestampString = "514810294.86677"
+            timestampString = "514873670.54871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
             landmarkName = "saveCoreStudent()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unihelp/NetworkOperations.swift"
-            timestampString = "514810294.86677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "convertHouseIntoDictionary(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,57 +170,73 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unihelp/HomeOwnerTableViewController.swift"
-            timestampString = "514821222.587419"
+            timestampString = "514888349.430271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181">
+            startingLineNumber = "231"
+            endingLineNumber = "231">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unihelp/HouseUpdateFormViewController.swift"
-            timestampString = "514797281.16126"
+            filePath = "Unihelp/HomeOwnerTableViewController.swift"
+            timestampString = "514888349.430271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "setValues(_:)"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "tableView(_:commitEditingStyle:forRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unihelp/HomeOwnerTableViewController.swift"
+            timestampString = "514888349.430271"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "deleteImagesFromStorage(_:indexOf:)"
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Unihelp.HouseUpdateFormViewController.(setValues in _0CA216D854A15D1C6CA93499FCC79F99) (Swift.String) -&gt; ()"
+                  symbolName = "Unihelp.HomeOwnerTableViewController.(deleteImagesFromStorage in _4E6FA1B32A3786972C92C22E01C91A44) (__ObjC.FIRStorageReference, indexOf : Swift.Int) -&gt; ()"
                   moduleName = "Unihelp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sushanth/Documents/Uni-Help/Unihelp/HouseUpdateFormViewController.swift"
-                  timestampString = "514857419.216273"
+                  urlString = "file:///Users/sushanth/Documents/Uni-Help/Unihelp/HomeOwnerTableViewController.swift"
+                  timestampString = "514885615.193296"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "992">
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "23">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Unihelp.HouseUpdateFormViewController.((setValues in _0CA216D854A15D1C6CA93499FCC79F99) (Swift.String) -&gt; ()).(closure #1)"
+                  symbolName = "Unihelp.HomeOwnerTableViewController.((deleteImagesFromStorage in _4E6FA1B32A3786972C92C22E01C91A44) (__ObjC.FIRStorageReference, indexOf : Swift.Int) -&gt; ()).(closure #1)"
                   moduleName = "Unihelp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sushanth/Documents/Uni-Help/Unihelp/HouseUpdateFormViewController.swift"
-                  timestampString = "514857419.216518"
+                  urlString = "file:///Users/sushanth/Documents/Uni-Help/Unihelp/HomeOwnerTableViewController.swift"
+                  timestampString = "514885615.193527"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "38">
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -247,13 +247,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unihelp/HouseFormViewController.swift"
-            timestampString = "514812545.605953"
+            filePath = "Unihelp/HomeOwnerTableViewController.swift"
+            timestampString = "514888349.430271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "submit(_:)"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "tableView(_:commitEditingStyle:forRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -263,13 +263,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unihelp/NetworkOperations.swift"
-            timestampString = "514812581.2084"
+            filePath = "Unihelp/HomeOwnerTableViewController.swift"
+            timestampString = "514888349.430271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "saveHouseImages(_:extViewC:uuidForHouse:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "deleteFromDatabase(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -279,29 +279,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unihelp/HouseUpdateFormViewController.swift"
-            timestampString = "514818245.705271"
+            filePath = "Unihelp/HomeOwnerTableViewController.swift"
+            timestampString = "514888349.430271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "createUIImageArray(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unihelp/HouseUpdateFormViewController.swift"
-            timestampString = "514818250.277445"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "setImagesForTables(_:)"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "deleteFromDatabase(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

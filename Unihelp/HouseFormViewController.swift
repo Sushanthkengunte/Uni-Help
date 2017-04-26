@@ -100,28 +100,17 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
 
         }
         else{
-            //check for other images
-            // check if something is there in database
-//            var flag = checkIfRecordExist()
-//            //if it exists append to it and add
-//            if(flag == true){
-//                var updatedUSer = getUpdatedUser()
-//            }else{
-//                var newUSer = getNewUSer()
-//                
-//            }
+
             //if not create new and add
             let uuidForHouse = NSUUID().UUIDString
              networkOp.saveHouseImages(imageArray, extViewC: self,uuidForHouse: uuidForHouse)
             
             let item = House(address1 : add1, address2 : add2, city: city_, state: state_, zip: zip_, about: about, price: price_, rooms: rooms_, availableDate: strDate, imageStore: imageUrls)
             
-           // allHouses.append(item)
-            //print(allHouses.count)
+
             networkOp.saveHouseInfo(item,uuidForHouse: uuidForHouse)
             
-            //----------------------------!!!!! Todo: Upload into Firebase here !!!!!!!! --------------------//
-            //print(item.imageStore.count)
+    
 
             flag = true
             performSegueWithIdentifier("backToTable", sender: submitButton)
@@ -133,15 +122,10 @@ class HouseFormViewController: UIViewController, UITextViewDelegate, UINavigatio
     @IBOutlet weak var submitButton: UIButton!
     
     // ------------------------------- Will call segue only whe flag = true (i.e when all details are filled) -----------------------------//
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "backToTable"{
-            return flag
-        }
-        return false
-    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "backToTable"{
-            let vC = segue.destinationViewController as! HomeOwnerTableViewController
+        
         }
         
     }

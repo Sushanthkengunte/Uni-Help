@@ -127,9 +127,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         if let im2 = imageData {
             displayPic.image = UIImage(data: im2)
         }
-        //        }else{
-        //            displayPic.image = UIImage(named: "blank-profile")
-        //        }
+     
         
     }
     

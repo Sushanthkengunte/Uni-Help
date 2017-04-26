@@ -35,10 +35,12 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
             setValues(uidOfHouse)
         }
     }
+    
     private func setValues(houseKey : String){
         let databaseReference = FIRDatabase.database().reference().child("Houses").child(networkOp.getCurrentUserUID()).child(houseKey)
         let storageReference = FIRStorage.storage().reference()
         databaseReference.observeEventType(.Value, withBlock: {(snapshot) in
+            if !snapshot.exists() {return }
             self.address1.text = snapshot.value!["address1"] as! String
             self.address2.text = snapshot.value!["address2"] as! String
             self.city.text = snapshot.value!["city"] as! String
@@ -49,20 +51,6 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
             self.price.text = snapshot.value!["price"] as! String
             self.rooms.text = snapshot.value!["rooms"] as! String
             self.setImagesForTables(houseKey)
-            //   let something = snapshot.childSnapshotForPath("imageStore").children
-            
-            //            while let item = something.nextObject() as? FIRDataSnapshot{
-            //                self.imageURL?.append((item.value as? String)!)
-            //                let imageRef = storageReference.child((item.value as? String)!)
-            //                print(imageRef)
-            //                imageRef.dataWithMaxSize(1*1024*1024, completion: { (data, error) in
-            //                    let image = UIImage(data: data!)
-            //                    self.imageArray.append(image!)
-            //                })
-            //
-            //            }
-            
-            
             
         })
         
@@ -86,27 +74,39 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         })
         
     }
+    
     var imageToSave : UIImage!
     private func createUIImageArray(item : NSURL){
         
-        let data = NSData(contentsOfURL: item)
-        let im1 = UIImage(data: data!)
-        imageArray.append(im1!)
-//        let session = NSURLSession.sharedSession()
-//        let task = session.dataTaskWithURL(item){
-//            (item : NSURL?, res : NSURLResponse?, e:NSError?) in
-//            let d = NSData(contentsOfURL: item!)
+//        let data = NSData(contentsOfURL: item)
+//        if let dm = data{
+//        let im1 = UIImage(data: dm)
+//        imageArray.append(im1!)
+//        }else{
+//            imageArray.append(UIImage(named: "blank-profile")!)
 //        }
-//            NSURLSession.sharedSession().dataTaskWithURL(item, completionHandler: { (data, response, error) in
-//                if error != nil{
-//                    self.networkOp.alertingTheError("Error!!", extMessage: (error?.localizedDescription)!, extVc: self)
-//                }
-//                dispatch_async(dispatch_get_main_queue(),{
+        
+        //let session = NSURLSession.sharedSession()
+      
+            NSURLSession.sharedSession().dataTaskWithURL(item, completionHandler: { (data, response, error) in
+                if error != nil{
+                    self.networkOp.alertingTheError("Error!!", extMessage: (error?.localizedDescription)!, extVc: self)
+                }
+                dispatch_async(dispatch_get_main_queue(),{
+                    if let dm = data{
 //                   self.imageToSave = UIImage(data: data!)
-//                    
-//                })
-//                
-//            }).resume()
+                        let im1 = UIImage(data: dm)
+                        self.imageArray.append(im1!)
+                        self.imageTable.reloadData()
+                        
+                    }else{
+                        self.imageArray.append(UIImage(named: "blank-profile")!)
+                        self.imageTable.reloadData()
+                    }
+                    
+                })
+                
+            }).resume()
         
       
      //imageTable.reloadData()

@@ -40,12 +40,14 @@ struct NetworkOperations{
         return FIRAuth.auth()!.currentUser!.uid
     }
     
+    
+    
     //-----implement getting url by saving the image into the storage
     mutating func saveImageToStorage(imageView : UIImage,extViewC intViewC : UIViewController ) {
         //---implement puttin it in a local copy
         
         let imagePath = "\(getCurrentUserUID())/DisplayPic.jpeg"
-       
+        
         let dbStrorageRef = FIRStorage.storage().reference().child(imagePath)
         
         var fullPath : NSURL!
@@ -57,27 +59,25 @@ struct NetworkOperations{
             if error == nil{
                 let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
                 changeRequest?.photoURL = metaData!.downloadURL()
-               fullPath = metaData?.downloadURL()
-               // self.imagesDictionary["displayPic"] = fullPath.absoluteString
+                fullPath = metaData?.downloadURL()
+                // self.imagesDictionary["displayPic"] = fullPath.absoluteString
                 var URLString = fullPath.absoluteString
                 var imageRef = FIRDatabase.database().reference()
                 imageRef.child("Images").child(self.getCurrentUserUID()).child("displayPic").setValue(URLString)
-               //self.saveImageUrlIntoDatabase(fullPath, userKey: self.getCurrentUserUID())
+                //self.saveImageUrlIntoDatabase(fullPath, userKey: self.getCurrentUserUID())
             }else{
                 self.alertingTheError("Error!!", extMessage: (error?.localizedDescription)!, extVc: intViewC)
-                // print(error?.localizedDescription)
             }
             
         }
-        //return fullPath.absoluteString
     }
-   
+    
     //-----save all the house images into firebase and return all its urls ---
     func saveHouseImages(images : [UIImage], extViewC intViewC : UIViewController,uuidForHouse : String){
         var temp = [String]()
-        var count = 1
+        
         for eachImage in images{
-           
+            var count =  NSUUID().UUIDString
             let imagePath = "\(getCurrentUserUID())/house\(String(count))"
             temp.append(imagePath)
             let dbHousePicRef = FIRStorage.storage().reference().child(imagePath)
@@ -92,7 +92,7 @@ struct NetworkOperations{
                     var URLString = housePath!.absoluteString
                     var imageRef = FIRDatabase.database().reference()
                     imageRef.child("Images").child(self.getCurrentUserUID()).child(uuidForHouse).child(String(count)).setValue(URLString)
-                     count += 1
+                    
                 }else{
                     self.alertingTheError("Error", extMessage: (error?.localizedDescription)!, extVc: intViewC)
                 }
@@ -102,38 +102,17 @@ struct NetworkOperations{
         
         
     }
-//    mutating func saveHouseInfo(housesForUSer : [House]){
-//        var temp = [String : AnyObject]()
-//          var oneHouse = [String : AnyObject]()
-//        var count = 1
-//        let uuidForHouse = NSUUID().UUIDString
-//        for eachHouse in housesForUSer{
-//            oneHouse = convertHouseIntoDictionary(eachHouse)
-//            oneHouse["houseKey"] = uuidForHouse
-//            temp[uuidForHouse] = oneHouse
-//            
-//        }
-//        let keyOf = FIRAuth.auth()?.currentUser?.uid
-//        setReferences()
-//        let dbRef = databaseRef
-//        dbRef.child("Houses").child(keyOf!).child(uuidForHouse).setValue(temp)
-//        
-//    }
     
     mutating func saveHouseInfo(housesForUSer : House,uuidForHouse : String){
         var temp = [String : AnyObject]()
-    
-    
+        
+        
         //let uuidForHouse = NSUUID().UUIDString
-       
-            temp = convertHouseIntoDictionary(housesForUSer)
-            temp["houseKey"] = uuidForHouse
-      
-            //temp[uuidForHouse] = oneHouse
-            
-     
+        
+        temp = convertHouseIntoDictionary(housesForUSer)
+        temp["houseKey"] = uuidForHouse
         let keyOf = FIRAuth.auth()?.currentUser?.uid
-         temp["ownerKey"] = keyOf!
+        temp["ownerKey"] = keyOf!
         setReferences()
         let dbRef = databaseRef
         dbRef.child("Houses").child(keyOf!).child(uuidForHouse).setValue(temp)
@@ -150,14 +129,10 @@ struct NetworkOperations{
         temp["about"] = eachHouse.about
         temp["rooms"] = eachHouse.rooms
         temp["availableDate"] = eachHouse.availableDate
-    //    var allUrl = [String : AnyObject]()
-//        for each in eachHouse.imageStore{
-//            var index = eachHouse.imageStore.indexOf(each)
-//            allUrl["\(index!)"] = each
-//        }
-  //      temp["imageStore"] = allUrl
         return temp
     }
+    
+    
     //------save user information
     mutating func saveStudentInfo(stuObject : StudentProfile){
         
@@ -194,6 +169,8 @@ struct NetworkOperations{
         temp!["phone"] = stuObject.phone
         return temp!
     }
+    
+    
     mutating func saveHomeOwnersBasicInfo(homeOwner : HomeOwnerProfile){
         let homeOwnerDatabaseEntry = convertIntoHomeOwnerDictionary(homeOwner)
         let keyOf = FIRAuth.auth()?.currentUser?.uid
@@ -211,7 +188,7 @@ struct NetworkOperations{
         temp!["city"] = homeOwner.city!
         temp!["contact"] = homeOwner.contact!
         temp!["website"] = homeOwner.website!
-       // temp!["imageDP"] = homeOwner.imageDP!
+        // temp!["imageDP"] = homeOwner.imageDP!
         return temp!
     }
     
@@ -225,8 +202,6 @@ struct NetworkOperations{
         temp["smoke"] = smoke
         temp["food"] =  food
         temp["aboutMe"] = aboutMe
-        //temp["anotherUni"] = anotherUni
-        // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
         var temp2 : [String : String] = [:]
         temp2["flag"] = "true"
         let keyOf1 = FIRAuth.auth()?.currentUser?.uid
@@ -240,6 +215,8 @@ struct NetworkOperations{
         
         
     }
+    
+    
     mutating func updateStudentRequiredRoommatePreference(genderRequired : String, sharing : String , drink : String , smoke : String , finalCountry : String,finalCity:String, food:String, finalUni:String){
         var temp : [String : String] = [:]
         temp["genderRequired"] = genderRequired
@@ -247,7 +224,7 @@ struct NetworkOperations{
         temp["drink"] = drink
         temp["smoke"] = smoke
         temp["finalCountry"] = finalCountry
-         temp["finalCity"] = finalCity
+        temp["finalCity"] = finalCity
         temp["food"] = food
         temp["university"] = finalUni
         // let studentDatabaseEntry = convertIntoStudentDictionary(stuObject)
@@ -259,14 +236,14 @@ struct NetworkOperations{
         
     }
     
-
+    
     mutating func updateStudentFilterPreference(genderRequired : String, finalCountry : String,finalCity:String, finalUni: String){
         var temp : [String : String] = [:]
         temp["genderRequired"] = genderRequired
         temp["finalCountry"] = finalCountry
         temp["finalCity"] = finalCity
         temp["finalUniversity"] = finalUni
-
+        
         let keyOf = FIRAuth.auth()?.currentUser?.uid
         setReferences()
         let dbRef = databaseRef
@@ -274,7 +251,6 @@ struct NetworkOperations{
         
         
     }
-
 
     func deleteAllData(entity: String)
     {
@@ -294,12 +270,12 @@ struct NetworkOperations{
             }
         } catch{
             print("Detele all data in \(entity) error")
-          //  print("Detele all data in \(entity) error : \(error)")
+            //  print("Detele all data in \(entity) error : \(error)")
         }
     }
-
+    
     //fetches users Basic info
-   private func fetchInfoOfUser(vC : UIViewController)
+    private func fetchInfoOfUser(vC : UIViewController)
     {
         
         
@@ -402,7 +378,7 @@ struct NetworkOperations{
                     //print(fullName)
                     self.newHouseOwner.name = nameHomeOwner
                 }
-
+                
                 
                 if let websiteOfHomeOwner = snapshot.value!["website"] as? String{
                     //print(countryOfUser)
@@ -432,7 +408,52 @@ struct NetworkOperations{
         alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         intVc.presentViewController(alertController, animated: true, completion: nil)
     }
-    
+    private func CheckIfUserIsStudent(vC : UIViewController){
+        var userID = getCurrentUserUID()
+        var flag = false
+        var dbRef = FIRDatabase.database().reference().child("Students")
+        dbRef.observeEventType(.Value, withBlock: {(snapshot) in
+            if !snapshot.exists() {return  }
+            flag = false
+            let allChildren = snapshot.children.allObjects as? [FIRDataSnapshot]
+            for each in allChildren!{
+                if (each.key == userID){
+                    flag = true
+                }
+                
+            }
+            if(flag == true){
+                let signingStudentInfo = vC as! SignInViewController
+                vC.performSegueWithIdentifier("SignInStudent", sender: signingStudentInfo.SignInButton)
+            }else if(flag == false){
+                self.alertingTheError("Attention: ", extMessage: "you are not registered as Student", extVc: vC)
+            }
+            
+        })
+    }
+    private func CheckIfUserIsHO(vC : UIViewController){
+        var userID = getCurrentUserUID()
+        var flag = false
+        var dbRef = FIRDatabase.database().reference().child("Home Owner")
+        dbRef.observeEventType(.Value, withBlock: {(snapshot) in
+            if !snapshot.exists() {return  }
+            flag = false
+            let allChildren = snapshot.children.allObjects as? [FIRDataSnapshot]
+            for each in allChildren!{
+                if (each.key == userID){
+                    flag = true
+                }
+                
+            }
+            if(flag == true){
+                let signingStudentInfo = vC as! SignInViewController
+                vC.performSegueWithIdentifier("signInHomeOwner", sender: signingStudentInfo.SignInButton)
+            }else if(flag == false){
+                self.alertingTheError("Attention: ", extMessage: "you are not registered as Home Owner", extVc: vC)
+            }
+            
+        })
+    }
     //Signs the existing user in
     func signInWithEmailID(emailID : String, extPass intPass : String,extVC vC : UIViewController) {
         
@@ -443,24 +464,23 @@ struct NetworkOperations{
                 
             }else{
                 //segue to the  4 options screen by setting the information of the user (This will be present in firebase)
-                print(#function)
                 let signingStudentInfo = vC as! SignInViewController
                 if signingStudentInfo.type == "Student"{
                     
-                  //  self.fetchInfoOfUser(vC)
+                    //  self.fetchInfoOfUser(vC)
+                    //Check if the user is a home Owner
                     
-                    //print(self.newObj)
-                    
-                    vC.performSegueWithIdentifier("SignInStudent", sender: signingStudentInfo.SignInButton)
+                    self.CheckIfUserIsStudent(vC)
+                    // vC.performSegueWithIdentifier("SignInStudent", sender: signingStudentInfo.SignInButton)
                     
                 }
                 if signingStudentInfo.type == "Home Owner"{
                     
-                  //  self.fetchInfoOfUser(vC)
+                    //  self.fetchInfoOfUser(vC)
                     
                     //print(self.newObj)
+                    self.CheckIfUserIsHO(vC)
                     
-                    vC.performSegueWithIdentifier("signInHomeOwner", sender: signingStudentInfo.SignInButton)
                     
                 }
                 
@@ -479,7 +499,52 @@ struct NetworkOperations{
         }
     }
     
-    
+    private func CheckIfUserIsStudentFB(vC : UIViewController){
+        var userID = getCurrentUserUID()
+        var flag = false
+        var dbRef = FIRDatabase.database().reference().child("Students")
+        dbRef.observeEventType(.Value, withBlock: {(snapshot) in
+            if !snapshot.exists() {return  }
+            flag = false
+            let allChildren = snapshot.children.allObjects as? [FIRDataSnapshot]
+            for each in allChildren!{
+                if (each.key == userID){
+                    flag = true
+                }
+                
+            }
+            if(flag == true){
+                let signingStudentInfo = vC as! SignInViewController
+                vC.performSegueWithIdentifier("SignInStudentFB", sender: signingStudentInfo.SignInButton)
+            }else if(flag == false){
+                self.alertingTheError("Attention: ", extMessage: "you are not registered as Student", extVc: vC)
+            }
+            
+        })
+    }
+    private func CheckIfUserIsHOFB(vC : UIViewController){
+        var userID = getCurrentUserUID()
+        var flag = false
+        var dbRef = FIRDatabase.database().reference().child("Home Owner")
+        dbRef.observeEventType(.Value, withBlock: {(snapshot) in
+            if !snapshot.exists() {return  }
+            flag = false
+            let allChildren = snapshot.children.allObjects as? [FIRDataSnapshot]
+            for each in allChildren!{
+                if (each.key == userID){
+                    flag = true
+                }
+                
+            }
+            if(flag == true){
+                let signingStudentInfo = vC as! SignInViewController
+                vC.performSegueWithIdentifier("SignInHomeOwnerFB", sender: signingStudentInfo.SignInButton)
+            }else if(flag == false){
+                self.alertingTheError("Attention: ", extMessage: "you are not registered as Home Owner", extVc: vC)
+            }
+            
+        })
+    }
     //Signs the existing user in through facebook
     func signInWithFBCredentials(credential:FIRAuthCredential,extVC vC : UIViewController){
         
@@ -493,14 +558,16 @@ struct NetworkOperations{
                 //----perform segue getting the user information needed for the model
                 let signingInto = vC as! SignInViewController
                 if signingInto.type == "Student"{
-                   // self.fetchInfoOfUser(vC)
-                    vC.performSegueWithIdentifier("SignInStudentFB", sender: signingInto.loginButton)
+                    // self.fetchInfoOfUser(vC)
+                    self.CheckIfUserIsStudentFB(vC)
+                    //vC.performSegueWithIdentifier("SignInStudentFB", sender: signingInto.loginButton)
                     
                 }
                 if signingInto.type == "Home Owner"{
                     
-                  //  self.fetchInfoOfUser(vC)
-                    vC.performSegueWithIdentifier("SignInHomeOwnerFB", sender: signingInto.loginButton)
+                    //  self.fetchInfoOfUser(vC)
+                    self.CheckIfUserIsHOFB(vC)
+                    //vC.performSegueWithIdentifier("SignInHomeOwnerFB", sender: signingInto.loginButton)
                 }
                 
                 
