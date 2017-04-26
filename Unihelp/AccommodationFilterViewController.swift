@@ -30,7 +30,7 @@ class AccommodationFilterViewController: UIViewController, UITextFieldDelegate, 
     var finalCity : String! = ""
     var rooms : String! = ""
     var min : Int! = 100
-    var max : Int! = 1000
+    var max : Int! = 2000
     
     
     override func viewDidLoad() {
@@ -171,7 +171,7 @@ class AccommodationFilterViewController: UIViewController, UITextFieldDelegate, 
             min = Int(minValue.text!)
         }
         if maxValue.text == ""{
-            max = 1000 ;
+            max = 2000 ;
         }else{
             max = Int(maxValue.text!)
         }

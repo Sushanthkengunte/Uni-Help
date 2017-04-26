@@ -13,7 +13,7 @@ class RoommatesTableViewController: UITableViewController {
     
     var user: FIRUser!
     var ref: FIRDatabaseReference!
-    let userID : String = (FIRAuth.auth()?.currentUser?.uid)!
+    var userID : String = (FIRAuth.auth()?.currentUser?.uid)!
     
     var filters : [String : String] = [:]
     var filters_bool : [String : Bool] = [:]
@@ -26,6 +26,7 @@ class RoommatesTableViewController: UITableViewController {
         arrayUID.removeAll()
         
         user = FIRAuth.auth()?.currentUser
+        userID = (FIRAuth.auth()?.currentUser?.uid)!
         ref = FIRDatabase.database().reference()
 
         //print (userID)
@@ -222,6 +223,8 @@ class RoommatesTableViewController: UITableViewController {
                     }
                 }
             }
+            let index = self.arrayUID.indexOf(self.userID)
+            if index != nil{self.arrayUID.removeAtIndex(index!)}
             //print("end of gender",self.arrayUID)
             self.tableView.reloadData()
         })

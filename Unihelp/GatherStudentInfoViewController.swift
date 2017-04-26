@@ -7,6 +7,7 @@
 //
 import CoreData
 import UIKit
+import Firebase
 
 class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate ,UITableViewDataSource {
     
@@ -61,6 +62,13 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     var autoCompletePossibilities_City = [""]
     var autoComplete_City = [String]()
     
+    
+    var user: FIRUser!
+    var ref: FIRDatabaseReference!
+    var userID : String = (FIRAuth.auth()?.currentUser?.uid)!
+   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,6 +83,8 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         displayPic.layer.cornerRadius = displayPic.frame.size.width/2
         displayPic.clipsToBounds = true
         initializingDelegates()
+        
+        setUserDetails()
 
         
     }
@@ -97,6 +107,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         countryTable.dataSource = self
         universityTable.dataSource = self
     }
+    
     //----makes the tables hidden and sets some fields taking information through the segue.
     override func viewWillAppear(animated: Bool) {
         
@@ -105,6 +116,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
         self.autoCompletePossibilities_Universities = storeCore.autoCompletePossibilities_Universities
         self.autoCompletePossibilities_Country = storeCore.autoCompletePossibilities_Countries
+        
         
         
         countryTable.hidden = true
@@ -121,6 +133,87 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
     }
     
+    @IBOutlet weak var femaleSex: DLRadioButton!
+    @IBOutlet weak var maleSex: DLRadioButton!
+    
+    func setUserDetails(){
+        
+        userID = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        let fetchUser = FIRDatabase.database().reference().child("Students").child(userID)
+        fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+                
+                let value = snapshot.value! as? NSDictionary
+            if value == nil{
+                return
+            }
+                self.emailID.text = value!["emailID"] as? String
+            self.email_Stu = self.emailID.text!
+            
+                self.name.text = value!["name"] as? String
+                self.country.text = value!["country"] as? String
+                self.city.text = value!["city"] as? String
+                self.phoneNo.text = value!["phone"] as? String
+                self.university.text = value!["university"] as? String
+                if value!["gender"] as? String == "male"{
+                    self.maleSex.selected = true
+                    self.gender = "male"
+                }else{
+                    self.femaleSex.selected = true
+                    self.gender = "female"
+                }
+            
+            self.setPhoto()
+            
+            
+//               var dateFromDB = value!["DOB"] as? String
+//                //var dbCompnents = self.getDateComponents(dateFromDB!)
+//                print(dbCompnents.0)
+//                print(dbCompnents.1)
+//                print(dbCompnents.2)
+
+            
+        })
+    }
+    
+    func setPhoto(){
+        
+        let fetchUser = FIRDatabase.database().reference().child("Images").child(userID)
+        fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            let imageUrl = snapshot.value!["displayPic"] as! String
+            print(imageUrl)
+            
+            let x = NSURL(string: imageUrl)
+            let dataOfPic = NSData(contentsOfURL: x!)
+            self.displayPic.image = UIImage(data: dataOfPic!)
+            
+        })
+        
+        
+    }
+    
+    
+    private func getDateComponents(dateFromDB: String)-> (String,String,String){
+        
+        //let dd = dateFromDB.
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.dateFromString(dateFromDB)
+        //var currentDate = NSDate()
+        var calendar = NSCalendar.currentCalendar()
+        var components = calendar.components([.Year, .Month, .Day], fromDate: date!)
+        // Get necessary date components
+        
+        //gives you month
+        
+        //gives you day
+       
+        
+        return (month:String(components.month),date:String(components.day),year:String(components.year))
+    }
     
     //------alert controller to choose from camera, photo and saved album.
     @IBAction func chooseImage(sender: AnyObject) {
@@ -330,27 +423,43 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     }
     //Takes the strings entered in the form converts into date format and then aagain back to string
     private func convertIntoDate(day : String, extMonth intMonth :String,extYear intYear : String) -> String{
+        
         var temp : String!
+        
         let tDay = day.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         let tMonth = intMonth.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         let tYear = intYear.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
         let dFormat = NSDateComponents()
         dFormat.day = Int(tDay)!
         dFormat.month = Int(tMonth)!
         dFormat.year = Int(tYear)!
+        
         var actualDate = NSCalendar.currentCalendar().dateFromComponents(dFormat)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
         temp = dateFormatter.stringFromDate(actualDate!)
+        
+//        var mm : String
+//        var dd : String
+//        
+//        if intMonth.characters.count == 1{
+//            temp.append("0")
+//            temp.append(intMonth[0])
+//        }
+//        
+//        temp = intMonth+"/"+day+"/"+intYear
+        
         return temp
     }
     
     //----when the user hits save button this validates the form and saves all the information into firebase
     @IBAction func submitForm(sender: AnyObject) {
+        
         checkConstrints()
         
         
-        if (name.text!.isEmpty || emailID.text!.isEmpty || dateText.text!.isEmpty || monthtext.text!.isEmpty || yearText.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty||gender.isEmpty || gender == "nil" || phoneNo.text!.isEmpty){
+        if (name.text!.isEmpty || emailID.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty || gender == "nil" || phoneNo.text!.isEmpty){
             
             networkOp.alertingTheError("Error", extMessage: "Enter required details", extVc: self)
         }
@@ -362,11 +471,15 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         else{
         
             let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
+            
             let defaultImage = UIImage(named: "blank-profile")
             let image = displayPic.image ?? defaultImage
-            networkOp.saveImageToStorage(displayPic.image!, extViewC: self)
+            
+            networkOp.saveImageToStorage(image!, extViewC: self)
             //var imURl = networkOp.imagesDictionary["displayPic"]
-            let sUser = StudentProfile(extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extPhone: phoneNo.text! ,extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
+            
+            profileType = "Student"
+            let sUser = StudentProfile(extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: emailID.text!, extDOB: date, extCountry: country.text!, extCity: city.text!, extPhone: phoneNo.text! ,extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
             
             //let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
             

@@ -19,9 +19,6 @@ class HomeOwnerTableViewController: UITableViewController, UITextViewDelegate {
     var imageURL = [String]()
     var listOfHouseKeys = [String]()
 
-    
-    
-   
     var imageStore_ : [String]?
     var houseStore = [String]()
     private func populateValues(){

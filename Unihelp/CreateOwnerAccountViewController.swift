@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
@@ -34,6 +35,9 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             
         }
     }
+    
+    var userID : String = (FIRAuth.auth()?.currentUser?.uid)!
+    
     var email_Own :String!
     var nameOf: String!
     @IBOutlet weak var submitButton: UIButton!
@@ -69,6 +73,8 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         cityTable.delegate = self
         cityTable.hidden = true
         
+        setUserDetails()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -90,6 +96,53 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func setUserDetails(){
+        
+        userID = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        let fetchUser = FIRDatabase.database().reference().child("Home Owner").child(userID)
+        fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            
+            let value = snapshot.value! as? NSDictionary
+            if value == nil{
+                return
+            }
+            self.email.text = value!["email"] as? String
+            self.email_Own = self.email.text
+            self.fullName.text = value!["name"] as? String
+            self.country.text = value!["country"] as? String
+            self.city.text = value!["city"] as? String
+            self.contact.text = value!["contact"] as? String
+            
+            
+            self.setPhoto()
+            
+            
+        })
+    }
+    
+    func setPhoto(){
+        
+        let fetchUser = FIRDatabase.database().reference().child("Images").child(userID)
+        fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            let imageUrl = snapshot.value!["displayPic"] as! String
+            print(imageUrl)
+            
+            let x = NSURL(string: imageUrl)
+            let dataOfPic = NSData(contentsOfURL: x!)
+            self.myImage.image = UIImage(data: dataOfPic!)
+            
+        })
+        
+        
+    }
+
+    
+    
     
     @IBAction func uploadDPbutton(sender: AnyObject) {
         
@@ -154,7 +207,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         else{
             let defaultImage = UIImage(named: "blank-profile")
             let image = myImage.image ?? defaultImage
-            networkOp.saveImageToStorage(myImage.image!, extViewC: self)
+            networkOp.saveImageToStorage(image!, extViewC: self)
 
             let newOwner = HomeOwnerProfile(name : name_, email : email_, contact: contact_, website: website_, country:country_, city: city_)
            // print(imageUrl)

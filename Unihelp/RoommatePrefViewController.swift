@@ -291,7 +291,7 @@ class RoommatePrefViewController: UIViewController, UITextFieldDelegate, UITable
         }
         
         if universityFinal == "any"{
-            requiredPreference.alertingTheError("Error", extMessage: "Enter University from dropdown", extVc: self)
+            requiredPreference.alertingTheError("Error", extMessage: "Enter University", extVc: self)
         }else{
             
             performSegueWithIdentifier("RoommateSegue", sender: findroommate)

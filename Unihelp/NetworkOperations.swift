@@ -166,7 +166,11 @@ struct NetworkOperations{
         setReferences()
         //----create database reference
         let dbRef = databaseRef
-        dbRef.child("Students").child(keyOf!).setValue(studentDatabaseEntry)
+        for x in studentDatabaseEntry{
+            dbRef.child("Students").child(keyOf!).child(x.0).setValue(x.1)
+            
+        }
+        //dbRef.child("Students").child(keyOf!).setValue(studentDatabaseEntry)
         
         
     }
@@ -271,11 +275,6 @@ struct NetworkOperations{
         
     }
 
-//    func fetchHomeOwnerInfo(vC:UIViewController){
-//        do{
-//            
-//        }
-//    }
 
     func deleteAllData(entity: String)
     {

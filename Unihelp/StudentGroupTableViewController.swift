@@ -144,6 +144,9 @@ class StudentGroupTableViewController: UITableViewController {
                 }
             }
             
+            let index = self.arrayUID.indexOf(self.userID)
+            if index != nil{self.arrayUID.removeAtIndex(index!)}
+            
             //print(self.arrayUID)
             
             if(self.filters_bool["finalUniversity"] == true){
