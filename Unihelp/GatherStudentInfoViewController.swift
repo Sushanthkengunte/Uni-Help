@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate ,UITableViewDataSource {
-    
+    //getting the core data context
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var storeCore = StoreIntoCore()
     var profileType : String!
@@ -70,9 +70,9 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     var user: FIRUser!
     var ref: FIRDatabaseReference!
     var userID : String = (FIRAuth.auth()?.currentUser?.uid)!
-   
     
     
+    //sets the name text field if sent from segue otherwise sets it to null
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,7 +91,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         initializingDelegates()
         
         setUserDetails()
-
+        
         
     }
     //---sets the text field, table view delegates to self
@@ -133,13 +133,19 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         if let im2 = imageData {
             displayPic.image = UIImage(data: im2)
         }
-     
+        
         
     }
     
     @IBOutlet weak var femaleSex: DLRadioButton!
     @IBOutlet weak var maleSex: DLRadioButton!
+    //used to validate and set dates
+    var monthTo = ["January" : 01,"February" : 02, "March" : 03 , "April" : 04 , "May" : 05, "June" : 06,
+                   "July" : 07, "August" : 08 , "September" : 09,"October" : 10,"November" : 11,"December" :12]
+    var numberOfDays = ["01" : 31,"02" : 28, "03" : 31, "04" : 30 , "05" : 31, "06" : 30,
+                        "07" : 31, "08" : 31 , "09" : 30,"10" : 31,"11" : 30,"12" :31]
     
+    //Sets the user details when entered to the scene through upload button
     func setUserDetails(){
         
         userID = (FIRAuth.auth()?.currentUser?.uid)!
@@ -147,51 +153,59 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         let fetchUser = FIRDatabase.database().reference().child("Students").child(userID)
         fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             
-                
-                let value = snapshot.value! as? NSDictionary
+            
+            let value = snapshot.value! as? NSDictionary
             if value == nil{
                 return
             }
-                self.emailID.text = value!["emailID"] as? String
+            self.emailID.text = value!["emailID"] as? String
             self.email_Stu = self.emailID.text!
             
-                self.name.text = value!["name"] as? String
-                self.country.text = value!["country"] as? String
-                self.city.text = value!["city"] as? String
-                self.phoneNo.text = value!["phone"] as? String
-                self.university.text = value!["university"] as? String
-                if value!["gender"] as? String == "male"{
-                    self.maleSex.selected = true
-                    self.gender = "male"
-                }else{
-                    self.femaleSex.selected = true
-                    self.gender = "female"
-                }
+            self.name.text = value!["name"] as? String
+            self.country.text = value!["country"] as? String
+            self.city.text = value!["city"] as? String
+            self.phoneNo.text = value!["phone"] as? String
+            self.university.text = value!["university"] as? String
+            if value!["gender"] as? String == "male"{
+                self.maleSex.selected = true
+                self.gender = "male"
+            }else{
+                self.femaleSex.selected = true
+                self.gender = "female"
+            }
             self.flag = value!["flag"] as? String
             self.setPhoto()
+            var dateFromDB = value!["DOB"] as? String
+            var components = dateFromDB?.componentsSeparatedByString(",")
+            var monthAndDate = components![1].componentsSeparatedByString(" ")
+            var monthText_ = self.monthTo[monthAndDate[1]]
+            var date_ = monthAndDate[2]
+            var year_ = components![2]
+            self.dateText.text = date_
+            self.monthtext.text = String(monthText_)
+            self.yearText.text = year_
             
             
-//               var dateFromDB = value!["DOB"] as? String
-//                //var dbCompnents = self.getDateComponents(dateFromDB!)
-//                print(dbCompnents.0)
-//                print(dbCompnents.1)
-//                print(dbCompnents.2)
-
+            
             
         })
     }
-    
+    //sets the profile picture when entered through edit profile button
     func setPhoto(){
         
         let fetchUser = FIRDatabase.database().reference().child("Images").child(userID)
         fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             
-            let imageUrl = snapshot.value!["displayPic"] as! String
+            let imageUrl = snapshot.value!["displayPic"] as? String
             print(imageUrl)
-            
-            let x = NSURL(string: imageUrl)
+            if let im = imageUrl{
+            let x = NSURL(string: im)
             let dataOfPic = NSData(contentsOfURL: x!)
             self.displayPic.image = UIImage(data: dataOfPic!)
+            }else{
+                self.networkOp.alertingTheError("Error", extMessage: "Could not get the URL", extVc: self)
+            }
+            
             
         })
         
@@ -199,25 +213,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     }
     
     
-    private func getDateComponents(dateFromDB: String)-> (String,String,String){
-        
-        //let dd = dateFromDB.
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.dateFromString(dateFromDB)
-        //var currentDate = NSDate()
-        var calendar = NSCalendar.currentCalendar()
-        var components = calendar.components([.Year, .Month, .Day], fromDate: date!)
-        // Get necessary date components
-        
-        //gives you month
-        
-        //gives you day
-       
-        
-        return (month:String(components.month),date:String(components.day),year:String(components.year))
-    }
+    
     
     //------alert controller to choose from camera, photo and saved album.
     @IBAction func chooseImage(sender: AnyObject) {
@@ -279,7 +275,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
     }
 
-    
+    //when each character changes
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField == country{
             countryTable.hidden = false
@@ -313,6 +309,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         return true
     }
+    //does auto search by using a sent substring
     func searchAutocompleteEntriesWithSubstring(substring: String, textField: UITextField) {
         
         if textField == university{
@@ -362,6 +359,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         
     }
+    //sets the number of rows in a section each time table is relaoded
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == countryTable{
             return autoComplete_Country.count
@@ -372,10 +370,11 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         return 0
     }
-    
+    //sets number of section each time tabloe is reloaded
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    //called whrn a row in the table is selected
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView == countryTable{
             let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? CountryTableViewCell
@@ -397,7 +396,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             universityTable.hidden = true
         }
     }
-    
+    //populates each row in the table
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == countryTable{
             let cell = tableView.dequeueReusableCellWithIdentifier("Country", forIndexPath: indexPath) as! CountryTableViewCell
@@ -416,14 +415,24 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         }
         return UITableViewCell()
     }
-    
+    //removes the keyboard when background is clicked
     @IBAction func removeKB(sender: AnyObject) {
         
         view.endEditing(true)
         
     }
     private func checkConstrints()->Bool{
-        return true
+        let tDay = dateText.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let tMonth = monthtext.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let tYear = yearText.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if let daysInThatMonth = numberOfDays[tMonth]{
+            if( tDay.isEmpty || tMonth.isEmpty || tYear.isEmpty || daysInThatMonth < Int(tDay) || 12 < Int(tMonth)){
+                return true
+            }
+        }else{
+            return true
+        }
+        return false
     }
     //Takes the strings entered in the form converts into date format and then aagain back to string
     private func convertIntoDate(day : String, extMonth intMonth :String,extYear intYear : String) -> String{
@@ -436,41 +445,32 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
         let dFormat = NSDateComponents()
         dFormat.day = Int(tDay)!
-        dFormat.month = Int(tMonth)!
+        if let mth = Int(tMonth){
+            dFormat.month = mth
+        }
         dFormat.year = Int(tYear)!
         
         var actualDate = NSCalendar.currentCalendar().dateFromComponents(dFormat)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
         temp = dateFormatter.stringFromDate(actualDate!)
-        
-//        var mm : String
-//        var dd : String
-//        
-//        if intMonth.characters.count == 1{
-//            temp.append("0")
-//            temp.append(intMonth[0])
-//        }
-//        
-//        temp = intMonth+"/"+day+"/"+intYear
-        
         return temp
     }
     
     //----when the user hits save button this validates the form and saves all the information into firebase
     @IBAction func submitForm(sender: AnyObject) {
         
-        checkConstrints()
+        let flagOf = checkConstrints()
         
         
-        if (name.text!.isEmpty || emailID.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty || gender == "" || phoneNo.text!.isEmpty){
+        if (name.text!.isEmpty || emailID.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty || gender == "" || phoneNo.text!.isEmpty || flagOf){
             
-            networkOp.alertingTheError("Error", extMessage: "Enter required details", extVc: self)
+            networkOp.alertingTheError("Error", extMessage: "Enter required/correct details", extVc: self)
         }
             
         else{
             print(flag)
-        
+            
             let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
             
             let defaultImage = UIImage(named: "blank-profile")
@@ -486,24 +486,10 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             
             networkOp.saveStudentInfo(sUser)
             performSegueWithIdentifier("mainScreen", sender: saveButton)
-
+            
         }
         
-            }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }

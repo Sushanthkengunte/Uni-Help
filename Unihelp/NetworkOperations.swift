@@ -42,9 +42,8 @@ struct NetworkOperations{
     
     
     
-    //-----implement getting url by saving the image into the storage
+    //-----saves url and saves the image into the storage
     mutating func saveImageToStorage(imageView : UIImage,extViewC intViewC : UIViewController ) {
-        //---implement puttin it in a local copy
         
         let imagePath = "\(getCurrentUserUID())/DisplayPic.jpeg"
         
@@ -192,7 +191,7 @@ struct NetworkOperations{
         return temp!
     }
     
-    //TO-DO write a code to append the users preferences to firebase when its available
+    
     //gender: String, sharing : String , drink : String , smoke : String
     mutating func updateStudentPersonnelDetails(genderRequired : String, sharing : String , drink : String , smoke : String,aboutMe : String, food : String){
         var temp : [String : String] = [:]
@@ -408,6 +407,7 @@ struct NetworkOperations{
         alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         intVc.presentViewController(alertController, animated: true, completion: nil)
     }
+    //validation
     private func CheckIfUserIsStudent(vC : UIViewController){
         var userID = getCurrentUserUID()
         var flag = false
@@ -431,6 +431,7 @@ struct NetworkOperations{
             
         })
     }
+    //validation
     private func CheckIfUserIsHO(vC : UIViewController){
         var userID = getCurrentUserUID()
         var flag = false
@@ -463,22 +464,17 @@ struct NetworkOperations{
                 self.alertingTheError("Error!!", extMessage: error?.localizedDescription ?? "Cound not find the error", extVc: vC)
                 
             }else{
-                //segue to the  4 options screen by setting the information of the user (This will be present in firebase)
+               
                 let signingStudentInfo = vC as! SignInViewController
                 if signingStudentInfo.type == "Student"{
                     
-                    //  self.fetchInfoOfUser(vC)
-                    //Check if the user is a home Owner
+                
                     
                     self.CheckIfUserIsStudent(vC)
-                    // vC.performSegueWithIdentifier("SignInStudent", sender: signingStudentInfo.SignInButton)
                     
                 }
                 if signingStudentInfo.type == "Home Owner"{
-                    
-                    //  self.fetchInfoOfUser(vC)
-                    
-                    //print(self.newObj)
+                
                     self.CheckIfUserIsHO(vC)
                     
                     
@@ -498,7 +494,7 @@ struct NetworkOperations{
             print("error")
         }
     }
-    
+    //validation
     private func CheckIfUserIsStudentFB(vC : UIViewController){
         var userID = getCurrentUserUID()
         var flag = false
@@ -522,6 +518,7 @@ struct NetworkOperations{
             
         })
     }
+    //validation
     private func CheckIfUserIsHOFB(vC : UIViewController){
         var userID = getCurrentUserUID()
         var flag = false
@@ -558,16 +555,15 @@ struct NetworkOperations{
                 //----perform segue getting the user information needed for the model
                 let signingInto = vC as! SignInViewController
                 if signingInto.type == "Student"{
-                    // self.fetchInfoOfUser(vC)
+                   
                     self.CheckIfUserIsStudentFB(vC)
-                    //vC.performSegueWithIdentifier("SignInStudentFB", sender: signingInto.loginButton)
-                    
+                 
                 }
                 if signingInto.type == "Home Owner"{
                     
-                    //  self.fetchInfoOfUser(vC)
+                   
                     self.CheckIfUserIsHOFB(vC)
-                    //vC.performSegueWithIdentifier("SignInHomeOwnerFB", sender: signingInto.loginButton)
+                   
                 }
                 
                 
@@ -605,7 +601,7 @@ struct NetworkOperations{
                 
             }else{
                 //Call create user with email
-                //------perform Segue to profile information section acquiring section
+
                 let signUp = vC as! SignUpViewController
                 if signUp.type == "Student"{
                     vC.performSegueWithIdentifier("GatherStudentInfo", sender: signUp.registerButton)

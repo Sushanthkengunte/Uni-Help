@@ -16,9 +16,21 @@ class SideBarStudentTableViewController: UITableViewController {
     var userID : String = (FIRAuth.auth()?.currentUser?.uid)!
     
     var flag : String = ""
-    
+     @IBOutlet weak var signOutButton: UIButton!
     
     @IBOutlet weak var editProfile: UITableViewCell!
+    var net = NetworkOperations()
+    @IBAction func logout(sender: AnyObject) {
+        if FIRAuth.auth()?.currentUser != nil{
+            do{
+                try FIRAuth.auth()?.signOut()
+                performSegueWithIdentifier("backToLoginStudent", sender: signOutButton)
+                
+            }catch{
+                net.alertingTheError("Error!!", extMessage: "Error in Signing out", extVc: self)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -39,10 +39,7 @@ class HousesListTableViewController: UITableViewController {
         }
         fillTable()
         
-        //print (userID)
-        
-        //self.tableView.reloadData()
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -82,7 +79,7 @@ class HousesListTableViewController: UITableViewController {
     
     func fillTable(){
         
-         print(filters)
+       
         
         
         let filter = ref.child("Houses")

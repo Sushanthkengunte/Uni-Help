@@ -52,12 +52,12 @@
 		BD8F23FB1EA36FBD00E213C9 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8F23FA1EA36FBD00E213C9 /* FBSDKCoreKit.framework */; };
 		BD8F23FD1EA36FCD00E213C9 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8F23FC1EA36FCD00E213C9 /* FBSDKLoginKit.framework */; };
 		BD99F1751EA1B43E00958B75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD99F1741EA1B43E00958B75 /* AppDelegate.swift */; };
-		BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD99F1761EA1B43E00958B75 /* ViewController.swift */; };
 		BD99F17D1EA1B43E00958B75 /* Unihelp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD99F17B1EA1B43E00958B75 /* Unihelp.xcdatamodeld */; };
 		BD99F17F1EA1B43E00958B75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD99F17E1EA1B43E00958B75 /* Assets.xcassets */; };
 		BD99F1821EA1B43E00958B75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */; };
 		BD99F18A1EA1B59F00958B75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */; };
 		BDE8A44D1EA6FA2A00604FDD /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8A44C1EA6FA2A00604FDD /* StudentProfile.swift */; };
+		BDE96F171EB0BB6F00EF9F1D /* HomeOwnerSideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE96F161EB0BB6F00EF9F1D /* HomeOwnerSideBarTableViewController.swift */; };
 		BDEB1CB51EAAD52200076D53 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB31EAAD52200076D53 /* Student+CoreDataProperties.swift */; };
 		BDEB1CB61EAAD52200076D53 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB41EAAD52200076D53 /* Student.swift */; };
 		BDEB1CB91EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB71EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift */; };
@@ -119,13 +119,13 @@
 		BD8F23FE1EA3702D00E213C9 /* Unihelp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unihelp-Bridging-Header.h"; sourceTree = "<group>"; };
 		BD99F1711EA1B43E00958B75 /* Unihelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unihelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD99F1741EA1B43E00958B75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BD99F1761EA1B43E00958B75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BD99F17C1EA1B43E00958B75 /* Unihelp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unihelp.xcdatamodel; sourceTree = "<group>"; };
 		BD99F17E1EA1B43E00958B75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD99F1811EA1B43E00958B75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD99F1831EA1B43E00958B75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD99F1891EA1B59F00958B75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDE8A44C1EA6FA2A00604FDD /* StudentProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentProfile.swift; sourceTree = "<group>"; };
+		BDE96F161EB0BB6F00EF9F1D /* HomeOwnerSideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerSideBarTableViewController.swift; sourceTree = "<group>"; };
 		BDEB1CB31EAAD52200076D53 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BDEB1CB41EAAD52200076D53 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		BDEB1CB71EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HouseOwnerEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -219,6 +219,8 @@
 		BD1F1AA21EA6E4C200B3B4FD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BDE96F161EB0BB6F00EF9F1D /* HomeOwnerSideBarTableViewController.swift */,
+				1C5429DE1EB083F8008F990F /* SideBarStudentTableViewController.swift */,
 				1C9908CB1EAF3F1D0008B2B0 /* HouseInfoViewController.swift */,
 				1C45B8671EADC6D900654640 /* RoommatesTableViewController.swift */,
 				1C9908C71EAF149C0008B2B0 /* HousesListTableViewController.swift */,
@@ -288,8 +290,6 @@
 			children = (
 				BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */,
 				1C5434EA1EAE18E1002D5438 /* Main.storyboard */,
-				1C5429DE1EB083F8008F990F /* SideBarStudentTableViewController.swift */,
-				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
 				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
 				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
 				BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */,
@@ -441,6 +441,7 @@
 				1C4DF6D11EA7610200D42D8D /* DLRadioButton.m in Sources */,
 				1C4992D11EA2E7FD006662FF /* HouseUpdateFormViewController.swift in Sources */,
 				BDEB1CBA1EACAB5D00076D53 /* HouseOwnerEntity.swift in Sources */,
+				BDE96F171EB0BB6F00EF9F1D /* HomeOwnerSideBarTableViewController.swift in Sources */,
 				1C0051421EAAF7390072CAB9 /* StudentsFilterViewController.swift in Sources */,
 				1C5EDA2B1EA4A94200E428B5 /* University+CoreDataProperties.swift in Sources */,
 				BDEB1CBC1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift in Sources */,
@@ -461,7 +462,6 @@
 				BD1F1A9E1EA6E41800B3B4FD /* CountryTableViewCell.swift in Sources */,
 				1C9908C41EAF042C0008B2B0 /* AccommodationFilterViewController.swift in Sources */,
 				1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */,
-				BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */,
 				1C5429DF1EB083F8008F990F /* SideBarStudentTableViewController.swift in Sources */,
 				1C5EDA2C1EA4A94200E428B5 /* University.swift in Sources */,
 				BD1F1A981EA6DD9300B3B4FD /* NetworkOperations.swift in Sources */,

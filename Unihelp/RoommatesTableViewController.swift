@@ -28,13 +28,9 @@ class RoommatesTableViewController: UITableViewController {
         user = FIRAuth.auth()?.currentUser
         userID = (FIRAuth.auth()?.currentUser?.uid)!
         ref = FIRDatabase.database().reference()
-
-        //print (userID)
         
         fetchFilter()
         
-        //self.tableView.reloadData()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     

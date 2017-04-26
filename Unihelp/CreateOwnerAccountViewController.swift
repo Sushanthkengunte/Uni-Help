@@ -116,7 +116,9 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             self.country.text = value!["country"] as? String
             self.city.text = value!["city"] as? String
             self.contact.text = value!["contact"] as? String
-            
+            self.website.text = value!["website"] as? String
+            let temp = value!["name"] as? String
+            self.fullName.text = temp
             
             self.setPhoto()
             
@@ -128,13 +130,18 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
         
         let fetchUser = FIRDatabase.database().reference().child("Images").child(userID)
         fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            
-            let imageUrl = snapshot.value!["displayPic"] as! String
+            if !snapshot.exists(){ return }
+            let imageUrl = snapshot.value!["displayPic"] as? String
             print(imageUrl)
             
-            let x = NSURL(string: imageUrl)
+            if let im = imageUrl{
+            let x = NSURL(string: im)
             let dataOfPic = NSData(contentsOfURL: x!)
             self.myImage.image = UIImage(data: dataOfPic!)
+            }else{
+                self.myImage.image = UIImage(named: "blank-profile")
+            }
+            
             
         })
         

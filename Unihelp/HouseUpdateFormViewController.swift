@@ -14,6 +14,7 @@ import FirebaseStorage
 
 class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
     
+    @IBOutlet weak var availableDate: UITextField!
     @IBOutlet weak var address1: UITextField!
     @IBOutlet weak var address2: UITextField!
     @IBOutlet weak var city: UITextField!
@@ -46,7 +47,7 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
             self.city.text = snapshot.value!["city"] as! String
             self.zip.text = snapshot.value!["zip"] as! String
             self.aboutHouse.text = snapshot.value!["about"] as! String
-            //self.availableDate.text = snapshot.value!["availableDate"] as! String
+            self.availableDate.text = snapshot.value!["availableDate"] as! String
             self.state.text = snapshot.value!["state"] as! String
             self.price.text = snapshot.value!["price"] as! String
             self.rooms.text = snapshot.value!["rooms"] as! String
