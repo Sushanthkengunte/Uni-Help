@@ -18,6 +18,7 @@
 		1C4992D91EA2FCF7006662FF /* HomeOwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4992D81EA2FCF7006662FF /* HomeOwnerProfile.swift */; };
 		1C4DF6D11EA7610200D42D8D /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DF6D01EA7610200D42D8D /* DLRadioButton.m */; };
 		1C4DF6D31EA768EC00D42D8D /* MyProfileRoomateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */; };
+		1C5429DF1EB083F8008F990F /* SideBarStudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5429DE1EB083F8008F990F /* SideBarStudentTableViewController.swift */; };
 		1C5434E71EAE0044002D5438 /* RoommateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */; };
 		1C5434E91EAE11E9002D5438 /* StudentGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */; };
 		1C5434EB1EAE18E1002D5438 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5434EA1EAE18E1002D5438 /* Main.storyboard */; };
@@ -78,6 +79,7 @@
 		1C4DF6CF1EA7610200D42D8D /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		1C4DF6D01EA7610200D42D8D /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		1C4DF6D21EA768EC00D42D8D /* MyProfileRoomateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileRoomateViewController.swift; sourceTree = "<group>"; };
+		1C5429DE1EB083F8008F990F /* SideBarStudentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarStudentTableViewController.swift; sourceTree = "<group>"; };
 		1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoommateTableViewCell.swift; sourceTree = "<group>"; };
 		1C5434E81EAE11E9002D5438 /* StudentGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentGroupTableViewController.swift; sourceTree = "<group>"; };
 		1C5434EA1EAE18E1002D5438 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			children = (
 				BD99F1801EA1B43E00958B75 /* LaunchScreen.storyboard */,
 				1C5434EA1EAE18E1002D5438 /* Main.storyboard */,
+				1C5429DE1EB083F8008F990F /* SideBarStudentTableViewController.swift */,
 				BD99F1761EA1B43E00958B75 /* ViewController.swift */,
 				BD99F1741EA1B43E00958B75 /* AppDelegate.swift */,
 				BD99F17E1EA1B43E00958B75 /* Assets.xcassets */,
@@ -459,6 +462,7 @@
 				1C9908C41EAF042C0008B2B0 /* AccommodationFilterViewController.swift in Sources */,
 				1C5EDA1F1EA49EB500E428B5 /* UniSearchViewController.swift in Sources */,
 				BD99F1771EA1B43E00958B75 /* ViewController.swift in Sources */,
+				1C5429DF1EB083F8008F990F /* SideBarStudentTableViewController.swift in Sources */,
 				1C5EDA2C1EA4A94200E428B5 /* University.swift in Sources */,
 				BD1F1A981EA6DD9300B3B4FD /* NetworkOperations.swift in Sources */,
 				BD8F23F11EA3412C00E213C9 /* SignUpViewController.swift in Sources */,

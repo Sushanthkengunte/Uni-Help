@@ -104,6 +104,7 @@ class SignUpViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
         if segue.identifier == "GatherStudentInfoFB"{
             let infoVC = segue.destinationViewController as? GatherStudentInfoViewController
             infoVC?.profileType = type
+            infoVC?.flag = "false"
             let  user1 = FIRAuth.auth()?.currentUser
             if let user = user1{
                 
@@ -117,6 +118,7 @@ class SignUpViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
         if segue.identifier == "GatherStudentInfo"{
             let infoVC = segue.destinationViewController as? GatherStudentInfoViewController
             infoVC?.profileType = type
+            infoVC?.flag = "false"
             let  user1 = FIRAuth.auth()?.currentUser
             if let user = user1{
                 infoVC?.email_Stu = user.email

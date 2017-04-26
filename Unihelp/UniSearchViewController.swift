@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import MapKit
+import Firebase
 
 class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -48,26 +49,44 @@ class UniSearchViewController: UIViewController, UITextFieldDelegate, UITableVie
         universityTable.delegate = self
         universityTable.hidden = true
         
-        geocoder.geocodeAddressString(UniMapAddress, completionHandler: {(placemarks, error) -> Void in
-            if((error) != nil){
-                print("Errooooooor")
-            }
-            if let placemark = placemarks?.first{
-                self.gps = placemark.location!.coordinate
-                
-                let span = MKCoordinateSpanMake(0.05, 0.05)
-                let region = MKCoordinateRegion(center: self.gps, span: span)
-                self.mapView.setRegion(region, animated: true)
-                
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = self.gps
-                annotation.title = "Alpha Beta Sose"
-                annotation.subtitle = "Syracuse"
-                self.mapView.addAnnotation(annotation)
-                
-            }
-        })
+        loadFirstUniversity()
+        
+//        geocoder.geocodeAddressString(UniMapAddress, completionHandler: {(placemarks, error) -> Void in
+//            if((error) != nil){
+//                print("Errooooooor")
+//            }
+//            if let placemark = placemarks?.first{
+//                self.gps = placemark.location!.coordinate
+//                
+//                let span = MKCoordinateSpanMake(0.05, 0.05)
+//                let region = MKCoordinateRegion(center: self.gps, span: span)
+//                self.mapView.setRegion(region, animated: true)
+//                
+//                let annotation = MKPointAnnotation()
+//                annotation.coordinate = self.gps
+//                annotation.title = "Alpha Beta Sose"
+//                annotation.subtitle = "Syracuse"
+//                self.mapView.addAnnotation(annotation)
+//                
+//            }
+//        })
  
+    }
+    
+    func loadFirstUniversity(){
+        
+        let userID = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        let fetchUser = FIRDatabase.database().reference().child("Students").child(userID)
+        fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            let value = snapshot.value! as? NSDictionary
+            let uniName = value!["university"] as? String
+            self.setUniversityDetails(uniName!)
+            
+        })
+
+        
     }
     
     

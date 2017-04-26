@@ -28,10 +28,6 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate{
         
     }
     
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        universityTable.hidden = false
-//        universityTable.reloadData()
-//    }
     
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == self.aboutMeTextView{
@@ -39,42 +35,6 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
-//    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-//        
-//        if textField == self.universityTextView{
-//            universityTable.hidden = false
-//        }
-//        return true
-//    }
-//
-//    
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return autoComplete.count
-//    }
-//    
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//    
-//        let cell = tableView.dequeueReusableCellWithIdentifier("UniversityCell", forIndexPath: indexPath) as? UniversityTableViewCell
-//        let index = indexPath.row as Int
-//        cell!.university.text = autoComplete[index]
-//
-//        
-//        return cell!
-//    }
-//    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? UniversityTableViewCell
-//        let temp = selectedCell?.university.text
-//        universityTextView.text = temp
-//        universityTable.hidden = true
-//        university = temp!
-//
-//    }
     
     @IBAction func Submit(sender: AnyObject) {
         

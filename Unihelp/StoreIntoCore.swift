@@ -205,32 +205,8 @@ class StoreIntoCore {
         var DOB : String?
         var gender : String?
         var phone : String?
-//        var personnaProfile:DictionaryType?
-//        var requiredProfile:DictionaryType?
-//        var requiredHouse:DictionaryType?
-        
-//        
-//        @NSManaged var displayPic: String?
-//        @NSManaged var type: String?
-//        @NSManaged var userKey: String?
-//        @NSManaged var name: String?
-//        @NSManaged var emailID: String?
-//        @NSManaged var country: String?
-//        @NSManaged var city: String?
-//        @NSManaged var university: String?
-//        @NSManaged var dob: String?
-//        @NSManaged var bothbg: String?
-//        @NSManaged var guys: String?
-//        @NSManaged var girls: String?
-//        @NSManaged var share: String?
-//        @NSManaged var dontshare: String?
-//        @NSManaged var pureveg: String?
-//        @NSManaged var nonveg: String?
-//        @NSManaged var anyfood: String?
-//        @NSManaged var alcoholyes: String?
-//        @NSManaged var alcoholno: String?
-//        @NSManaged var smoke: String?
-//        @NSManaged var smokeno: String?
+        var flag : String?
+
         do{
             let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
             let object = result[0] as! NSManagedObject
@@ -249,7 +225,7 @@ class StoreIntoCore {
         }catch {
             
         }
-        let stu = StudentProfile( extType: type!, extUserKey: userKey!, extName: name!, extEmail: emailID!, extDOB: DOB!, extCountry: country!, extCity: city!,extPhone: phone! ,extUniversity: university!, extpProfile: nil, extRP: nil, extRH: nil,extGender: gender!)
+        let stu = StudentProfile( extType: type!, extUserKey: userKey!, extName: name!, extEmail: emailID!, extDOB: DOB!, extCountry: country!, extCity: city!,extPhone: phone! ,extUniversity: university!, extpProfile: nil, extRP: nil, extRH: nil,extGender: gender!, userflag: flag!)
         return stu
         
     }

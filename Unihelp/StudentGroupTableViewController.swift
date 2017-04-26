@@ -219,13 +219,4 @@ class StudentGroupTableViewController: UITableViewController {
         
     }
 
-
-    
-    
-    
-    
-    
-    
-    
-
 }

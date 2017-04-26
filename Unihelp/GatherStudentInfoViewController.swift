@@ -23,7 +23,11 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     }
     var email_Stu :String!
     var nameOf: String!
+    var flag: String! = "false"
+    
     var gender : String = ""
+    
+    
     @IBAction func selectMaleGender(sender: AnyObject) {
         gender = "male"
     }
@@ -79,6 +83,8 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         
         self.autoCompletePossibilities_Country = storeCore.autoCompletePossibilities_Countries
         
+        name.text = nameOf ?? ""
+        
         // Do any additional setup after loading the view.
         displayPic.layer.cornerRadius = displayPic.frame.size.width/2
         displayPic.clipsToBounds = true
@@ -123,7 +129,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         cityTable.hidden = true
         universityTable.hidden = true
         emailID.text = email_Stu
-        name.text = nameOf ?? ""
+        //name.text = nameOf ?? ""
         if let im2 = imageData {
             displayPic.image = UIImage(data: im2)
         }
@@ -161,7 +167,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
                     self.femaleSex.selected = true
                     self.gender = "female"
                 }
-            
+            self.flag = value!["flag"] as? String
             self.setPhoto()
             
             
@@ -457,16 +463,13 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
         checkConstrints()
         
         
-        if (name.text!.isEmpty || emailID.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty || gender == "nil" || phoneNo.text!.isEmpty){
+        if (name.text!.isEmpty || emailID.text!.isEmpty || country.text!.isEmpty || city.text!.isEmpty || university.text!.isEmpty || gender == "" || phoneNo.text!.isEmpty){
             
             networkOp.alertingTheError("Error", extMessage: "Enter required details", extVc: self)
         }
-//        else if ( (Int(monthtext.text!)>0 && Int(monthtext.text!) < 13) || (Int(dateText.text!)>0 && Int(dateText.text!) < 32) &&  (Int(yearText.text!)>1900 && Int(yearText.text!) < 2020)){
-//            
-//            networkOp.alertingTheError("Error", extMessage: "Enter valid DOB", extVc: self)
-//            
-//        }
+            
         else{
+            print(flag)
         
             let date = convertIntoDate(dateText.text!, extMonth: monthtext.text!, extYear: yearText.text!)
             
@@ -476,8 +479,8 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             networkOp.saveImageToStorage(image!, extViewC: self)
             //var imURl = networkOp.imagesDictionary["displayPic"]
             
-            profileType = "Student"
-            let sUser = StudentProfile(extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: emailID.text!, extDOB: date, extCountry: country.text!, extCity: city.text!, extPhone: phoneNo.text! ,extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender)
+            
+            let sUser = StudentProfile(extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extPhone: phoneNo.text! ,extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:], extGender: gender, userflag: flag)
             
             //let sUser = StudentProfile(displayPic: imageUrl, extType: profileType, extUserKey: networkOp.getCurrentUserUID(), extName: name.text!, extEmail: email_Stu, extDOB: date, extCountry: country.text!, extCity: city.text!, extUniversity: university.text!, extpProfile: [:], extRP: [:], extRH: [:])
             

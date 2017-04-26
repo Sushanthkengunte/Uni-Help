@@ -165,7 +165,7 @@ struct NetworkOperations{
         temp!["university"] = stuObject.university
         temp!["DOB"] = stuObject.DOB
         temp!["gender"] = stuObject.gender
-        temp!["flag"] = "false"
+        temp!["flag"] = stuObject.flag
         temp!["phone"] = stuObject.phone
         return temp!
     }
