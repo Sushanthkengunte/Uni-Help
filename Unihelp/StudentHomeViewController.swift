@@ -23,6 +23,9 @@ class StudentHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      //  self.navigationItem.setHidesBackButton(true, animated: true)
+        
 //        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 //        print(dirPath)
         
@@ -35,7 +38,16 @@ class StudentHomeViewController: UIViewController {
         checkUserDetails()
         
     }
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "RoommateFirstTime"{
+            let vC = segue.destinationViewController as? MyProfileRoomateViewController
+            vC!.displayMoveOnButton = true
+            vC!.displaySubmitAndCancel = false
+            
+        
+        }
+        
+    }
     override func viewWillAppear(animated: Bool) {
         
         checkUserDetails()

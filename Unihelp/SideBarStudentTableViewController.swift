@@ -16,7 +16,7 @@ class SideBarStudentTableViewController: UITableViewController {
     var userID : String = (FIRAuth.auth()?.currentUser?.uid)!
     
     var flag : String = ""
-     @IBOutlet weak var signOutButton: UIButton!
+     @IBOutlet weak var signOutButton: UITableViewCell!
     
     @IBOutlet weak var editProfile: UITableViewCell!
     var net = NetworkOperations()
@@ -53,7 +53,30 @@ class SideBarStudentTableViewController: UITableViewController {
                 
             }
 
-        }  
+        }
+        if segue.identifier == "backToLoginStudent" {
+            //print("log out")
+            if FIRAuth.auth()?.currentUser != nil{
+                do{
+                    try FIRAuth.auth()?.signOut()
+                    //performSegueWithIdentifier("backToLoginStudent", sender: signOutButton)
+                    
+                }catch{
+                    net.alertingTheError("Error!!", extMessage: "Error in Signing out", extVc: self)
+                }
+            }
+            
+        }
+        if segue.identifier == "myRoommateProfile" {
+            //print("log out")
+            //let nc = segue.destinationViewController as? UINavigationController
+            let infoVc = segue.destinationViewController as? MyProfileRoomateViewController
+           infoVc!.displayMoveOnButton = false
+            infoVc!.displaySubmitAndCancel = true
+            
+            
+            
+        }
     }
     
 }

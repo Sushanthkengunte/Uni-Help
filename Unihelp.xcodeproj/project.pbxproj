@@ -63,6 +63,7 @@
 		BDEB1CB91EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB71EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift */; };
 		BDEB1CBA1EACAB5D00076D53 /* HouseOwnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CB81EACAB5D00076D53 /* HouseOwnerEntity.swift */; };
 		BDEB1CBC1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEB1CBB1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift */; };
+		BDED9CF01EB1BB5100FF7977 /* HouseImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDED9CEF1EB1BB5100FF7977 /* HouseImagesTableViewCell.swift */; };
 		CC2CEB82404ADA63F1567865 /* Pods_Unihelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09BC8C9B5DB1EC574AD71CB /* Pods_Unihelp.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 		BDEB1CB71EACAB5D00076D53 /* HouseOwnerEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HouseOwnerEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BDEB1CB81EACAB5D00076D53 /* HouseOwnerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOwnerEntity.swift; sourceTree = "<group>"; };
 		BDEB1CBB1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOwnerTableViewCell.swift; sourceTree = "<group>"; };
+		BDED9CEF1EB1BB5100FF7977 /* HouseImagesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseImagesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 		BD1F1AA11EA6E47C00B3B4FD /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				BDED9CEF1EB1BB5100FF7977 /* HouseImagesTableViewCell.swift */,
 				1C9908C91EAF2C290008B2B0 /* HouseTableViewCell.swift */,
 				BDEB1CBB1EAEC39F00076D53 /* HomeOwnerTableViewCell.swift */,
 				1C5434E61EAE0044002D5438 /* RoommateTableViewCell.swift */,
@@ -454,6 +457,7 @@
 				BD1F1A9A1EA6E2A300B3B4FD /* GatherStudentInfoViewController.swift in Sources */,
 				1C4DF6D31EA768EC00D42D8D /* MyProfileRoomateViewController.swift in Sources */,
 				1CD9B5D91EA8895100DA789D /* StoreIntoCore.swift in Sources */,
+				BDED9CF01EB1BB5100FF7977 /* HouseImagesTableViewCell.swift in Sources */,
 				1C9908CC1EAF3F1D0008B2B0 /* HouseInfoViewController.swift in Sources */,
 				BD8F23F31EA3414B00E213C9 /* SignInViewController.swift in Sources */,
 				BDEB1CB61EAAD52200076D53 /* Student.swift in Sources */,

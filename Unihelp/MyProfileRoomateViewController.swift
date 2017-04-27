@@ -19,12 +19,36 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate{
     var room : String = "own"           //own, share
     
     @IBOutlet weak var aboutMeTextView: UITextView!
-
     
     
+    var displayMoveOnButton = false
+    var displaySubmitAndCancel = false
+    
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var moveOnButton: UIButton!
+    @IBOutlet weak var submitDetail: UIButton!
+    
+    @IBAction func submittingFunction(sender: AnyObject) {
+        aboutme = aboutMeTextView.text
+        if (aboutme == "How am I? What do I like? What pisses me off? Do I have any more preferences? List them all."){
+            aboutme = ""
+        }
+        
+        updatePreferences.updateStudentPersonnelDetails(coed, sharing: room, drink: drink, smoke: smoke, aboutMe: aboutme,food: food)
+        performSegueWithIdentifier("goBackToHomeFromDetails", sender: submitDetail)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if displayMoveOnButton{
+            moveOnButton.hidden = false
+            submitDetail.hidden = true
+            cancelButton.hidden = true
+        }
+        if displaySubmitAndCancel{
+            moveOnButton.hidden = true
+            submitDetail.hidden = false
+            cancelButton.hidden = false
+        }
         
     }
     
@@ -44,13 +68,8 @@ class MyProfileRoomateViewController: UIViewController, UITextFieldDelegate{
         }
         
         updatePreferences.updateStudentPersonnelDetails(coed, sharing: room, drink: drink, smoke: smoke, aboutMe: aboutme,food: food)
-//        print(coed)
-//        print(room)
-//        print(food)
-//        print(drink)
-//        print(smoke)
-//        print(aboutme)
-//        print(university)
+        
+
         
     }
 

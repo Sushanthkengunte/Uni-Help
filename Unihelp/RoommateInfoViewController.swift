@@ -38,7 +38,9 @@ class RoommateInfoViewController: UIViewController {
         user = FIRAuth.auth()?.currentUser
         ref = FIRDatabase.database().reference()
         loadStudentInfo()
-        print(student_uid)
+       // print(student_uid)
+        imageDP.layer.cornerRadius = imageDP.frame.size.width/2
+        imageDP.clipsToBounds = true
         
     }
     

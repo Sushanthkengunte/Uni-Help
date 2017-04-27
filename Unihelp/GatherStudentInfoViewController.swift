@@ -140,8 +140,8 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
     @IBOutlet weak var femaleSex: DLRadioButton!
     @IBOutlet weak var maleSex: DLRadioButton!
     //used to validate and set dates
-    var monthTo = ["January" : 01,"February" : 02, "March" : 03 , "April" : 04 , "May" : 05, "June" : 06,
-                   "July" : 07, "August" : 08 , "September" : 09,"October" : 10,"November" : 11,"December" :12]
+    var monthTo = ["January" : "01","February" : "02", "March" : "03" , "April" : "04" , "May" : "05", "June" : "06",
+                   "July" : "07", "August" : "08" , "September" : "09","October" : "10","November" : "11","December" : "12"]
     var numberOfDays = ["01" : 31,"02" : 28, "03" : 31, "04" : 30 , "05" : 31, "06" : 30,
                         "07" : 31, "08" : 31 , "09" : 30,"10" : 31,"11" : 30,"12" :31]
     
@@ -182,7 +182,7 @@ class GatherStudentInfoViewController: UIViewController,UIImagePickerControllerD
             var date_ = monthAndDate[2]
             var year_ = components![2]
             self.dateText.text = date_
-            self.monthtext.text = String(monthText_)
+            self.monthtext.text = String(monthText_!)
             self.yearText.text = year_
             
             

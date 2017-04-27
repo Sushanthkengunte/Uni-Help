@@ -213,13 +213,7 @@ class HouseUpdateFormViewController: UIViewController, UITextViewDelegate, UINav
         return false
     }
     
-    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     if segue.identifier == "backToTable" {
-     if let destViewController = segue.destinationViewController as? HomeOwnerTableViewController {
-     destViewController.add = newHouse.address1
-     }
-     }
-     }*/
+
     
     // ------------------------------- Remove Keyboard when clicked elsewhere -----------------------------//
     @IBAction func removeKB(sender: AnyObject) {

@@ -128,7 +128,7 @@ class SignUpViewController: UIViewController,FBSDKLoginButtonDelegate,UIPickerVi
         }
         
         if segue.identifier == "GatherHomeOwnerInfo"{
-            print(#function)
+         //   print(#function)
               let infoVC = segue.destinationViewController as? CreateOwnerAccountViewController
             infoVC?.profileType = type
             let  user1 = FIRAuth.auth()?.currentUser

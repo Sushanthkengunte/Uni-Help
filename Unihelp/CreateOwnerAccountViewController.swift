@@ -117,8 +117,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             self.city.text = value!["city"] as? String
             self.contact.text = value!["contact"] as? String
             self.website.text = value!["website"] as? String
-            let temp = value!["name"] as? String
-            self.fullName.text = temp
+            self.nameOf = self.fullName.text!
             
             self.setPhoto()
             
@@ -136,6 +135,7 @@ class CreateOwnerAccountViewController: UIViewController, UITextFieldDelegate, U
             
             if let im = imageUrl{
             let x = NSURL(string: im)
+        
             let dataOfPic = NSData(contentsOfURL: x!)
             self.myImage.image = UIImage(data: dataOfPic!)
             }else{
