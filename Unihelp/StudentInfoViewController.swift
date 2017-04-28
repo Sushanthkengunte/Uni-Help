@@ -22,6 +22,7 @@ class StudentInfoViewController: UIViewController {
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var city: UILabel!
     @IBOutlet weak var mailID: UILabel!
+    @IBOutlet weak var dpImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,9 @@ class StudentInfoViewController: UIViewController {
         ref = FIRDatabase.database().reference()
         loadStudentInfo()
         print(student_uid)
+        
+        dpImage.layer.cornerRadius = dpImage.frame.size.width/2
+        dpImage.clipsToBounds = true
         
     }
     
@@ -48,14 +52,30 @@ class StudentInfoViewController: UIViewController {
                 self.city.text = value!["city"] as? String
                 self.mailID.text = value!["emailID"] as? String
 
-                break
+                self.setPhoto()
             }
             
         })
-
+ 
+    }
+    
+    func setPhoto(){
+        
+        let fetchUser = ref.child("Images").child(student_uid)
+        fetchUser.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            let imageUrl = snapshot.value!["displayPic"] as! String
+            print(imageUrl)
+            
+            let x = NSURL(string: imageUrl)
+            let dataOfPic = NSData(contentsOfURL: x!)
+            self.dpImage.image = UIImage(data: dataOfPic!)
+            
+        })
         
         
     }
+
     
 
 

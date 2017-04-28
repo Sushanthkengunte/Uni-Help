@@ -15,11 +15,13 @@ class HousesListTableViewController: UITableViewController {
     var ref: FIRDatabaseReference!
     let userID : String = (FIRAuth.auth()?.currentUser?.uid)!
     
+    var networkOps = NetworkOperations()
+    
     var filters : [String : String] = [:]
     var houseUUID2Address : [String : String] = [:]
     var houseUUID2ownerUID : [String : String] = [:]
     var min : Int = 100
-    var max : Int = 1000
+    var max : Int = 2000
     var filters_bool : [String : Bool] = [:]
     var arrayHouseUUID = [String]()
     
@@ -79,9 +81,7 @@ class HousesListTableViewController: UITableViewController {
     
     func fillTable(){
         
-       
-        
-        
+
         let filter = ref.child("Houses")
         filter.observeEventType(.Value, withBlock: { (snapshot) in
             
@@ -136,7 +136,12 @@ class HousesListTableViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
-            print ("All houses after city",self.houseUUID2ownerUID)
+            //print ("All houses after city",self.houseUUID2ownerUID)
+            self.tableView.reloadData()
+            if self.arrayHouseUUID.count == 0{
+                self.networkOps.alertingTheError("Alert", extMessage: "No Houses found for given criteria", extVc: self)
+            }
+
         })
     }
     
@@ -182,7 +187,7 @@ class HousesListTableViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
-            print ("All houses after price",self.houseUUID2ownerUID)
+            //print ("All houses after price",self.houseUUID2ownerUID)
         })
     }
     
@@ -211,7 +216,7 @@ class HousesListTableViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
-            print ("All houses after Room",self.houseUUID2ownerUID)
+            //print ("All houses after Room",self.houseUUID2ownerUID)
         })
     }
 

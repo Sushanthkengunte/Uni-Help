@@ -19,6 +19,8 @@ class RoommatesTableViewController: UITableViewController {
     var filters_bool : [String : Bool] = [:]
     var arrayUID = [String]()
     
+    var networkOps = NetworkOperations()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,7 +178,7 @@ class RoommatesTableViewController: UITableViewController {
             
             //print(self.arrayUID)
             
-            self.universityCondition(self.filters["university"]!)
+            
             if(self.filters_bool["genderRequired"] == true){
                 self.genderCondition(self.filters["genderRequired"]!)
             }
@@ -198,6 +200,7 @@ class RoommatesTableViewController: UITableViewController {
             if(self.filters_bool["finalCity"] == true){
                 self.locationFilters(self.filters["finalCity"]!, criteria: "city")
             }
+            self.universityCondition(self.filters["university"]!)
             
 
         })
@@ -223,6 +226,9 @@ class RoommatesTableViewController: UITableViewController {
             if index != nil{self.arrayUID.removeAtIndex(index!)}
             //print("end of gender",self.arrayUID)
             self.tableView.reloadData()
+            if self.arrayUID.count == 0{
+                self.networkOps.alertingTheError("Alert", extMessage: "No Roommates found for given criteria", extVc: self)
+            }
         })
         
     }
